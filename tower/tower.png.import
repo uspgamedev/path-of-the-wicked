@@ -7,10 +7,10 @@ path="res://.import/tower.png-68e21c6b31a8da0bc52ef9bf7fe7c759.stex"
 [deps]
 
 source_file="res://tower/tower.png"
-source_md5="802bdf8a0089b88eefdb4765d3b41d61"
+source_md5="7211ebcdaf58e73831c81dccf409532b"
 
 dest_files=[ "res://.import/tower.png-68e21c6b31a8da0bc52ef9bf7fe7c759.stex" ]
-dest_md5="fd263f8f5c241f2874235dc81e282833"
+dest_md5="6d859c4a7ce8d6aca9d41a281e120edc"
 
 [params]
 

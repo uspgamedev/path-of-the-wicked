@@ -14,4 +14,19 @@ bounce = 0.0
 
 animation = "default"
 
+[node name="Area2D" type="Area2D" parent="." index="1"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( -20, -20, 20, -20, 20, 20, -20, 20 )
+
 

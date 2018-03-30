@@ -1,0 +1,52 @@
+[gd_scene load_steps=33 format=2]
+
+[ext_resource path="res://gems/gem.tscn" type="PackedScene" id=1]
+[ext_resource path="res://gems/Green/gem5/0001.png" type="Texture" id=2]
+[ext_resource path="res://gems/Green/gem5/0002.png" type="Texture" id=3]
+[ext_resource path="res://gems/Green/gem5/0003.png" type="Texture" id=4]
+[ext_resource path="res://gems/Green/gem5/0004.png" type="Texture" id=5]
+[ext_resource path="res://gems/Green/gem5/0005.png" type="Texture" id=6]
+[ext_resource path="res://gems/Green/gem5/0006.png" type="Texture" id=7]
+[ext_resource path="res://gems/Green/gem5/0007.png" type="Texture" id=8]
+[ext_resource path="res://gems/Green/gem5/0008.png" type="Texture" id=9]
+[ext_resource path="res://gems/Green/gem5/0009.png" type="Texture" id=10]
+[ext_resource path="res://gems/Green/gem5/0010.png" type="Texture" id=11]
+[ext_resource path="res://gems/Green/gem5/0011.png" type="Texture" id=12]
+[ext_resource path="res://gems/Green/gem5/0012.png" type="Texture" id=13]
+[ext_resource path="res://gems/Green/gem5/0013.png" type="Texture" id=14]
+[ext_resource path="res://gems/Green/gem5/0014.png" type="Texture" id=15]
+[ext_resource path="res://gems/Green/gem5/0015.png" type="Texture" id=16]
+[ext_resource path="res://gems/Green/gem5/0016.png" type="Texture" id=17]
+[ext_resource path="res://gems/Green/gem5/0017.png" type="Texture" id=18]
+[ext_resource path="res://gems/Green/gem5/0018.png" type="Texture" id=19]
+[ext_resource path="res://gems/Green/gem5/0019.png" type="Texture" id=20]
+[ext_resource path="res://gems/Green/gem5/0020.png" type="Texture" id=21]
+[ext_resource path="res://gems/Green/gem5/0021.png" type="Texture" id=22]
+[ext_resource path="res://gems/Green/gem5/0022.png" type="Texture" id=23]
+[ext_resource path="res://gems/Green/gem5/0023.png" type="Texture" id=24]
+[ext_resource path="res://gems/Green/gem5/0024.png" type="Texture" id=25]
+[ext_resource path="res://gems/Green/gem5/0025.png" type="Texture" id=26]
+[ext_resource path="res://gems/Green/gem5/0026.png" type="Texture" id=27]
+[ext_resource path="res://gems/Green/gem5/0027.png" type="Texture" id=28]
+[ext_resource path="res://gems/Green/gem5/0028.png" type="Texture" id=29]
+[ext_resource path="res://gems/Green/gem5/0029.png" type="Texture" id=30]
+[ext_resource path="res://gems/Green/gem5/0030.png" type="Texture" id=31]
+
+[sub_resource type="SpriteFrames" id=1]
+
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ), ExtResource( 19 ), ExtResource( 20 ), ExtResource( 21 ), ExtResource( 22 ), ExtResource( 23 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 26 ), ExtResource( 27 ), ExtResource( 28 ), ExtResource( 29 ), ExtResource( 30 ), ExtResource( 31 ) ],
+"loop": true,
+"name": "default",
+"speed": 20.0
+} ]
+
+[node name="GreenGem5" index="0" instance=ExtResource( 1 )]
+
+[node name="AnimatedSprite" parent="." index="0"]
+
+frames = SubResource( 1 )
+frame = 23
+playing = true
+
+

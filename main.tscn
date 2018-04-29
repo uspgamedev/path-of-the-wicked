@@ -1,11 +1,12 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://camera.gd" type="Script" id=1]
 [ext_resource path="res://terrain/map_generator.tscn" type="PackedScene" id=2]
 [ext_resource path="res://base/base.tscn" type="PackedScene" id=3]
-[ext_resource path="res://creeps/bandit/bandit.tscn" type="PackedScene" id=4]
+[ext_resource path="res://tower/tower.tscn" type="PackedScene" id=4]
+[ext_resource path="res://creeps/bandit/bandit.tscn" type="PackedScene" id=5]
 
-[node name="Main" type="Node2D"]
+[node name="Main" type="Node2D" index="0"]
 
 __meta__ = {
 "_edit_lock_": true
@@ -43,13 +44,18 @@ script = ExtResource( 1 )
 
 [node name="Base" parent="." index="2" instance=ExtResource( 3 )]
 
-position = Vector2( 1712, 1008 )
+position = Vector2( 1664, 928 )
 
 [node name="Towers" type="Node2D" parent="." index="3"]
 
+_sections_unfolded = [ "Transform" ]
 __meta__ = {
 "_edit_lock_": true
 }
+
+[node name="Tower" parent="Towers" index="0" instance=ExtResource( 4 )]
+
+position = Vector2( 944, 640 )
 
 [node name="Creeps" type="Node2D" parent="." index="4"]
 
@@ -59,7 +65,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Bandit" parent="Creeps" index="0" instance=ExtResource( 4 )]
+[node name="Bandit" parent="Creeps" index="0" instance=ExtResource( 5 )]
 
 position = Vector2( 799.677, 511.633 )
 rotation = 1.57045

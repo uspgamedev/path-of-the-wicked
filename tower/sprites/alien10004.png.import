@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/alien10013.png-aa91bd1065ec41392f57fb36073d4763.stex"
+path="res://.import/alien10004.png-fc8acb76b57dbb9950066de66bd8ccb2.stex"
 
 [deps]
 
-source_file="res://base/sprites/alien10013.png"
-source_md5="c46f169e83f6fede0950eb4b9a7358d7"
+source_file="res://tower/sprites/alien10004.png"
+source_md5="e160f2b8479d8f75360e8c0c47c07d41"
 
-dest_files=[ "res://.import/alien10013.png-aa91bd1065ec41392f57fb36073d4763.stex" ]
-dest_md5="c062b86f632a393fd205082bf955096b"
+dest_files=[ "res://.import/alien10004.png-fc8acb76b57dbb9950066de66bd8ccb2.stex" ]
+dest_md5="fad5b53278d11edc410592b0571042c3"
 
 [params]
 

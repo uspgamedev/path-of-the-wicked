@@ -1,8 +1,9 @@
 extends Camera2D
 
+const MAX_WINDOW_SIZE = Vector2(1920, 1080)
+
 var init_pos
 var holding_cam = false
-var cur_window_size = OS.window_size
 
 func _ready():
 	set_process_input(true)
@@ -18,17 +19,18 @@ func _input(event):
 func _process(delta):
 	if (holding_cam):
 		change_camera_pos()
-	else:
-		self.offset = OS.window_size/2
+	self.offset = Vector2(min(self.offset.x, MAX_WINDOW_SIZE.x - OS.window_size.x), \
+	                      min(self.offset.y, MAX_WINDOW_SIZE.y - OS.window_size.y))
+	OS.window_size = Vector2(min(OS.window_size.x, MAX_WINDOW_SIZE.x), 
+	                         min(OS.window_size.y, MAX_WINDOW_SIZE.y))
 
 func change_camera_pos():
 	var cur_pos = get_viewport().get_mouse_position()
-	var init_offset = OS.window_size/2
 	var cur_offset = init_pos - cur_pos
-	if (cur_offset.x < init_offset.x):
-		cur_offset = Vector2(512, cur_offset.y)
+	if (cur_offset.x < 0 or cur_offset.x + OS.window_size.x> MAX_WINDOW_SIZE.x):
 		init_pos = Vector2(cur_pos.x + self.offset.x, init_pos.y)
-	if (cur_offset.y < init_offset.y):
-		cur_offset = Vector2(cur_offset.x, 300)
+	if (cur_offset.y < 0 or cur_offset.y + OS.window_size.y > MAX_WINDOW_SIZE.y):
 		init_pos = Vector2(init_pos.x, cur_pos.y + self.offset.y)
+	cur_offset = Vector2(min(max(0, cur_offset.x), MAX_WINDOW_SIZE.x - OS.window_size.x), \
+	                     min(max(0, cur_offset.y), MAX_WINDOW_SIZE.y - OS.window_size.y))
 	self.offset = Vector2(cur_offset.x, cur_offset.y)

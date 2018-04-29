@@ -6,325 +6,433 @@
 
 [node name="Grass" type="Sprite" parent="." index="0"]
 
-position = Vector2( 32, 32 )
+position = Vector2( 130, 140 )
 texture = ExtResource( 1 )
 vframes = 4
 hframes = 9
-_sections_unfolded = [ "Animation", "Offset" ]
+_sections_unfolded = [ "Animation", "Offset", "Region", "Transform" ]
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="DL-DR" type="Sprite" parent="." index="1"]
 
-position = Vector2( 97, 32 )
+position = Vector2( 370, 140 )
 texture = ExtResource( 1 )
 vframes = 4
 hframes = 9
 frame = 1
 _sections_unfolded = [ "Animation", "Offset" ]
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="DL-DR-L" type="Sprite" parent="." index="2"]
 
-position = Vector2( 161, 32 )
+position = Vector2( 610, 140 )
 texture = ExtResource( 1 )
 vframes = 4
 hframes = 9
 frame = 2
 _sections_unfolded = [ "Animation" ]
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="DL-DR-R" type="Sprite" parent="." index="3"]
 
-position = Vector2( 225, 32 )
+position = Vector2( 850, 140 )
 texture = ExtResource( 1 )
 vframes = 4
 hframes = 9
 frame = 3
 _sections_unfolded = [ "Animation", "Offset" ]
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="DL-DR-UL" type="Sprite" parent="." index="4"]
 
-position = Vector2( 289, 32 )
+position = Vector2( 1090, 140 )
 texture = ExtResource( 1 )
 vframes = 4
 hframes = 9
 frame = 4
 _sections_unfolded = [ "Animation" ]
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="DL-DR-UR" type="Sprite" parent="." index="5"]
 
-position = Vector2( 353, 32 )
+position = Vector2( 1330, 140 )
 texture = ExtResource( 1 )
 vframes = 4
 hframes = 9
 frame = 5
 _sections_unfolded = [ "Animation" ]
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="DL-L" type="Sprite" parent="." index="6"]
 
-position = Vector2( 417, 32 )
+position = Vector2( 1570, 140 )
 texture = ExtResource( 1 )
 vframes = 4
 hframes = 9
 frame = 6
 _sections_unfolded = [ "Animation" ]
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="DL-L-R" type="Sprite" parent="." index="7"]
 
-position = Vector2( 481, 32 )
+position = Vector2( 1810, 140 )
 texture = ExtResource( 1 )
 vframes = 4
 hframes = 9
 frame = 7
 _sections_unfolded = [ "Animation" ]
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="DL-L-UL" type="Sprite" parent="." index="8"]
 
-position = Vector2( 545, 32 )
+position = Vector2( 2050, 140 )
 texture = ExtResource( 1 )
 vframes = 4
 hframes = 9
 frame = 8
 _sections_unfolded = [ "Animation" ]
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="DL-L-UR" type="Sprite" parent="." index="9"]
 
-position = Vector2( 33, 104 )
+position = Vector2( 130, 410 )
 texture = ExtResource( 1 )
 vframes = 4
 hframes = 9
 frame = 9
 _sections_unfolded = [ "Animation" ]
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="DL-R" type="Sprite" parent="." index="10"]
 
-position = Vector2( 97, 104 )
+position = Vector2( 370, 410 )
 texture = ExtResource( 1 )
 vframes = 4
 hframes = 9
 frame = 10
 _sections_unfolded = [ "Animation" ]
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="DL-R-UL" type="Sprite" parent="." index="11"]
 
-position = Vector2( 161, 104 )
+position = Vector2( 610, 410 )
 texture = ExtResource( 1 )
 vframes = 4
 hframes = 9
 frame = 11
 _sections_unfolded = [ "Animation" ]
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="DL-R-UR" type="Sprite" parent="." index="12"]
 
-position = Vector2( 225, 104 )
+position = Vector2( 850, 410 )
 texture = ExtResource( 1 )
 vframes = 4
 hframes = 9
 frame = 12
 _sections_unfolded = [ "Animation" ]
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="DL-UL" type="Sprite" parent="." index="13"]
 
-position = Vector2( 289, 104 )
+position = Vector2( 1090, 410 )
 texture = ExtResource( 1 )
 vframes = 4
 hframes = 9
 frame = 13
 _sections_unfolded = [ "Animation" ]
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="DL-UL-UR" type="Sprite" parent="." index="14"]
 
-position = Vector2( 353, 104 )
+position = Vector2( 1330, 410 )
 texture = ExtResource( 1 )
 vframes = 4
 hframes = 9
 frame = 14
 _sections_unfolded = [ "Animation" ]
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="DL-UR" type="Sprite" parent="." index="15"]
 
-position = Vector2( 417, 104 )
+position = Vector2( 1570, 410 )
 texture = ExtResource( 1 )
 vframes = 4
 hframes = 9
 frame = 15
 _sections_unfolded = [ "Animation" ]
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="DR-L" type="Sprite" parent="." index="16"]
 
-position = Vector2( 481, 104 )
+position = Vector2( 1810, 410 )
 texture = ExtResource( 1 )
 vframes = 4
 hframes = 9
 frame = 16
 _sections_unfolded = [ "Animation" ]
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="DR-L-R" type="Sprite" parent="." index="17"]
 
-position = Vector2( 545, 104 )
+position = Vector2( 2050, 410 )
 texture = ExtResource( 1 )
 vframes = 4
 hframes = 9
 frame = 17
 _sections_unfolded = [ "Animation" ]
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="DR-L-UL" type="Sprite" parent="." index="18"]
 
-position = Vector2( 33, 176 )
+position = Vector2( 130, 680 )
 texture = ExtResource( 1 )
 vframes = 4
 hframes = 9
 frame = 18
 _sections_unfolded = [ "Animation" ]
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="DR-L-UR" type="Sprite" parent="." index="19"]
 
-position = Vector2( 97, 176 )
+position = Vector2( 370, 680 )
 texture = ExtResource( 1 )
 vframes = 4
 hframes = 9
 frame = 19
 _sections_unfolded = [ "Animation" ]
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="DR-R" type="Sprite" parent="." index="20"]
 
-position = Vector2( 161, 176 )
+position = Vector2( 610, 680 )
 texture = ExtResource( 1 )
 vframes = 4
 hframes = 9
 frame = 20
 _sections_unfolded = [ "Animation" ]
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="DR-R-UL" type="Sprite" parent="." index="21"]
 
-position = Vector2( 225, 176 )
+position = Vector2( 850, 680 )
 texture = ExtResource( 1 )
 vframes = 4
 hframes = 9
 frame = 21
 _sections_unfolded = [ "Animation" ]
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="DR-R-UR" type="Sprite" parent="." index="22"]
 
-position = Vector2( 289, 176 )
+position = Vector2( 1090, 680 )
 texture = ExtResource( 1 )
 vframes = 4
 hframes = 9
 frame = 22
 _sections_unfolded = [ "Animation" ]
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="DR-UL" type="Sprite" parent="." index="23"]
 
-position = Vector2( 353, 176 )
+position = Vector2( 1330, 680 )
 texture = ExtResource( 1 )
 vframes = 4
 hframes = 9
 frame = 23
 _sections_unfolded = [ "Animation" ]
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="DR-UL-UR" type="Sprite" parent="." index="24"]
 
-position = Vector2( 417, 176 )
+position = Vector2( 1570, 680 )
 texture = ExtResource( 1 )
 vframes = 4
 hframes = 9
 frame = 24
 _sections_unfolded = [ "Animation" ]
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="DR-UR" type="Sprite" parent="." index="25"]
 
-position = Vector2( 481, 176 )
+position = Vector2( 1810, 680 )
 texture = ExtResource( 1 )
 vframes = 4
 hframes = 9
 frame = 25
 _sections_unfolded = [ "Animation" ]
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="L-R" type="Sprite" parent="." index="26"]
 
-position = Vector2( 545, 176 )
+position = Vector2( 2050, 680 )
 texture = ExtResource( 1 )
 vframes = 4
 hframes = 9
 frame = 26
 _sections_unfolded = [ "Animation" ]
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="L-R-UL" type="Sprite" parent="." index="27"]
 
-position = Vector2( 33, 248 )
+position = Vector2( 130, 950 )
 texture = ExtResource( 1 )
 vframes = 4
 hframes = 9
 frame = 27
 _sections_unfolded = [ "Animation" ]
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="L-R-UR" type="Sprite" parent="." index="28"]
 
-position = Vector2( 97, 248 )
+position = Vector2( 370, 950 )
 texture = ExtResource( 1 )
 vframes = 4
 hframes = 9
 frame = 28
 _sections_unfolded = [ "Animation" ]
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="L-UL" type="Sprite" parent="." index="29"]
 
-position = Vector2( 161, 248 )
+position = Vector2( 610, 950 )
 texture = ExtResource( 1 )
 vframes = 4
 hframes = 9
 frame = 29
 _sections_unfolded = [ "Animation" ]
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="L-UL-UR" type="Sprite" parent="." index="30"]
 
-position = Vector2( 225, 248 )
+position = Vector2( 850, 950 )
 texture = ExtResource( 1 )
 vframes = 4
 hframes = 9
 frame = 30
 _sections_unfolded = [ "Animation" ]
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="L-UR" type="Sprite" parent="." index="31"]
 
-position = Vector2( 289, 248 )
+position = Vector2( 1090, 950 )
 texture = ExtResource( 1 )
 vframes = 4
 hframes = 9
 frame = 31
 _sections_unfolded = [ "Animation" ]
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="R-UL" type="Sprite" parent="." index="32"]
 
-position = Vector2( 353, 248 )
+position = Vector2( 1330, 950 )
 texture = ExtResource( 1 )
 vframes = 4
 hframes = 9
 frame = 32
 _sections_unfolded = [ "Animation" ]
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="R-UL-UR" type="Sprite" parent="." index="33"]
 
-position = Vector2( 417, 248 )
+position = Vector2( 1570, 950 )
 texture = ExtResource( 1 )
 vframes = 4
 hframes = 9
 frame = 33
 _sections_unfolded = [ "Animation" ]
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="R-UR" type="Sprite" parent="." index="34"]
 
-position = Vector2( 481, 248 )
+position = Vector2( 1810, 950 )
 texture = ExtResource( 1 )
 vframes = 4
 hframes = 9
 frame = 34
 _sections_unfolded = [ "Animation" ]
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="UL-UR" type="Sprite" parent="." index="35"]
 
-position = Vector2( 545, 248 )
+position = Vector2( 2050, 950 )
 texture = ExtResource( 1 )
 vframes = 4
 hframes = 9
 frame = 35
 _sections_unfolded = [ "Animation" ]
+__meta__ = {
+"_edit_lock_": true
+}
 
 

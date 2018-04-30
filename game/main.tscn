@@ -1,0 +1,157 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://game/main.gd" type="Script" id=1]
+[ext_resource path="res://terrain/map_generator.tscn" type="PackedScene" id=2]
+[ext_resource path="res://base/base.tscn" type="PackedScene" id=3]
+[ext_resource path="res://tower/tower.tscn" type="PackedScene" id=4]
+[ext_resource path="res://gems/Blue/blue_gem1.tscn" type="PackedScene" id=5]
+[ext_resource path="res://gems/Clear/clear_gem2.tscn" type="PackedScene" id=6]
+[ext_resource path="res://gems/Green/green_gem3.tscn" type="PackedScene" id=7]
+[ext_resource path="res://gems/Pink/pink_gem4.tscn" type="PackedScene" id=8]
+[ext_resource path="res://gems/Red/red_gem5.tscn" type="PackedScene" id=9]
+[ext_resource path="res://gems/Yellow/yellow_gem6.tscn" type="PackedScene" id=10]
+[ext_resource path="res://creeps/bandit/bandit.tscn" type="PackedScene" id=11]
+[ext_resource path="res://game/camera.gd" type="Script" id=12]
+[ext_resource path="res://game/hud/hud.tscn" type="PackedScene" id=13]
+
+[node name="Main" type="Node2D" index="0"]
+
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="MapGenerator" parent="." index="0" instance=ExtResource( 2 )]
+
+scale = Vector2( 0.5, 0.5 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Base" parent="." index="1" instance=ExtResource( 3 )]
+
+position = Vector2( 1488, 864 )
+scale = Vector2( 0.5, 0.5 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Towers" type="Node2D" parent="." index="2"]
+
+editor/display_folded = true
+_sections_unfolded = [ "Transform" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Tower1" parent="Towers" index="0" instance=ExtResource( 4 )]
+
+position = Vector2( 816, 640 )
+
+[node name="BlueGem1" parent="Towers/Tower1" index="2" instance=ExtResource( 5 )]
+
+[node name="Tower2" parent="Towers" index="1" instance=ExtResource( 4 )]
+
+position = Vector2( 864, 336 )
+
+[node name="ClearGem2" parent="Towers/Tower2" index="2" instance=ExtResource( 6 )]
+
+[node name="Tower3" parent="Towers" index="2" instance=ExtResource( 4 )]
+
+position = Vector2( 272, 832 )
+
+[node name="GreenGem3" parent="Towers/Tower3" index="2" instance=ExtResource( 7 )]
+
+[node name="Tower4" parent="Towers" index="3" instance=ExtResource( 4 )]
+
+position = Vector2( 1136, 656 )
+
+[node name="PinkGem4" parent="Towers/Tower4" index="2" instance=ExtResource( 8 )]
+
+[node name="Tower5" parent="Towers" index="4" instance=ExtResource( 4 )]
+
+position = Vector2( 272, 416 )
+
+[node name="RedGem5" parent="Towers/Tower5" index="2" instance=ExtResource( 9 )]
+
+[node name="Tower6" parent="Towers" index="5" instance=ExtResource( 4 )]
+
+position = Vector2( 544, 736 )
+
+[node name="YellowGem6" parent="Towers/Tower6" index="2" instance=ExtResource( 10 )]
+
+[node name="Creeps" type="Node2D" parent="." index="3"]
+
+editor/display_folded = true
+scale = Vector2( 0.5, 0.5 )
+_sections_unfolded = [ "Transform" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Bandit" parent="Creeps" index="0" instance=ExtResource( 11 )]
+
+position = Vector2( 555.854, 526.514 )
+rotation = 1.57045
+_sections_unfolded = [ "Transform" ]
+
+[node name="Camera2D" type="Camera2D" parent="." index="4"]
+
+editor/display_folded = true
+anchor_mode = 0
+rotating = false
+current = true
+zoom = Vector2( 1, 1 )
+limit_left = 0
+limit_top = 0
+limit_right = 10000000
+limit_bottom = 10000000
+limit_smoothed = false
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
+smoothing_enabled = false
+smoothing_speed = 5.0
+offset_v = 0.0
+offset_h = 0.0
+drag_margin_left = 0.2
+drag_margin_top = 0.2
+drag_margin_right = 0.2
+drag_margin_bottom = 0.2
+editor_draw_screen = true
+editor_draw_limits = false
+editor_draw_drag_margin = false
+script = ExtResource( 12 )
+
+[node name="HUD" parent="Camera2D" index="0" instance=ExtResource( 13 )]
+
+editor/display_folded = true
+margin_bottom = 64.0
+
+[node name="BlueGem1" parent="Camera2D/HUD/Panel/Slot1" index="0" instance=ExtResource( 5 )]
+
+position = Vector2( 20, 20 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="ClearGem2" parent="Camera2D/HUD/Panel/Slot2" index="0" instance=ExtResource( 6 )]
+
+position = Vector2( 20, 20 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="GreenGem3" parent="Camera2D/HUD/Panel/Slot3" index="0" instance=ExtResource( 7 )]
+
+position = Vector2( 20, 20 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="PinkGem4" parent="Camera2D/HUD/Panel/Slot4" index="0" instance=ExtResource( 8 )]
+
+position = Vector2( 20, 20 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="RedGem5" parent="Camera2D/HUD/Panel/Slot5" index="0" instance=ExtResource( 9 )]
+
+position = Vector2( 20, 20 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="YellowGem6" parent="Camera2D/HUD/Panel/Slot6" index="0" instance=ExtResource( 10 )]
+
+position = Vector2( 20, 20 )
+_sections_unfolded = [ "Transform" ]
+
+
+[editable path="Camera2D/HUD"]

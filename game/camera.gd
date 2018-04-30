@@ -1,14 +1,10 @@
 extends Camera2D
 
 const SMALL_WINDOW = Vector2(960, 540)
-const MAX_WINDOW_SIZE = Vector2(1920, 1080)
+const MAX_WINDOW_SIZE = Vector2(1920 - 160, 1080)
 
 var init_pos
 var holding_cam = false
-
-func _ready():
-	set_process_input(true)
-	set_process(true)
 
 func _input(event):
 	if event.is_action_pressed('ui_camera'):
@@ -19,12 +15,14 @@ func _input(event):
 	elif event.is_action_pressed('ui_zoom_in'):
 		if self.zoom != Vector2(1, 1):
 			self.zoom = Vector2(1, 1)
+			get_node('HUD').rect_scale = Vector2(1, 1)
 			OS.window_resizable = true
 			self.offset = get_viewport().get_mouse_position()
 	elif event.is_action_pressed('ui_zoom_out'):
 		if OS.window_size <= SMALL_WINDOW:
 			self.offset = Vector2(0, 0)
 			self.zoom = Vector2(2, 2)
+			get_node('HUD').rect_scale = Vector2(2, 2)
 			OS.window_resizable = false
 
 func _process(delta):

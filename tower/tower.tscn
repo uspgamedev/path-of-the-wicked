@@ -37,13 +37,15 @@ bounce = 0.0
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="." index="0"]
 
+modulate = Color( 0.402344, 0.402344, 0.402344, 1 )
 frames = SubResource( 1 )
 animation = "default"
-frame = 2
 playing = true
+_sections_unfolded = [ "Visibility" ]
 
 [node name="Area2D" type="Area2D" parent="." index="1"]
 
+visible = false
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0

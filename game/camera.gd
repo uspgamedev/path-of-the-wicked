@@ -3,8 +3,9 @@ extends Camera2D
 const SMALL_WINDOW = Vector2(960, 540)
 const MAX_WINDOW_SIZE = Vector2(1920 - 160, 1080)
 
-var init_pos
+var init_pos = Vector2(0, 0)
 var holding_cam = false
+var _window_size = OS.window_size
 
 func _input(event):
 	if event.is_action_pressed('ui_camera'):
@@ -13,25 +14,29 @@ func _input(event):
 	elif event.is_action_released('ui_camera'):
 		holding_cam = false
 	elif event.is_action_pressed('ui_zoom_in'):
+		OS.window_size = _window_size
+		OS.window_resizable = true
 		if self.zoom != Vector2(1, 1):
 			self.zoom = Vector2(1, 1)
 			get_node('HUD').rect_scale = Vector2(1, 1)
-			OS.window_resizable = true
 			self.offset = get_viewport().get_mouse_position()
-	elif event.is_action_pressed('ui_zoom_out'):
-		if OS.window_size <= SMALL_WINDOW:
-			self.offset = Vector2(0, 0)
-			self.zoom = Vector2(2, 2)
-			get_node('HUD').rect_scale = Vector2(2, 2)
-			OS.window_resizable = false
+	elif event.is_action_pressed('ui_zoom_out') and OS.window_size <= SMALL_WINDOW:
+		self.offset = Vector2(0, 0)
+		self.zoom = Vector2(2, 2)
+		get_node('HUD').rect_scale = Vector2(2, 2)
+		OS.window_resizable = false
 
-func _process(delta):
+func _physics_process(delta):
 	if holding_cam and self.zoom == Vector2(1, 1):
 		change_camera_pos()
 	self.offset = Vector2(min(self.offset.x, MAX_WINDOW_SIZE.x - OS.window_size.x), \
 	                      min(self.offset.y, MAX_WINDOW_SIZE.y - OS.window_size.y))
-	OS.window_size = Vector2(min(OS.window_size.x, MAX_WINDOW_SIZE.x), 
-	                         min(OS.window_size.y, MAX_WINDOW_SIZE.y))
+	_window_size = Vector2(min(OS.window_size.x, MAX_WINDOW_SIZE.x), \
+	                           min(OS.window_size.y, MAX_WINDOW_SIZE.y))
+	if OS.window_size != _window_size:
+		OS.window_resizable = false
+		OS.window_size = _window_size
+		self.offset.x = 0
 
 func change_camera_pos():
 	var cur_pos = get_viewport().get_mouse_position()

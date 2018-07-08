@@ -7,10 +7,7 @@ path="res://.import/chitiniac.png-66af51b75ee24a504dcfd296547c7fec.stex"
 [deps]
 
 source_file="res://creeps/chitiniac/chitiniac.png"
-source_md5="c5f2e32c06a83763db25695783d740bc"
-
 dest_files=[ "res://.import/chitiniac.png-66af51b75ee24a504dcfd296547c7fec.stex" ]
-dest_md5="5e85bd738de4b4af990359553bf08768"
 
 [params]
 

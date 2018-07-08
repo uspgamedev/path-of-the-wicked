@@ -7,10 +7,7 @@ path="res://.import/cockroach.png-af5584520cc514fda36b385969ebbded.stex"
 [deps]
 
 source_file="res://creeps/cockroach/cockroach.png"
-source_md5="660879b3cb8e266071115697d53ab984"
-
 dest_files=[ "res://.import/cockroach.png-af5584520cc514fda36b385969ebbded.stex" ]
-dest_md5="72b03336a35059fb89680925823f1e5c"
 
 [params]
 

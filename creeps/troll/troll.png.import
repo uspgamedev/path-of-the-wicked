@@ -7,10 +7,7 @@ path="res://.import/troll.png-c0f820a4d7d9801fb562e43212c1c4aa.stex"
 [deps]
 
 source_file="res://creeps/troll/troll.png"
-source_md5="66fa1b4df1ce855826ca719bc0ba1613"
-
 dest_files=[ "res://.import/troll.png-c0f820a4d7d9801fb562e43212c1c4aa.stex" ]
-dest_md5="8322605fd5d102ad3af1d9b458ed1707"
 
 [params]
 

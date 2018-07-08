@@ -7,10 +7,7 @@ path="res://.import/bandit.png-a3b6247bdcab3c381282568ada34c647.stex"
 [deps]
 
 source_file="res://creeps/bandit/bandit.png"
-source_md5="fca51f5aecd366a36b5a19df9deea71b"
-
 dest_files=[ "res://.import/bandit.png-a3b6247bdcab3c381282568ada34c647.stex" ]
-dest_md5="e1fa2f96c53680e1ffb3e72c217179b7"
 
 [params]
 

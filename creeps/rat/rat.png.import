@@ -7,10 +7,7 @@ path="res://.import/rat.png-f5345ec4dd8fcbd711ae258ae5ab60c1.stex"
 [deps]
 
 source_file="res://creeps/rat/rat.png"
-source_md5="ba9ee023ab63ade0a0d20259a4e16978"
-
 dest_files=[ "res://.import/rat.png-f5345ec4dd8fcbd711ae258ae5ab60c1.stex" ]
-dest_md5="131588270c0cbcb5ed634a0b45951344"
 
 [params]
 

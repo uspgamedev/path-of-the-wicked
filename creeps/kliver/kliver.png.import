@@ -7,10 +7,7 @@ path="res://.import/kliver.png-7d306182096ec068a0fed13cb9b3ba36.stex"
 [deps]
 
 source_file="res://creeps/kliver/kliver.png"
-source_md5="f572e6e22d0f5273798017fb3d717f8f"
-
 dest_files=[ "res://.import/kliver.png-7d306182096ec068a0fed13cb9b3ba36.stex" ]
-dest_md5="91297cf9f66c25d440bd5134a54d8f15"
 
 [params]
 

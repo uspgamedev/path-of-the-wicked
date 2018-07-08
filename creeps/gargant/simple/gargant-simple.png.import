@@ -7,10 +7,7 @@ path="res://.import/gargant-simple.png-7bf41445442b10eeddbe325c3354dad7.stex"
 [deps]
 
 source_file="res://creeps/gargant/simple/gargant-simple.png"
-source_md5="ec2a279cf29158357e0c259cd8e06ab2"
-
 dest_files=[ "res://.import/gargant-simple.png-7bf41445442b10eeddbe325c3354dad7.stex" ]
-dest_md5="c44f1747fbeffbad6a23f7144c15c5f4"
 
 [params]
 

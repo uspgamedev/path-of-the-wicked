@@ -7,10 +7,7 @@ path="res://.import/bee.png-d9f30216db1137aaab413a81c2c4864c.stex"
 [deps]
 
 source_file="res://creeps/bee/bee.png"
-source_md5="390ac7f43df4bc500bb2a049e0fa1389"
-
 dest_files=[ "res://.import/bee.png-d9f30216db1137aaab413a81c2c4864c.stex" ]
-dest_md5="2e8a4ecfc62ac8ac7ce3bf32abedd492"
 
 [params]
 

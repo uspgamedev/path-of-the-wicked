@@ -7,10 +7,7 @@ path="res://.import/wolfbeast.png-3284a9bb5f0e093706c9bd8aa478d071.stex"
 [deps]
 
 source_file="res://creeps/wolfbeast/wolfbeast.png"
-source_md5="88e19a6ae66ff245d4b6769606822796"
-
 dest_files=[ "res://.import/wolfbeast.png-3284a9bb5f0e093706c9bd8aa478d071.stex" ]
-dest_md5="2b1d4720b357856c04f5c755304bf950"
 
 [params]
 

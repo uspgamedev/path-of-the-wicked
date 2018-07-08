@@ -7,10 +7,7 @@ path="res://.import/blue-mage.png-8e347817b187a4618a3f6aeb1eb48c03.stex"
 [deps]
 
 source_file="res://creeps/mage/blue_mage/blue-mage.png"
-source_md5="f1e1d1aee7d3232fdc969518d25dbbcc"
-
 dest_files=[ "res://.import/blue-mage.png-8e347817b187a4618a3f6aeb1eb48c03.stex" ]
-dest_md5="80b82e2a3812be1be02d1d4453c4f6d4"
 
 [params]
 

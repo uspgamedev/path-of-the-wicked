@@ -7,10 +7,7 @@ path="res://.import/0020.png-f91a38fc329e87f865232b67d8162d2f.stex"
 [deps]
 
 source_file="res://gems/Pink/gem5/0020.png"
-source_md5="bb6dca542239328ffacc2ce8def3a262"
-
 dest_files=[ "res://.import/0020.png-f91a38fc329e87f865232b67d8162d2f.stex" ]
-dest_md5="c0b5de8ae6750b09943957923e741cf0"
 
 [params]
 

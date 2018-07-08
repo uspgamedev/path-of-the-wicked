@@ -7,10 +7,7 @@ path="res://.import/ogrillion.png-1145871ceed457dd424be95368e5e8fc.stex"
 [deps]
 
 source_file="res://creeps/ogrillion/ogrillion.png"
-source_md5="4c4a9046182ab9c5200751c7c7716be3"
-
 dest_files=[ "res://.import/ogrillion.png-1145871ceed457dd424be95368e5e8fc.stex" ]
-dest_md5="2edcafa34536d2583ed4b8e1780c46cf"
 
 [params]
 

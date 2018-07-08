@@ -7,10 +7,7 @@ path="res://.import/ugonoth.png-624eb74fef0b58f82059757d1c8041e5.stex"
 [deps]
 
 source_file="res://creeps/ugonoth/ugonoth.png"
-source_md5="cc3d9347bab3fdc34a21664fd322a202"
-
 dest_files=[ "res://.import/ugonoth.png-624eb74fef0b58f82059757d1c8041e5.stex" ]
-dest_md5="0eb30f5b6e77cde70c3f8589629b2d46"
 
 [params]
 

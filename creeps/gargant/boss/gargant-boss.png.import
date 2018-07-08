@@ -7,10 +7,7 @@ path="res://.import/gargant-boss.png-8cb553fbc237bec9934cf71cd63ebb08.stex"
 [deps]
 
 source_file="res://creeps/gargant/boss/gargant-boss.png"
-source_md5="d88094ea6f4c5127c7421f1b3bddf6b2"
-
 dest_files=[ "res://.import/gargant-boss.png-8cb553fbc237bec9934cf71cd63ebb08.stex" ]
-dest_md5="16209c7a889e5fc1e59727d036f9e718"
 
 [params]
 

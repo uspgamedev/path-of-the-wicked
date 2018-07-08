@@ -7,10 +7,7 @@ path="res://.import/ogre.png-c62327dd6b22cd96a469431b2a06f59b.stex"
 [deps]
 
 source_file="res://creeps/ogre/ogre.png"
-source_md5="1f61503e1c1349c1702dd339ab04e93a"
-
 dest_files=[ "res://.import/ogre.png-c62327dd6b22cd96a469431b2a06f59b.stex" ]
-dest_md5="98b170535dbb18f386e78b11aa7635b4"
 
 [params]
 

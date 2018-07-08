@@ -7,10 +7,7 @@ path="res://.import/skeleton-knight.png-d71fb12b812351c8781c3ae4cdc82c93.stex"
 [deps]
 
 source_file="res://creeps/skeleton/knight/skeleton-knight.png"
-source_md5="322f647d3b57f60e4fedad6ea56f1121"
-
 dest_files=[ "res://.import/skeleton-knight.png-d71fb12b812351c8781c3ae4cdc82c93.stex" ]
-dest_md5="83a05ceabff18c12158bf8f0f5c0e7be"
 
 [params]
 

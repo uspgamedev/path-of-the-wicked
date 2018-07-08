@@ -7,10 +7,7 @@ path="res://.import/scorpion.png-f67e8d4496e57e4734d401409fc33d6d.stex"
 [deps]
 
 source_file="res://creeps/scorpion/scorpion.png"
-source_md5="d34b18e78415583b1f831901590ed70a"
-
 dest_files=[ "res://.import/scorpion.png-f67e8d4496e57e4734d401409fc33d6d.stex" ]
-dest_md5="9b01a032c517db39f3a9c9574ccc0bc6"
 
 [params]
 

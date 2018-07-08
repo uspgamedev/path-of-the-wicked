@@ -7,10 +7,7 @@ path="res://.import/dragon.png-40dfd7e843454001e9cf0cf21c57e6c4.stex"
 [deps]
 
 source_file="res://creeps/dragon/dragon.png"
-source_md5="df0e8b53465f18a129f29acc5632bfb6"
-
 dest_files=[ "res://.import/dragon.png-40dfd7e843454001e9cf0cf21c57e6c4.stex" ]
-dest_md5="1f64e384e9df07efc62cd5e753ed4a95"
 
 [params]
 

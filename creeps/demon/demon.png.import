@@ -7,10 +7,7 @@ path="res://.import/demon.png-5b825c601a82b32b02d1609c63d064b3.stex"
 [deps]
 
 source_file="res://creeps/demon/demon.png"
-source_md5="c691a7b81cceb88e1594949c91aac209"
-
 dest_files=[ "res://.import/demon.png-5b825c601a82b32b02d1609c63d064b3.stex" ]
-dest_md5="35bbe977e03410a5b81ede002de51328"
 
 [params]
 

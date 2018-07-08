@@ -7,10 +7,7 @@ path="res://.import/hornet.png-739b9683919475a50c6467dd74b30595.stex"
 [deps]
 
 source_file="res://creeps/hornet/hornet.png"
-source_md5="eb6a21fc9497607ffb1347a6a8c4bd98"
-
 dest_files=[ "res://.import/hornet.png-739b9683919475a50c6467dd74b30595.stex" ]
-dest_md5="1f9d31415c51092d64b44955963be307"
 
 [params]
 

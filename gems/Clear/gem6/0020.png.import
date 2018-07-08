@@ -7,10 +7,7 @@ path="res://.import/0020.png-3ea3f7275d88e44809a472cd0b98aec3.stex"
 [deps]
 
 source_file="res://gems/Clear/gem6/0020.png"
-source_md5="1b7993efe02993ed75e660c3246a8a7d"
-
 dest_files=[ "res://.import/0020.png-3ea3f7275d88e44809a472cd0b98aec3.stex" ]
-dest_md5="75995e968e0f418632d8e009bdd19554"
 
 [params]
 

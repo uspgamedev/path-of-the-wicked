@@ -7,10 +7,7 @@ path="res://.import/gargant-berserker.png-4cc0415b0061791fbe8080e756c0475f.stex"
 [deps]
 
 source_file="res://creeps/gargant/berserker/gargant-berserker.png"
-source_md5="d82af5295d636a4a07fd2fd17cc37d19"
-
 dest_files=[ "res://.import/gargant-berserker.png-4cc0415b0061791fbe8080e756c0475f.stex" ]
-dest_md5="673a163d55cdc6195f28e7e07645aac5"
 
 [params]
 

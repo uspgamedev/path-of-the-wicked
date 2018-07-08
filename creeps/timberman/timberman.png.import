@@ -7,10 +7,7 @@ path="res://.import/timberman.png-b8d8ec47c67587021fbba6259a0f3952.stex"
 [deps]
 
 source_file="res://creeps/timberman/timberman.png"
-source_md5="3cd249a538c60d86cd091fe908539ab9"
-
 dest_files=[ "res://.import/timberman.png-b8d8ec47c67587021fbba6259a0f3952.stex" ]
-dest_md5="c162c9b9afb8bafd25e1ff348e671f9e"
 
 [params]
 

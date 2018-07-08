@@ -7,10 +7,7 @@ path="res://.import/alien10009.png-a59351a35e73610a71ad773982081fe3.stex"
 [deps]
 
 source_file="res://tower/sprites/alien10009.png"
-source_md5="b2e2ee32318512cc43d3a3a46547a06e"
-
 dest_files=[ "res://.import/alien10009.png-a59351a35e73610a71ad773982081fe3.stex" ]
-dest_md5="19a07282fe61cb2837b49c6926b63d14"
 
 [params]
 

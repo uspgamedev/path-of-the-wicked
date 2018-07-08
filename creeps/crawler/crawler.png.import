@@ -7,10 +7,7 @@ path="res://.import/crawler.png-2c525a6b4d3b9e43f415ef7ec3c3a866.stex"
 [deps]
 
 source_file="res://creeps/crawler/crawler.png"
-source_md5="7d89fdc29bab145266b5b326e924a9ff"
-
 dest_files=[ "res://.import/crawler.png-2c525a6b4d3b9e43f415ef7ec3c3a866.stex" ]
-dest_md5="c628573e770923d97bf2fcff45ec2ba8"
 
 [params]
 

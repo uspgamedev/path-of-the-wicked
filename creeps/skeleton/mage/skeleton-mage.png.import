@@ -7,10 +7,7 @@ path="res://.import/skeleton-mage.png-47bdc38f8bd9711025c0d8ed1c6578c5.stex"
 [deps]
 
 source_file="res://creeps/skeleton/mage/skeleton-mage.png"
-source_md5="91cdab2093335d718e2e8fa454fbf2f2"
-
 dest_files=[ "res://.import/skeleton-mage.png-47bdc38f8bd9711025c0d8ed1c6578c5.stex" ]
-dest_md5="c4fb4ce7b6ad59cc2b427b2ad2ee91fb"
 
 [params]
 

@@ -10,7 +10,7 @@ position = Vector2( 130, 140 )
 texture = ExtResource( 1 )
 vframes = 4
 hframes = 9
-_sections_unfolded = [ "Animation", "Offset", "Region", "Transform" ]
+_sections_unfolded = [ "Animation", "Offset", "Transform" ]
 __meta__ = {
 "_edit_lock_": true
 }

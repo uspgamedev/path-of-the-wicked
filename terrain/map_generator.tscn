@@ -1,13 +1,18 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://terrain/tileset.tres" type="TileSet" id=1]
+[ext_resource path="res://terrain/map_generator.gd" type="Script" id=1]
+[ext_resource path="res://terrain/tileset.tres" type="TileSet" id=2]
 
-[node name="MapGenerator" type="Node2D" index="0"]
+[node name="MapGenerator" type="Node2D"]
+
+scale = Vector2( 0.5, 0.5 )
+script = ExtResource( 1 )
+_sections_unfolded = [ "Transform" ]
 
 [node name="TileMap" type="TileMap" parent="." index="0"]
 
 mode = 0
-tile_set = ExtResource( 1 )
+tile_set = ExtResource( 2 )
 cell_size = Vector2( 216, 192 )
 cell_quadrant_size = 16
 cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )

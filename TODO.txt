@@ -1,9 +1,9 @@
-[] Add gold
-[] Add enemy spawn
-    [] Add enemy health bar
-    [] Add enemy movement
-[] Add player interaction with gems
-    [] Add gem shots to enemies
-[] Add base hp
-[] Add game over scene
+[ ] Add gold
+[X] Add enemy spawn
+    [ ] Add enemy health bar
+    [X] Add enemy movement
+[ ] Add player interaction with gems
+    [ ] Add gem shots to enemies
+[ ] Add base hp
+[ ] Add game over scene
 

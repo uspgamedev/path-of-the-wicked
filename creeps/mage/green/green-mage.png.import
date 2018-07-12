@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/green-mage.png-bde4d5c4fd79e176b869d586c24c2153.stex"
+path="res://.import/green-mage.png-23d40c9070653af564d558efe5a283ee.stex"
 
 [deps]
 
-source_file="res://creeps/mage/green_mage/green-mage.png"
-dest_files=[ "res://.import/green-mage.png-bde4d5c4fd79e176b869d586c24c2153.stex" ]
+source_file="res://creeps/mage/green/green-mage.png"
+dest_files=[ "res://.import/green-mage.png-23d40c9070653af564d558efe5a283ee.stex" ]
 
 [params]
 

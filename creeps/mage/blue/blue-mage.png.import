@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/blue-mage.png-8e347817b187a4618a3f6aeb1eb48c03.stex"
+path="res://.import/blue-mage.png-c8bd946a2fc0b8972a0af7ddfcc3762f.stex"
 
 [deps]
 
-source_file="res://creeps/mage/blue_mage/blue-mage.png"
-dest_files=[ "res://.import/blue-mage.png-8e347817b187a4618a3f6aeb1eb48c03.stex" ]
+source_file="res://creeps/mage/blue/blue-mage.png"
+dest_files=[ "res://.import/blue-mage.png-c8bd946a2fc0b8972a0af7ddfcc3762f.stex" ]
 
 [params]
 

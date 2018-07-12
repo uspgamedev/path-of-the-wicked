@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://game/main.gd" type="Script" id=1]
-[ext_resource path="res://terrain/map_generator.tscn" type="PackedScene" id=2]
+[ext_resource path="res://terrain/map_generator/map_generator.tscn" type="PackedScene" id=2]
 [ext_resource path="res://base/base.tscn" type="PackedScene" id=3]
 [ext_resource path="res://tower/tower.tscn" type="PackedScene" id=4]
 [ext_resource path="res://gems/Blue/blue_gem1.tscn" type="PackedScene" id=5]
@@ -10,11 +10,11 @@
 [ext_resource path="res://gems/Pink/pink_gem4.tscn" type="PackedScene" id=8]
 [ext_resource path="res://gems/Red/red_gem5.tscn" type="PackedScene" id=9]
 [ext_resource path="res://gems/Yellow/yellow_gem6.tscn" type="PackedScene" id=10]
-[ext_resource path="res://creeps/bandit/bandit.tscn" type="PackedScene" id=11]
+[ext_resource path="res://creeps/creep_manager.gd" type="Script" id=11]
 [ext_resource path="res://game/camera.gd" type="Script" id=12]
 [ext_resource path="res://game/hud/hud.tscn" type="PackedScene" id=13]
 
-[node name="Main" type="Node2D"]
+[node name="Main" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 __meta__ = {
@@ -25,7 +25,7 @@ __meta__ = {
 
 [node name="Base" parent="." index="1" instance=ExtResource( 3 )]
 
-position = Vector2( 1488, 864 )
+position = Vector2( 1488, 928 )
 scale = Vector2( 0.5, 0.5 )
 _sections_unfolded = [ "Transform" ]
 
@@ -39,64 +39,57 @@ __meta__ = {
 
 [node name="Tower1" parent="Towers" index="0" instance=ExtResource( 4 )]
 
-position = Vector2( 816, 640 )
+position = Vector2( 648, 208 )
 
 [node name="BlueGem1" parent="Towers/Tower1" index="2" instance=ExtResource( 5 )]
 
 [node name="Tower2" parent="Towers" index="1" instance=ExtResource( 4 )]
 
-position = Vector2( 864, 336 )
+position = Vector2( 808, 528 )
 
 [node name="ClearGem2" parent="Towers/Tower2" index="2" instance=ExtResource( 6 )]
 
 [node name="Tower3" parent="Towers" index="2" instance=ExtResource( 4 )]
 
-position = Vector2( 272, 832 )
+position = Vector2( 272, 480 )
 
 [node name="GreenGem3" parent="Towers/Tower3" index="2" instance=ExtResource( 7 )]
 
 [node name="Tower4" parent="Towers" index="3" instance=ExtResource( 4 )]
 
-position = Vector2( 1136, 656 )
+position = Vector2( 328, 880 )
 
 [node name="PinkGem4" parent="Towers/Tower4" index="2" instance=ExtResource( 8 )]
 
 [node name="Tower5" parent="Towers" index="4" instance=ExtResource( 4 )]
 
-position = Vector2( 272, 416 )
+position = Vector2( 920, 896 )
 
 [node name="RedGem5" parent="Towers/Tower5" index="2" instance=ExtResource( 9 )]
 
 [node name="Tower6" parent="Towers" index="5" instance=ExtResource( 4 )]
 
-position = Vector2( 544, 736 )
+position = Vector2( 1256, 512 )
 
 [node name="YellowGem6" parent="Towers/Tower6" index="2" instance=ExtResource( 10 )]
 
 [node name="Creeps" type="Node2D" parent="." index="3"]
 
-editor/display_folded = true
 scale = Vector2( 0.5, 0.5 )
+script = ExtResource( 11 )
 _sections_unfolded = [ "Transform" ]
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Bandit" parent="Creeps" index="0" instance=ExtResource( 11 )]
-
-position = Vector2( 555.854, 526.514 )
-rotation = 1.57045
-_sections_unfolded = [ "Transform" ]
-
 [node name="Camera2D" type="Camera2D" parent="." index="4"]
 
-editor/display_folded = true
 anchor_mode = 0
 rotating = false
 current = true
 zoom = Vector2( 1, 1 )
-limit_left = 0
-limit_top = 0
+limit_left = -10000000
+limit_top = -10000000
 limit_right = 10000000
 limit_bottom = 10000000
 limit_smoothed = false
@@ -114,6 +107,7 @@ editor_draw_screen = true
 editor_draw_limits = false
 editor_draw_drag_margin = false
 script = ExtResource( 12 )
+free_camera = false
 
 [node name="HUD" parent="Camera2D" index="0" instance=ExtResource( 13 )]
 

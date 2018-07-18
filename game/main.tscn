@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://game/main.gd" type="Script" id=1]
 [ext_resource path="res://terrain/map_generator/map_generator.tscn" type="PackedScene" id=2]
@@ -10,9 +10,18 @@
 [ext_resource path="res://gems/Pink/pink_gem4.tscn" type="PackedScene" id=8]
 [ext_resource path="res://gems/Red/red_gem5.tscn" type="PackedScene" id=9]
 [ext_resource path="res://gems/Yellow/yellow_gem6.tscn" type="PackedScene" id=10]
-[ext_resource path="res://creeps/creep_manager.gd" type="Script" id=11]
-[ext_resource path="res://game/camera.gd" type="Script" id=12]
-[ext_resource path="res://game/hud/hud.tscn" type="PackedScene" id=13]
+[ext_resource path="res://gems/Blue/blue_gem2.tscn" type="PackedScene" id=11]
+[ext_resource path="res://gems/Clear/clear_gem3.tscn" type="PackedScene" id=12]
+[ext_resource path="res://gems/Green/green_gem4.tscn" type="PackedScene" id=13]
+[ext_resource path="res://gems/Pink/pink_gem5.tscn" type="PackedScene" id=14]
+[ext_resource path="res://gems/Red/red_gem6.tscn" type="PackedScene" id=15]
+[ext_resource path="res://gems/Yellow/yellow_gem1.tscn" type="PackedScene" id=16]
+[ext_resource path="res://gems/Blue/blue_gem3.tscn" type="PackedScene" id=17]
+[ext_resource path="res://gems/Clear/clear_gem4.tscn" type="PackedScene" id=18]
+[ext_resource path="res://gems/Green/green_gem5.tscn" type="PackedScene" id=19]
+[ext_resource path="res://creeps/creep_manager.gd" type="Script" id=20]
+[ext_resource path="res://game/camera.gd" type="Script" id=21]
+[ext_resource path="res://game/hud/hud.tscn" type="PackedScene" id=22]
 
 [node name="Main" type="Node2D" index="0"]
 
@@ -40,50 +49,131 @@ __meta__ = {
 [node name="Tower1" parent="Towers" index="0" instance=ExtResource( 4 )]
 
 position = Vector2( 648, 208 )
+gem = NodePath("BlueGem1")
 
-[node name="BlueGem1" parent="Towers/Tower1" index="2" instance=ExtResource( 5 )]
+[node name="BlueGem1" parent="Towers/Tower1" index="3" instance=ExtResource( 5 )]
 
 [node name="Tower2" parent="Towers" index="1" instance=ExtResource( 4 )]
 
 position = Vector2( 808, 528 )
+gem = NodePath("ClearGem2")
 
-[node name="ClearGem2" parent="Towers/Tower2" index="2" instance=ExtResource( 6 )]
+[node name="ClearGem2" parent="Towers/Tower2" index="3" instance=ExtResource( 6 )]
 
 [node name="Tower3" parent="Towers" index="2" instance=ExtResource( 4 )]
 
 position = Vector2( 272, 480 )
+gem = NodePath("GreenGem3")
 
-[node name="GreenGem3" parent="Towers/Tower3" index="2" instance=ExtResource( 7 )]
+[node name="GreenGem3" parent="Towers/Tower3" index="3" instance=ExtResource( 7 )]
 
 [node name="Tower4" parent="Towers" index="3" instance=ExtResource( 4 )]
 
-position = Vector2( 328, 880 )
+position = Vector2( 272, 880 )
+gem = NodePath("PinkGem4")
 
-[node name="PinkGem4" parent="Towers/Tower4" index="2" instance=ExtResource( 8 )]
+[node name="PinkGem4" parent="Towers/Tower4" index="3" instance=ExtResource( 8 )]
 
 [node name="Tower5" parent="Towers" index="4" instance=ExtResource( 4 )]
 
 position = Vector2( 920, 896 )
+gem = NodePath("RedGem5")
 
-[node name="RedGem5" parent="Towers/Tower5" index="2" instance=ExtResource( 9 )]
+[node name="RedGem5" parent="Towers/Tower5" index="3" instance=ExtResource( 9 )]
 
 [node name="Tower6" parent="Towers" index="5" instance=ExtResource( 4 )]
 
 position = Vector2( 1256, 512 )
+gem = NodePath("YellowGem6")
 
-[node name="YellowGem6" parent="Towers/Tower6" index="2" instance=ExtResource( 10 )]
+[node name="YellowGem6" parent="Towers/Tower6" index="3" instance=ExtResource( 10 )]
+
+[node name="Tower7" parent="Towers" index="6" instance=ExtResource( 4 )]
+
+position = Vector2( 928, 704 )
+gem = NodePath("BlueGem2")
+
+[node name="BlueGem2" parent="Towers/Tower7" index="3" instance=ExtResource( 11 )]
+
+[node name="Tower8" parent="Towers" index="7" instance=ExtResource( 4 )]
+
+position = Vector2( 544, 800 )
+gem = NodePath("ClearGem3")
+
+[node name="ClearGem3" parent="Towers/Tower8" index="3" instance=ExtResource( 12 )]
+
+[node name="Tower9" parent="Towers" index="8" instance=ExtResource( 4 )]
+
+position = Vector2( 640, 416 )
+gem = NodePath("GreenGem4")
+
+[node name="GreenGem4" parent="Towers/Tower9" index="3" instance=ExtResource( 13 )]
+
+[node name="Tower10" parent="Towers" index="9" instance=ExtResource( 4 )]
+
+position = Vector2( 1088, 400 )
+gem = NodePath("PinkGem5")
+
+[node name="PinkGem5" parent="Towers/Tower10" index="3" instance=ExtResource( 14 )]
+
+[node name="Tower11" parent="Towers" index="10" instance=ExtResource( 4 )]
+
+position = Vector2( 352, 640 )
+gem = NodePath("RedGem6")
+
+[node name="RedGem6" parent="Towers/Tower11" index="3" instance=ExtResource( 15 )]
+
+[node name="Tower12" parent="Towers" index="11" instance=ExtResource( 4 )]
+
+position = Vector2( 336, 64 )
+gem = NodePath("YellowGem1")
+
+[node name="YellowGem1" parent="Towers/Tower12" index="3" instance=ExtResource( 16 )]
+
+[node name="Tower13" parent="Towers" index="12" instance=ExtResource( 4 )]
+
+position = Vector2( 1200, 64 )
+gem = NodePath("BlueGem3")
+
+[node name="BlueGem3" parent="Towers/Tower13" index="3" instance=ExtResource( 17 )]
+
+[node name="Tower14" parent="Towers" index="13" instance=ExtResource( 4 )]
+
+position = Vector2( 64, 928 )
+gem = NodePath("ClearGem4")
+
+[node name="ClearGem4" parent="Towers/Tower14" index="3" instance=ExtResource( 18 )]
+
+[node name="Tower15" parent="Towers" index="14" instance=ExtResource( 4 )]
+
+position = Vector2( 1168, 912 )
+gem = NodePath("GreenGem5")
+
+[node name="GreenGem5" parent="Towers/Tower15" index="3" instance=ExtResource( 19 )]
+
+[node name="Tower16" parent="Towers" index="15" instance=ExtResource( 4 )]
+
+position = Vector2( 1296, 784 )
+gem = NodePath("RedGem6")
+
+[node name="RedGem6" parent="Towers/Tower16" index="3" instance=ExtResource( 15 )]
 
 [node name="Creeps" type="Node2D" parent="." index="3"]
 
 scale = Vector2( 0.5, 0.5 )
-script = ExtResource( 11 )
+script = ExtResource( 20 )
 _sections_unfolded = [ "Transform" ]
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Camera2D" type="Camera2D" parent="." index="4"]
+[node name="Projectiles" type="Node2D" parent="." index="4"]
 
+position = Vector2( 0, -1 )
+
+[node name="Camera2D" type="Camera2D" parent="." index="5"]
+
+editor/display_folded = true
 anchor_mode = 0
 rotating = false
 current = true
@@ -106,10 +196,10 @@ drag_margin_bottom = 0.2
 editor_draw_screen = true
 editor_draw_limits = false
 editor_draw_drag_margin = false
-script = ExtResource( 12 )
+script = ExtResource( 21 )
 free_camera = false
 
-[node name="HUD" parent="Camera2D" index="0" instance=ExtResource( 13 )]
+[node name="HUD" parent="Camera2D" index="0" instance=ExtResource( 22 )]
 
 editor/display_folded = true
 margin_bottom = 64.0
@@ -117,31 +207,37 @@ margin_bottom = 64.0
 [node name="BlueGem1" parent="Camera2D/HUD/Panel/Slot1" index="0" instance=ExtResource( 5 )]
 
 position = Vector2( 20, 20 )
+script = null
 _sections_unfolded = [ "Transform" ]
 
 [node name="ClearGem2" parent="Camera2D/HUD/Panel/Slot2" index="0" instance=ExtResource( 6 )]
 
 position = Vector2( 20, 20 )
+script = null
 _sections_unfolded = [ "Transform" ]
 
 [node name="GreenGem3" parent="Camera2D/HUD/Panel/Slot3" index="0" instance=ExtResource( 7 )]
 
 position = Vector2( 20, 20 )
+script = null
 _sections_unfolded = [ "Transform" ]
 
 [node name="PinkGem4" parent="Camera2D/HUD/Panel/Slot4" index="0" instance=ExtResource( 8 )]
 
 position = Vector2( 20, 20 )
+script = null
 _sections_unfolded = [ "Transform" ]
 
 [node name="RedGem5" parent="Camera2D/HUD/Panel/Slot5" index="0" instance=ExtResource( 9 )]
 
 position = Vector2( 20, 20 )
+script = null
 _sections_unfolded = [ "Transform" ]
 
 [node name="YellowGem6" parent="Camera2D/HUD/Panel/Slot6" index="0" instance=ExtResource( 10 )]
 
 position = Vector2( 20, 20 )
+script = null
 _sections_unfolded = [ "Transform" ]
 
 

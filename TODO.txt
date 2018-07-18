@@ -1,9 +1,11 @@
 [ ] Add gold
-[X] Add enemy spawn
-    [ ] Add enemy health bar
-    [X] Add enemy movement
+[X] Add creep spawn
+    [ ] Add creep health bar
+    [X] Add creep movement
+    [ ] Add creep random offset on spawn
 [ ] Add player interaction with gems
-    [ ] Add gem shots to enemies
+    [X] Add gem shots at creeps
+        [ ] Add projectile color based on gem
 [ ] Add base hp
 [ ] Add game over scene
 

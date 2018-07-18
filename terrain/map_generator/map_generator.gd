@@ -9,7 +9,7 @@ const R  = [3, 7, 10, 11, 12, 17, 20, 21, 22, 26, 27, 28, 32, 33, 34]
 const UL = [4, 8, 11, 13, 14, 18, 21, 23, 24, 27, 29, 30, 32, 33, 35]
 const UR = [5, 9, 12, 14, 15, 19, 22, 24, 25, 28, 30, 31, 33, 34, 35]
 
-const ENEMY_SPAWNER = preload('res://terrain/enemy_spawner/enemy_spawner.tscn')
+const CREEP_SPAWNER = preload('res://terrain/creep_spawner/creep_spawner.tscn')
 
 onready var tilemap = get_node('TileMap')
 var dict = {} # {Vector2 : PoolVector2Array}
@@ -46,11 +46,11 @@ func add_adj_cell(cur_cell, ARRAY, next_cell, adj_cells):
 		if next_cell_tile != NONE:
 			adj_cells.append(tilemap.map_to_world(next_cell) + offset)
 		else:
-			var enemy_spawner = ENEMY_SPAWNER.instance()
+			var creep_spawner = CREEP_SPAWNER.instance()
 			num_spawners += 1
-			enemy_spawner.name = 'EnemySpawner' + str(num_spawners)
-			enemy_spawner.position = tilemap.map_to_world(next_cell) + offset
-			self.add_child(enemy_spawner)
+			creep_spawner.name = 'CreepSpawner' + str(num_spawners)
+			creep_spawner.position = tilemap.map_to_world(next_cell) + offset
+			self.add_child(creep_spawner)
 			dict[tilemap.map_to_world(next_cell) + offset] = \
 			     PoolVector2Array([tilemap.map_to_world(cur_cell) + offset])
 	return adj_cells

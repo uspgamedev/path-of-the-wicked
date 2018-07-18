@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://projectiles/projectile.gd" type="Script" id=1]
-[ext_resource path="res://projectiles/expl_01_0006.png" type="Texture" id=2]
+[ext_resource path="res://projectiles/projectile.png" type="Texture" id=2]
 
 [node name="Projectile" type="KinematicBody2D"]
 
@@ -10,15 +10,13 @@ collision_layer = 1
 collision_mask = 1
 collision/safe_margin = 0.08
 script = ExtResource( 1 )
-vel = 30
+vel = 40
 dmg = 10
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
 
-scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 2 )
-offset = Vector2( -1, -1 )
-_sections_unfolded = [ "Offset", "Transform" ]
+_sections_unfolded = [ "Offset", "Transform", "Z Index" ]
 
 [node name="Area2D" type="Area2D" parent="." index="1"]
 

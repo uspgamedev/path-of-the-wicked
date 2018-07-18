@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 export(int) var hp = 100
-export(int) var vel = 20
+export(int) var vel = 200
 
 onready var tween = get_node('Tween')
 onready var map = get_node('../../MapGenerator')
@@ -33,7 +33,7 @@ func take_damage(dmg):
 func move():
 	var target = map.dict[self.position][randi() % map.dict[self.position].size()]
 	tween.interpolate_property(self, 'position', self.position, \
-	      target, vel/10, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	      target, float(100)/vel, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	tween.start()
 	rotate_sprite(target)
 

@@ -1,11 +1,15 @@
-[ ] Add gold
 [X] Add creep spawn
-    [ ] Add creep health bar
     [X] Add creep movement
+    [ ] Add creep health bar
     [ ] Add creep random offset on spawn
-[ ] Add player interaction with gems
-    [X] Add gem shots at creeps
-        [ ] Add projectile color based on gem
-[ ] Add base hp
-[ ] Add game over scene
+[X] Add gem shots at creeps
+    [ ] Add juice to shot trajectory
+    [ ] Add shot queue free on last creep position
+    [ ] Add player interaction with gems
+    [X] Add projectile color based on gem
+    [ ] Add gold
+[ ] Add simple AI to creeps
+    [ ] Add base hp
+        [ ] Add game over scene
+[ ] Balance creep attributes
 

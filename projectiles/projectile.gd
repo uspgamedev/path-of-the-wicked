@@ -1,15 +1,18 @@
 extends KinematicBody2D
 
-export(int) var vel = 30
+export(int) var vel = 40
 export(int) var dmg = 10
+
+onready var creep_wr = weakref(creep)
 
 var vector
 var creep # Assigned at gem.gd
 
 func _physics_process(delta):
-	vector = creep.position - self.position * 2
-	vector = vector.normalized()
-	self.position += vector * vel/10
+	if creep_wr.get_ref():
+		vector = creep.position - self.position * 2
+		vector = vector.normalized()
+		self.position += vector * vel/10
 
 func _on_Area2D_area_entered(area):
 	var creep = area.get_parent()

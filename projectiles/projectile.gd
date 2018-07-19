@@ -15,9 +15,9 @@ func _physics_process(delta):
 		self.position += vector * vel/10
 
 func _on_Area2D_area_entered(area):
-	var creep = area.get_parent()
-	if creep != null and creep.is_in_group('creep'):
-		creep.take_damage(dmg)
+	var _creep = area.get_parent()
+	if _creep != null and _creep.is_in_group('creep'):
+		_creep.take_damage(dmg)
 		_queue_free()
 
 func _queue_free():
@@ -25,6 +25,3 @@ func _queue_free():
 		var self_idx = creep.projectiles.find(self)
 		creep.projectiles.remove(self_idx)
 		self.queue_free()
-
-func _on_Timer_timeout():
-	_queue_free()

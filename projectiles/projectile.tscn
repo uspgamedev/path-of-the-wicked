@@ -3,7 +3,7 @@
 [ext_resource path="res://projectiles/projectile.gd" type="Script" id=1]
 [ext_resource path="res://projectiles/projectile.png" type="Texture" id=2]
 
-[node name="Projectile" type="KinematicBody2D"]
+[node name="Projectile" type="KinematicBody2D" index="0"]
 
 input_pickable = false
 collision_layer = 1
@@ -33,15 +33,6 @@ audio_bus_name = "Master"
 build_mode = 0
 polygon = PoolVector2Array( -4, -4, 4, -4, 4, 4, -4, 4 )
 
-[node name="Timer" type="Timer" parent="." index="2"]
-
-process_mode = 1
-wait_time = 10.0
-one_shot = false
-autostart = true
-
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
-
-[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 
 

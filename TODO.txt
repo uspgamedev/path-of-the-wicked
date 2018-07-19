@@ -2,6 +2,7 @@
     [X] Add creep movement
     [ ] Add creep health bar
     [ ] Add creep random offset on spawn
+    [ ] Add hurt animation on creeps
 [X] Add gem shots at creeps
     [ ] Add juice to shot trajectory
     [ ] Add shot queue free on last creep position

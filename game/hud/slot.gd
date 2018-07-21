@@ -32,8 +32,7 @@ func _gui_input(event):
 
 func _on_Area2D_area_entered(area):
 	if area.get_parent().is_in_group('cursor'):
-		if gem == null:
-			main.cursor.target = self
+		main.cursor.target = self
 
 func _on_Area2D_area_exited(area):
 	if area.get_parent().is_in_group('cursor'):

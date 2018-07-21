@@ -50,14 +50,13 @@ func _on_AreaCollider_input_event(viewport, event, shape_idx):
 				if slot.gem == null:
 					slot.gem = self.gem
 					slot.add_child(gem)
-					gem.position += slot.offset
+					gem.position = slot.offset
 					break
 			self.gem = null
 
 func _on_AreaCollider_area_entered(area):
 	if area.get_parent().is_in_group('cursor'):
-		if gem == null:
-			main.cursor.target = self
+		main.cursor.target = self
 
 func _on_AreaCollider_area_exited(area):
 	if area.get_parent().is_in_group('cursor'):

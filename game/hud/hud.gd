@@ -10,7 +10,7 @@ func _ready():
 		var gem = gem_types.GEMS[randi() % gem_types.GEMS.size()].instance()
 		slot.gem = gem
 		slot.add_child(gem)
-		gem.position += slot.offset
+		gem.position = slot.offset
 
 func _physics_process(delta):
 	panel.rect_size = Vector2(panel.rect_size.x, OS.window_size.y)

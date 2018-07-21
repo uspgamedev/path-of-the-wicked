@@ -1,11 +1,15 @@
 extends Node2D
 
+onready var camera = get_node('../Camera2D')
+
 var gem
 var source
 var target
 
 func _ready():
 	self.add_child(gem)
+	if source.is_in_group('slot'):
+		gem.scale = camera.zoom
 	self.position = get_global_mouse_position()
 
 func move_gem(node = source, _gem = gem):
@@ -29,6 +33,7 @@ func _input(event):
 		self.position = get_global_mouse_position()
 	elif event.is_action_released('ui_select'):
 		self.remove_child(gem)
+		gem.scale = Vector2(1, 1)
 		if target == null:
 			move_gem()
 		else:

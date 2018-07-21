@@ -35,88 +35,107 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 
-[node name="Slot1" parent="Panel" index="0" instance=ExtResource( 2 )]
+[node name="Area2D" type="Area2D" parent="Panel" index="0"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Panel/Area2D" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( 0, 0, 160, 0, 160, 544, 0, 544 )
+
+[node name="Slot1" parent="Panel" index="1" instance=ExtResource( 2 )]
 
 margin_left = 10.0
 margin_top = 10.0
 margin_right = 50.0
 margin_bottom = 50.0
 
-[node name="Slot2" parent="Panel" index="1" instance=ExtResource( 2 )]
+[node name="Slot2" parent="Panel" index="2" instance=ExtResource( 2 )]
 
 margin_left = 60.0
 margin_top = 10.0
 margin_right = 100.0
 margin_bottom = 50.0
 
-[node name="Slot3" parent="Panel" index="2" instance=ExtResource( 2 )]
+[node name="Slot3" parent="Panel" index="3" instance=ExtResource( 2 )]
 
 margin_left = 110.0
 margin_top = 10.0
 margin_right = 150.0
 margin_bottom = 50.0
 
-[node name="Slot4" parent="Panel" index="3" instance=ExtResource( 2 )]
+[node name="Slot4" parent="Panel" index="4" instance=ExtResource( 2 )]
 
 margin_left = 10.0
 margin_top = 70.0
 margin_right = 50.0
 margin_bottom = 110.0
 
-[node name="Slot5" parent="Panel" index="4" instance=ExtResource( 2 )]
+[node name="Slot5" parent="Panel" index="5" instance=ExtResource( 2 )]
 
 margin_left = 60.0
 margin_top = 70.0
 margin_right = 100.0
 margin_bottom = 110.0
 
-[node name="Slot6" parent="Panel" index="5" instance=ExtResource( 2 )]
+[node name="Slot6" parent="Panel" index="6" instance=ExtResource( 2 )]
 
 margin_left = 110.0
 margin_top = 70.0
 margin_right = 150.0
 margin_bottom = 110.0
 
-[node name="Slot7" parent="Panel" index="6" instance=ExtResource( 2 )]
+[node name="Slot7" parent="Panel" index="7" instance=ExtResource( 2 )]
 
 margin_left = 10.0
 margin_top = 130.0
 margin_right = 50.0
 margin_bottom = 170.0
 
-[node name="Slot8" parent="Panel" index="7" instance=ExtResource( 2 )]
+[node name="Slot8" parent="Panel" index="8" instance=ExtResource( 2 )]
 
 margin_left = 60.0
 margin_top = 130.0
 margin_right = 100.0
 margin_bottom = 170.0
 
-[node name="Slot9" parent="Panel" index="8" instance=ExtResource( 2 )]
+[node name="Slot9" parent="Panel" index="9" instance=ExtResource( 2 )]
 
 margin_left = 110.0
 margin_top = 130.0
 margin_right = 150.0
 margin_bottom = 170.0
 
-[node name="Slot10" parent="Panel" index="9" instance=ExtResource( 2 )]
+[node name="Slot10" parent="Panel" index="10" instance=ExtResource( 2 )]
 
 margin_left = 10.0
 margin_top = 190.0
 margin_right = 50.0
 margin_bottom = 230.0
 
-[node name="Slot11" parent="Panel" index="10" instance=ExtResource( 2 )]
+[node name="Slot11" parent="Panel" index="11" instance=ExtResource( 2 )]
 
 margin_left = 60.0
 margin_top = 190.0
 margin_right = 100.0
 margin_bottom = 230.0
 
-[node name="Slot12" parent="Panel" index="11" instance=ExtResource( 2 )]
+[node name="Slot12" parent="Panel" index="12" instance=ExtResource( 2 )]
 
 margin_left = 110.0
 margin_top = 190.0
 margin_right = 150.0
 margin_bottom = 230.0
+
+[connection signal="area_entered" from="Panel/Area2D" to="." method="_on_Area2D_area_entered"]
+
+[connection signal="area_exited" from="Panel/Area2D" to="." method="_on_Area2D_area_exited"]
 
 

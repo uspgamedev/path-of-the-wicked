@@ -12,6 +12,7 @@
         [X] Add tower transference to gems
         [X] Add hotkey to transfer gem from tower to slot
         [X] Add gem swap
+        [X] Change gem size when zoomed out
     [X] Add projectile color based on gem
     [ ] Add gold
         [ ] Add shop market

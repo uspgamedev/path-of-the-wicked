@@ -37,9 +37,8 @@ func _on_NearbyArea_area_exited(area):
 func _on_AreaCollider_input_event(viewport, event, shape_idx):
 	if event.is_action_pressed('ui_select') and gem != null:
 		var cursor = CURSOR.instance()
-		cursor.tower = self
+		cursor.source = self
 		cursor.gem = self.gem
-		cursor.source = 'tower'
 		self.remove_child(gem)
 		main.add_child(cursor)
 		main.cursor = cursor
@@ -47,5 +46,10 @@ func _on_AreaCollider_input_event(viewport, event, shape_idx):
 
 func _on_AreaCollider_area_entered(area):
 	if area.get_parent().is_in_group('cursor'):
-		if gem == null and main.cursor.tower == null:
-			main.cursor.tower = self
+		if gem == null:
+			main.cursor.target = self
+
+func _on_AreaCollider_area_exited(area):
+	if area.get_parent().is_in_group('cursor'):
+		if main.cursor != null:
+			main.cursor.target = null

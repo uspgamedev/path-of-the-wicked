@@ -8,11 +8,12 @@
     [ ] Add shot queue free on last creep position
     [X] Add player interaction with gems
         [ ] Add cooldown on transfered gems
-        [ ] Add slot transference to gems
-        [ ] Add tower transference to gems
+        [X] Add slot transference to gems
+        [X] Add tower transference to gems
         [ ] Add hotkey to auto transfer gem from tower to slot
     [X] Add projectile color based on gem
     [ ] Add gold
+        [ ] Add shop market
 [ ] Add simple AI to creeps
     [ ] Add base hp
         [ ] Add game over scene

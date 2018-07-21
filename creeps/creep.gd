@@ -31,6 +31,7 @@ func take_damage(dmg):
 		die()
 
 func move():
+	randomize()
 	var target = map.dict[self.position][randi() % map.dict[self.position].size()]
 	tween.interpolate_property(self, 'position', self.position, \
 	      target, float(100)/vel, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)

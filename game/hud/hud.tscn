@@ -16,10 +16,11 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 script = ExtResource( 1 )
-_sections_unfolded = [ "Rect", "Transform" ]
+_sections_unfolded = [ "Transform" ]
 
 [node name="Panel" type="Panel" parent="." index="0"]
 
+self_modulate = Color( 0.333333, 0.333333, 0.333333, 1 )
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -33,7 +34,6 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-_sections_unfolded = [ "Rect" ]
 
 [node name="Slot1" parent="Panel" index="0" instance=ExtResource( 2 )]
 

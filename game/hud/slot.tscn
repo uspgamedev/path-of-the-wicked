@@ -1,7 +1,10 @@
-[gd_scene format=2]
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://game/hud/slot.gd" type="Script" id=1]
 
 [node name="Slot" type="PanelContainer"]
 
+self_modulate = Color( 0.7, 0.7, 0.7, 1 )
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -14,6 +17,10 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-_sections_unfolded = [ "Rect" ]
+script = ExtResource( 1 )
+
+[connection signal="mouse_entered" from="." to="." method="_on_Slot_mouse_entered"]
+
+[connection signal="mouse_exited" from="." to="." method="_on_Slot_mouse_exited"]
 
 

@@ -2,7 +2,7 @@
 
 [ext_resource path="res://gems/gem.gd" type="Script" id=1]
 
-[node name="Gem" type="StaticBody2D" index="0"]
+[node name="Gem" type="StaticBody2D"]
 
 input_pickable = false
 collision_layer = 1
@@ -17,7 +17,7 @@ script = ExtResource( 1 )
 
 animation = "default"
 
-[node name="AreaCollider" type="Area2D" parent="." index="1"]
+[node name="Area2D" type="Area2D" parent="." index="1"]
 
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
@@ -27,7 +27,7 @@ angular_damp = 1.0
 audio_bus_override = false
 audio_bus_name = "Master"
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AreaCollider" index="0"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D" index="0"]
 
 build_mode = 0
 polygon = PoolVector2Array( -20, -20, 20, -20, 20, 20, -20, 20 )
@@ -38,5 +38,7 @@ process_mode = 1
 wait_time = 0.2
 one_shot = true
 autostart = false
+
+[connection signal="input_event" from="Area2D" to="." method="_on_Area2D_input_event"]
 
 

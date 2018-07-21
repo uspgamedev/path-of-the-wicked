@@ -1,10 +1,10 @@
 extends KinematicBody2D
 
-export(int) var vel = 40
-export(int) var dmg = 10
 
 onready var creep_wr = weakref(creep)
 
+var vel = 40
+var dmg = 10
 var vector
 var creep # Assigned at gem.gd
 

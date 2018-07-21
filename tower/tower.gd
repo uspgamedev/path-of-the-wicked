@@ -3,6 +3,7 @@ extends StaticBody2D
 
 const CURSOR = preload('res://game/cursor.tscn')
 
+onready var cooldown = get_node('TextureProgress')
 onready var nearby_area = get_node('NearbyArea')
 onready var nearby_area_shape = nearby_area.get_node('CollisionShape2D')
 onready var main = get_node('/root/Global').get_main()
@@ -24,7 +25,7 @@ func _on_NearbyArea_area_entered(area):
 	if gem != null and creep != null and creep.is_in_group('creep'):
 		nearby_creeps.append(creep)
 		creep.towers.append(self)
-		if nearby_creeps.size() == 1:
+		if nearby_creeps.size() == 1 and not gem.timer.is_stopped():
 			gem.shoot()
 
 func _on_NearbyArea_area_exited(area):
@@ -53,6 +54,18 @@ func _on_AreaCollider_input_event(viewport, event, shape_idx):
 					gem.position = slot.offset
 					break
 			self.gem = null
+
+func start_cooldown():
+	var tween = cooldown.get_node('Tween')
+	cooldown.visible = true
+	tween.stop_all()
+	tween.interpolate_property(cooldown, 'value', 0, 100, 2, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	gem.timer.stop()
+	tween.start()
+
+func _on_Tween_tween_completed(object, key):
+	cooldown.visible = false
+	gem.shoot()
 
 func _on_AreaCollider_area_entered(area):
 	if area.get_parent().is_in_group('cursor'):

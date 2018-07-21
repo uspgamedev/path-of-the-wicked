@@ -2,7 +2,7 @@
 
 [ext_resource path="res://game/hud/slot.gd" type="Script" id=1]
 
-[node name="Slot" type="PanelContainer" index="0" groups=[
+[node name="Slot" type="PanelContainer" groups=[
 "slot",
 ]]
 

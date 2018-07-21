@@ -7,7 +7,7 @@
     [ ] Add juice to shot trajectory
     [ ] Add shot queue free on last creep position
     [X] Add player interaction with gems
-        [ ] Add cooldown on transfered gems
+        [X] Add cooldown on transfered gems
         [X] Add slot transference to gems
         [X] Add tower transference to gems
         [X] Add hotkey to transfer gem from tower to slot

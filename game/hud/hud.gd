@@ -5,13 +5,12 @@ onready var panel = get_node('Panel')
 onready var gem_types = preload('res://gems/gem_types.gd')
 
 func _ready():
-	var offset = panel.get_child(0).rect_size / 2
 	randomize()
 	for slot in panel.get_children():
 		var gem = gem_types.GEMS[randi() % gem_types.GEMS.size()].instance()
 		slot.gem = gem
 		slot.add_child(gem)
-		gem.position += offset
+		gem.position += slot.offset
 
 func _physics_process(delta):
 	panel.rect_size = Vector2(panel.rect_size.x, OS.window_size.y)

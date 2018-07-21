@@ -35,14 +35,24 @@ func _on_NearbyArea_area_exited(area):
 			nearby_creeps.remove(creep_idx)
 
 func _on_AreaCollider_input_event(viewport, event, shape_idx):
-	if event.is_action_pressed('ui_select') and gem != null:
-		var cursor = CURSOR.instance()
-		cursor.source = self
-		cursor.gem = self.gem
-		self.remove_child(gem)
-		main.add_child(cursor)
-		main.cursor = cursor
-		self.gem = null
+	if gem != null:
+		if event.is_action_pressed('ui_select'):
+			var cursor = CURSOR.instance()
+			cursor.source = self
+			cursor.gem = self.gem
+			self.remove_child(gem)
+			main.add_child(cursor)
+			main.cursor = cursor
+			self.gem = null
+		elif event.is_action_pressed('ui_slot'):
+			self.remove_child(gem)
+			for slot in main.get_panel().get_children():
+				if slot.gem == null:
+					slot.gem = self.gem
+					slot.add_child(gem)
+					gem.position += slot.offset
+					break
+			self.gem = null
 
 func _on_AreaCollider_area_entered(area):
 	if area.get_parent().is_in_group('cursor'):

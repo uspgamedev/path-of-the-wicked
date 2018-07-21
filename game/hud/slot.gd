@@ -3,6 +3,7 @@ extends PanelContainer
 const CURSOR = preload('res://game/cursor.tscn')
 
 onready var main = get_node('/root/Global').get_main()
+onready var offset = self.rect_size / 2
 
 var gem = null
 
@@ -15,6 +16,7 @@ func _on_Slot_mouse_entered():
 func _on_Slot_mouse_exited():
 	self.self_modulate = Color(.7, .7, .7, 1)
 	self.mouse_default_cursor_shape = CURSOR_ARROW
+	get_viewport().warp_mouse(get_viewport().get_mouse_position())
 
 func _gui_input(event):
 	if event.is_action_pressed('ui_select') and gem != null:

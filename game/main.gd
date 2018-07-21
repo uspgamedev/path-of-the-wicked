@@ -15,6 +15,12 @@ func _ready():
 		if child.name.begins_with('CreepSpawner'):
 			creep_spawners.append(child)
 
+func get_hud():
+	return get_node('Camera2D/HUD')
+
+func get_panel():
+	return get_node('Camera2D/HUD/Panel')
+
 func spawn_creep(spawner): # called from MapGenerator/CreepSpawner
 	randomize()
 	var creep_idx = randi() % creeps.CREEPS.size()

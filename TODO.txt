@@ -10,7 +10,7 @@
         [ ] Add cooldown on transfered gems
         [X] Add slot transference to gems
         [X] Add tower transference to gems
-        [ ] Add hotkey to auto transfer gem from tower to slot
+        [X] Add hotkey to transfer gem from tower to slot
     [X] Add projectile color based on gem
     [ ] Add gold
         [ ] Add shop market

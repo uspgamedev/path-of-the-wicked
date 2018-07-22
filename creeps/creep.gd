@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
-export(int) var hp = 30
-export(int) var vel = 100
+export(int) var hp = 100
+export(int) var vel = 200
 export(int) var reward = 100
 
 onready var hp_bar = get_node('TextureProgress')

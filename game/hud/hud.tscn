@@ -12,7 +12,7 @@ use_filter = false
 font_data = ExtResource( 3 )
 _sections_unfolded = [ "Extra Spacing", "Font", "Settings" ]
 
-[node name="HUD" type="Control" index="0"]
+[node name="HUD" type="Control"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -153,7 +153,7 @@ anchor_bottom = 0.0
 margin_left = -208.0
 margin_top = 16.0
 margin_right = -15.0
-margin_bottom = 56.0
+margin_bottom = 88.0
 grow_horizontal = 0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -166,14 +166,35 @@ custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 1
 custom_constants/shadow_offset_y = 1
 custom_constants/shadow_as_outline = 1
-text = "Gold: 123456789"
+text = "Gold: 0"
 align = 2
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
+_sections_unfolded = [ "Margin" ]
+
+[node name="Timer" type="Timer" parent="Label" index="0"]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = false
+autostart = false
+
+[node name="Tween" type="Tween" parent="Label" index="1"]
+
+repeat = false
+playback_process_mode = 1
+playback_speed = 1.0
+playback/active = false
+playback/repeat = false
+playback/speed = 1.0
 
 [connection signal="area_entered" from="Panel/Area2D" to="." method="_on_Area2D_area_entered"]
 
 [connection signal="area_exited" from="Panel/Area2D" to="." method="_on_Area2D_area_exited"]
+
+[connection signal="timeout" from="Label/Timer" to="." method="_on_Timer_timeout"]
+
+[connection signal="tween_completed" from="Label/Tween" to="." method="_on_Tween_tween_completed"]
 
 

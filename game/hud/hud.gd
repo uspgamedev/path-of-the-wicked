@@ -7,9 +7,11 @@ onready var gem_db = preload('res://gems/gem_db.gd')
 onready var label = get_node('Label')
 
 var gold = 0
+var gathered = 0
+var gathered_label = null
+var tween_label = null
 
 func _ready():
-	update_gold(gold)
 	randomize()
 	for slot in panel.get_children():
 		if slot.is_in_group('slot'):
@@ -25,9 +27,34 @@ func _physics_process(delta):
 
 func update_gold(amount):
 	gold += amount
+	gathered += amount
 	if gold <= 0:
 		print('Game Over')
-	label.set_text('Gold: %d' % gold)
+	if gathered_label == null:
+		gathered_label = label.duplicate(DUPLICATE_USE_INSTANCING)
+		gathered_label.margin_top = 48
+		self.add_child(gathered_label)
+		label.get_node('Timer').start()
+	gathered_label.set_text('%+d' % gathered)
+
+func _on_Timer_timeout():
+	var tween = label.get_node('Tween')
+	tween_label = gathered_label.duplicate(DUPLICATE_USE_INSTANCING)
+	self.add_child(tween_label)
+	tween.interpolate_property(tween_label, 'margin_top', \
+	            48, 16, .5, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	tween.interpolate_property(tween_label, 'self_modulate', \
+	            Color(1, 1, 1, 1), Color(1, 1, 1, 0), .5, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	tween.start()
+	label.get_node('Timer').stop()
+	gathered_label.queue_free()
+	gathered_label = null
+	gathered = 0
+
+func _on_Tween_tween_completed(object, key):
+	if key == ':margin_top':
+		tween_label.queue_free()
+		label.set_text('Gold: %d' % (gold - gathered))
 
 func _on_Area2D_area_entered(area):
 	if area.get_parent().is_in_group('cursor') and main.cursor != null:

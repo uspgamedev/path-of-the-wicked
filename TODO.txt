@@ -2,7 +2,6 @@
 [ ] Add juice to shot trajectory
 [ ] Add shot queue free on last creep position
 [ ] Add custom cursor shape when interacting with gems
-[ ] Add juice to gold
 [ ] Add shop market
 [ ] Add simple AI to creeps
     [ ] Add game over scene
@@ -31,4 +30,5 @@
 [X] Fix bug that prevents gems from shooting
 [X] Fix bug that swaps a gem that returns to its source
 [X] Add gold
+[X] Add juiciness to gold counter
 

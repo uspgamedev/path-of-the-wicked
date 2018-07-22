@@ -1,13 +1,15 @@
 extends KinematicBody2D
 
-export(int) var hp = 100
-export(int) var vel = 200
+export(int) var hp = 30
+export(int) var vel = 100
+export(int) var reward = 100
 
 onready var hp_bar = get_node('TextureProgress')
 onready var tween = get_node('Tween')
 onready var map = get_node('../../MapGenerator')
 onready var sprite = get_node('Sprite')
 onready var anim = get_node('AnimationPlayer')
+onready var hud = get_node('/root/Global').get_main().get_hud()
 
 var projectiles = []
 var towers = []
@@ -26,6 +28,7 @@ func die():
 		if self in tower.nearby_creeps:
 			var self_idx = tower.nearby_creeps.find(self)
 			tower.nearby_creeps.remove(self_idx)
+	hud.update_gold(reward)
 	self.queue_free()
 
 func take_damage(dmg):

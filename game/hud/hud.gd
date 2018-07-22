@@ -4,8 +4,12 @@ onready var main = get_node('/root/Global').get_main()
 onready var camera = get_parent()
 onready var panel = get_node('Panel')
 onready var gem_db = preload('res://gems/gem_db.gd')
+onready var label = get_node('Label')
+
+var gold = 0
 
 func _ready():
+	update_gold(gold)
 	randomize()
 	for slot in panel.get_children():
 		if slot.is_in_group('slot'):
@@ -18,6 +22,12 @@ func _physics_process(delta):
 	panel.rect_size = Vector2(panel.rect_size.x, OS.window_size.y)
 	self.rect_position = camera.offset + Vector2(camera.zoom.x * OS.window_size.x - \
 	                     camera.zoom.x * panel.rect_size.x, 0)
+
+func update_gold(amount):
+	gold += amount
+	if gold <= 0:
+		print('Game Over')
+	label.set_text('Gold: %d' % gold)
 
 func _on_Area2D_area_entered(area):
 	if area.get_parent().is_in_group('cursor') and main.cursor != null:

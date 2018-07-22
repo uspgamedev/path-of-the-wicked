@@ -1,9 +1,18 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://game/hud/hud.gd" type="Script" id=1]
 [ext_resource path="res://game/hud/slot.tscn" type="PackedScene" id=2]
+[ext_resource path="res://misc/font/Rise of Kingdom.ttf" type="DynamicFontData" id=3]
 
-[node name="HUD" type="Control"]
+[sub_resource type="DynamicFont" id=1]
+
+size = 30
+use_mipmaps = false
+use_filter = false
+font_data = ExtResource( 3 )
+_sections_unfolded = [ "Extra Spacing", "Font", "Settings" ]
+
+[node name="HUD" type="Control" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -20,6 +29,7 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="Panel" type="Panel" parent="." index="0"]
 
+editor/display_folded = true
 self_modulate = Color( 0.333333, 0.333333, 0.333333, 1 )
 anchor_left = 0.0
 anchor_top = 0.0
@@ -133,6 +143,34 @@ margin_left = 110.0
 margin_top = 190.0
 margin_right = 150.0
 margin_bottom = 230.0
+
+[node name="Label" type="Label" parent="." index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = -208.0
+margin_top = 16.0
+margin_right = -15.0
+margin_bottom = 56.0
+grow_horizontal = 0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 1
+custom_constants/shadow_offset_y = 1
+custom_constants/shadow_as_outline = 1
+text = "Gold: 123456789"
+align = 2
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
 
 [connection signal="area_entered" from="Panel/Area2D" to="." method="_on_Area2D_area_entered"]
 

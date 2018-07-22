@@ -54,7 +54,7 @@ position = Vector2( 920, 896 )
 
 [node name="Tower6" parent="Towers" index="5" instance=ExtResource( 4 )]
 
-position = Vector2( 1232, 512 )
+position = Vector2( 1344, 304 )
 
 [node name="Tower7" parent="Towers" index="6" instance=ExtResource( 4 )]
 
@@ -90,7 +90,7 @@ position = Vector2( 64, 912 )
 
 [node name="Tower15" parent="Towers" index="14" instance=ExtResource( 4 )]
 
-position = Vector2( 1136, 912 )
+position = Vector2( 928, 144 )
 
 [node name="Tower16" parent="Towers" index="15" instance=ExtResource( 4 )]
 

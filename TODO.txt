@@ -20,4 +20,5 @@
     [ ] Add base hp
         [ ] Add game over scene
 [ ] Balance creep attributes
+[ ] Add tower placement
 

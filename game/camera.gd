@@ -25,6 +25,7 @@ func _input(event):
 	elif event.is_action_pressed('ui_zoom_out') and OS.window_size <= SMALL_WINDOW:
 		self.offset = Vector2(0, 0)
 		self.zoom = Vector2(2, 2)
+		get_viewport().warp_mouse(get_viewport().get_mouse_position())
 		get_node('HUD').rect_scale = Vector2(2, 2)
 		OS.window_resizable = false
 

@@ -20,7 +20,7 @@ func _physics_process(delta):
 	                     camera.zoom.x * panel.rect_size.x, 0)
 
 func _on_Area2D_area_entered(area):
-	if area.get_parent().is_in_group('cursor'):
+	if area.get_parent().is_in_group('cursor') and main.cursor != null:
 		main.cursor.gem.scale = camera.zoom
 
 func _on_Area2D_area_exited(area):

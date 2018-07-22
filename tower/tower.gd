@@ -59,7 +59,7 @@ func start_cooldown():
 	var tween = cooldown.get_node('Tween')
 	cooldown.visible = true
 	tween.stop_all()
-	tween.interpolate_property(cooldown, 'value', 0, 100, 2, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	tween.interpolate_property(cooldown, 'value', 0, 100, 1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	gem.timer.stop()
 	tween.start()
 
@@ -68,10 +68,9 @@ func _on_Tween_tween_completed(object, key):
 	gem.shoot()
 
 func _on_AreaCollider_area_entered(area):
-	if area.get_parent().is_in_group('cursor'):
+	if area.get_parent().is_in_group('cursor') and main.cursor != null:
 		main.cursor.target = self
 
 func _on_AreaCollider_area_exited(area):
-	if area.get_parent().is_in_group('cursor'):
-		if main.cursor != null:
-			main.cursor.target = null
+	if area.get_parent().is_in_group('cursor') and main.cursor != null:
+		main.cursor.target = null

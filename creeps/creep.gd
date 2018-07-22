@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 export(int) var hp = 100
-export(int) var vel = 200
+export(int) var vel = 100
 
 onready var tween = get_node('Tween')
 onready var map = get_node('../../MapGenerator')
@@ -10,6 +10,7 @@ onready var anim = get_node('AnimationPlayer')
 
 var projectiles = []
 var towers = []
+var offset
 
 func _ready():
 	if anim.has_animation('move'):
@@ -32,7 +33,8 @@ func take_damage(dmg):
 
 func move():
 	randomize()
-	var target = map.dict[self.position][randi() % map.dict[self.position].size()]
+	var target = map.dict[self.position - offset]\
+	             [randi() % map.dict[self.position - offset].size()] + offset
 	tween.interpolate_property(self, 'position', self.position, \
 	      target, float(100)/vel, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	tween.start()

@@ -25,5 +25,6 @@ func spawn_creep(spawner): # called from MapGenerator/CreepSpawner
 	randomize()
 	var creep_idx = randi() % creeps.CREEPS.size()
 	var creep = creeps.CREEPS[creep_idx].instance()
-	creep.position = spawner.position
+	creep.offset = Vector2(-40 + randi() % 81, -30 + randi() % 61)
+	creep.position = spawner.position + creep.offset
 	creeps.add_child(creep)

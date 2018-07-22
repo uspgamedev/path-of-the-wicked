@@ -25,8 +25,9 @@ func _on_NearbyArea_area_entered(area):
 	if gem != null and creep != null and creep.is_in_group('creep'):
 		nearby_creeps.append(creep)
 		creep.towers.append(self)
-		if nearby_creeps.size() == 1 and not gem.timer.is_stopped():
-			gem.shoot()
+		if nearby_creeps.size() == 1 and cooldown.visible == false:
+			if gem.timer.time_left == 0:
+				gem.shoot()
 
 func _on_NearbyArea_area_exited(area):
 	var creep = area.get_parent()
@@ -60,7 +61,6 @@ func start_cooldown():
 	cooldown.visible = true
 	tween.stop_all()
 	tween.interpolate_property(cooldown, 'value', 0, 100, 1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-	gem.timer.stop()
 	tween.start()
 
 func _on_Tween_tween_completed(object, key):

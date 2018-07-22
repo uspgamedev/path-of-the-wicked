@@ -1,8 +1,9 @@
 extends KinematicBody2D
 
 export(int) var hp = 100
-export(int) var vel = 100
+export(int) var vel = 200
 
+onready var hp_bar = get_node('TextureProgress')
 onready var tween = get_node('Tween')
 onready var map = get_node('../../MapGenerator')
 onready var sprite = get_node('Sprite')
@@ -13,6 +14,7 @@ var towers = []
 var offset
 
 func _ready():
+	hp_bar.max_value = hp
 	if anim.has_animation('move'):
 		anim.play('move')
 	move()
@@ -28,6 +30,9 @@ func die():
 
 func take_damage(dmg):
 	hp -= dmg
+	hp_bar.value += dmg
+	if hp_bar.visible == false:
+		hp_bar.visible = true
 	if hp <= 0:
 		die()
 
@@ -42,7 +47,7 @@ func move():
 
 func rotate_sprite(target):
 	var vector = self.position - target
-	self.rotation = vector.angle() - PI/2
+	sprite.rotation = vector.angle() - PI/2
 
 func _on_Tween_tween_completed(object, key):
 	move()

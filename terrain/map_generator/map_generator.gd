@@ -11,6 +11,7 @@ const UR = [5, 9, 12, 14, 15, 19, 22, 24, 25, 28, 30, 31, 33, 34, 35]
 
 const CREEP_SPAWNER = preload('res://terrain/creep_spawner/creep_spawner.tscn')
 
+onready var creep_spawners = get_node('../CreepSpawners')
 onready var tilemap = get_node('TileMap')
 var dict = {} # {Vector2 : PoolVector2Array}
 var offset
@@ -50,7 +51,7 @@ func add_adj_cell(cur_cell, ARRAY, next_cell, adj_cells):
 			num_spawners += 1
 			creep_spawner.name = 'CreepSpawner' + str(num_spawners)
 			creep_spawner.position = tilemap.map_to_world(next_cell) + offset
-			self.add_child(creep_spawner)
+			creep_spawners.add_child(creep_spawner)
 			dict[tilemap.map_to_world(next_cell) + offset] = \
 			     PoolVector2Array([tilemap.map_to_world(cur_cell) + offset])
 	return adj_cells

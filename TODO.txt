@@ -1,6 +1,6 @@
 [X] Add creep spawn
     [X] Add creep movement
-    [ ] Add creep health bar
+    [X] Add creep health bar
     [X] Add random offset on creep spawn
     [ ] Add hurt animation on creeps
 [X] Add gem shots at creeps
@@ -13,8 +13,11 @@
         [X] Add hotkey to transfer gem from tower to slot
         [X] Add gem swap
         [X] Change gem size when zoomed out
+        [ ] Add custom cursor shape when interacting with gems
     [X] Add projectile color based on gem
     [ ] Add gold
+    [ ] Fix bug that prevents gems from shooting
+    [ ] Fix bug that swaps a gem that returns to its source
         [ ] Add shop market
 [ ] Add simple AI to creeps
     [ ] Add base hp

@@ -1,14 +1,15 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://game/main.gd" type="Script" id=1]
 [ext_resource path="res://terrain/map_generator/map_generator.tscn" type="PackedScene" id=2]
 [ext_resource path="res://base/base.tscn" type="PackedScene" id=3]
 [ext_resource path="res://tower/tower.tscn" type="PackedScene" id=4]
-[ext_resource path="res://creeps/creep_manager.gd" type="Script" id=5]
-[ext_resource path="res://game/camera.gd" type="Script" id=6]
-[ext_resource path="res://game/hud/hud.tscn" type="PackedScene" id=7]
+[ext_resource path="res://terrain/creep_spawner/creep_spawner.gd" type="Script" id=5]
+[ext_resource path="res://creeps/creep_db.gd" type="Script" id=6]
+[ext_resource path="res://game/camera.gd" type="Script" id=7]
+[ext_resource path="res://game/hud/hud.tscn" type="PackedScene" id=8]
 
-[node name="Main" type="Node2D" index="0"]
+[node name="Main" type="Node2D"]
 
 script = ExtResource( 1 )
 __meta__ = {
@@ -95,20 +96,30 @@ position = Vector2( 1136, 912 )
 
 position = Vector2( 1312, 784 )
 
-[node name="Creeps" type="Node2D" parent="." index="3"]
+[node name="CreepSpawners" type="Node2D" parent="." index="3"]
+
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Creeps" type="Node2D" parent="." index="4"]
 
 scale = Vector2( 0.5, 0.5 )
-script = ExtResource( 5 )
+script = ExtResource( 6 )
 _sections_unfolded = [ "Transform" ]
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Projectiles" type="Node2D" parent="." index="4"]
+[node name="Projectiles" type="Node2D" parent="." index="5"]
 
 position = Vector2( 0, -1 )
+__meta__ = {
+"_edit_lock_": true
+}
 
-[node name="Camera2D" type="Camera2D" parent="." index="5"]
+[node name="Camera2D" type="Camera2D" parent="." index="6"]
 
 editor/display_folded = true
 anchor_mode = 0
@@ -133,10 +144,13 @@ drag_margin_bottom = 0.2
 editor_draw_screen = true
 editor_draw_limits = false
 editor_draw_drag_margin = false
-script = ExtResource( 6 )
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_lock_": true
+}
 free_camera = false
 
-[node name="HUD" parent="Camera2D" index="0" instance=ExtResource( 7 )]
+[node name="HUD" parent="Camera2D" index="0" instance=ExtResource( 8 )]
 
 margin_bottom = 64.0
 

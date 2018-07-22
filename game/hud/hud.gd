@@ -3,13 +3,13 @@ extends Node
 onready var main = get_node('/root/Global').get_main()
 onready var camera = get_parent()
 onready var panel = get_node('Panel')
-onready var gem_types = preload('res://gems/gem_types.gd')
+onready var gem_db = preload('res://gems/gem_db.gd')
 
 func _ready():
 	randomize()
 	for slot in panel.get_children():
 		if slot.is_in_group('slot'):
-			var gem = gem_types.GEMS[randi() % gem_types.GEMS.size()].instance()
+			var gem = gem_db.GEMS[randi() % gem_db.GEMS.size()].instance()
 			slot.gem = gem
 			slot.add_child(gem)
 			gem.position = slot.offset

@@ -11,6 +11,7 @@ onready var sprite = get_node('Sprite')
 onready var anim = get_node('AnimationPlayer')
 onready var hud = get_node('/root/Global').get_main().get_hud()
 
+var spawner
 var projectiles = []
 var towers = []
 var offset
@@ -41,8 +42,7 @@ func take_damage(dmg):
 
 func move():
 	randomize()
-	var target = map.dict[self.position - offset]\
-	             [randi() % map.dict[self.position - offset].size()] + offset
+	var target = spawner.get_next_point(self.position - offset) + offset
 	tween.interpolate_property(self, 'position', self.position, \
 	      target, float(100)/vel, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	tween.start()

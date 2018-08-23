@@ -1,10 +1,10 @@
 extends StaticBody2D
 
 const PROJ = preload('res://projectiles/projectile.tscn')
+const GEM_COLORS = preload('res://gems/gem_colors.gd')
 
 onready var projectiles = get_node('/root/Global').get_main().get_node('Projectiles')
 onready var timer = get_node('Timer')
-onready var gem_colors = preload('res://gems/gem_colors.gd')
 
 var tower
 
@@ -19,10 +19,10 @@ func shoot():
 	tower = get_parent()
 	if tower.is_in_group('tower') and tower.nearby_creeps.size() > 0:
 		var proj = PROJ.instance()
-		var _gem_colors = gem_colors.new()
+		var gem_colors = GEM_COLORS.new()
 		proj.position = tower.position
 		proj.creep = tower.nearby_creeps[0]
-		proj.modulate = _gem_colors.get_gem_color(self.name)
+		proj.modulate = gem_colors.get_gem_color(self.name)
 		tower.nearby_creeps[0].projectiles.append(proj)
 		projectiles.add_child(proj)
 		timer.start()

@@ -11,18 +11,26 @@ const UR = [5, 9, 12, 14, 15, 19, 22, 24, 25, 28, 30, 31, 33, 34, 35]
 
 const CREEP_SPAWNER = preload('res://terrain/creep_spawner/creep_spawner.tscn')
 
-onready var creep_spawners = get_node('../CreepSpawners')
+onready var spawner_manager = get_node('../SpawnerManager')
 onready var tilemap = get_node('TileMap')
+onready var a_star = AStar.new()
+
 var dict = {} # {Vector2 : PoolVector2Array}
+var idx_dict = {} # {Vector2 : int}
 var offset
-var num_spawners = 0
+var base
 
 func _ready():
 	offset = Vector2(tilemap.cell_size.x / 2, \
 	         tilemap.cell_size.y * 5/8 + tilemap.cell_quadrant_size / 2 + tilemap.position.y)
 	for cell in tilemap.get_used_cells():
 		if tilemap.get_cellv(cell) != GRASS:
-			dict[tilemap.map_to_world(cell) + offset] = get_adj_cells(cell)
+			var pos = tilemap.map_to_world(cell) + offset
+			dict[pos] = get_adj_cells(cell)
+			_add_point(pos)
+	for key in dict.keys():
+		for value in dict[key]:
+			a_star.connect_points(idx_dict[key], idx_dict[value], false)
 
 func get_adj_cells(cell):
 	var adj_cells = PoolVector2Array([])
@@ -41,17 +49,26 @@ func get_adj_cells(cell):
 	adj_cells = add_adj_cell(cell, UR, ur, adj_cells)
 	return adj_cells
 
+func _add_point(_pos):
+	var idx = a_star.get_available_point_id()
+	a_star.add_point(idx, Vector3(_pos.x, _pos.y, 0))
+	idx_dict[_pos] = idx
+
 func add_adj_cell(cur_cell, ARRAY, next_cell, adj_cells):
 	var next_cell_tile = tilemap.get_cellv(next_cell)
-	if tilemap.get_cellv(cur_cell) in ARRAY and next_cell_tile != GRASS:
-		if next_cell_tile != NONE:
-			adj_cells.append(tilemap.map_to_world(next_cell) + offset)
+	var pos = tilemap.map_to_world(next_cell) + offset
+	if tilemap.get_cellv(cur_cell) in ARRAY:
+		if next_cell_tile != GRASS:
+			if next_cell_tile != NONE:
+				adj_cells.append(pos)
+			else:
+				var creep_spawner = CREEP_SPAWNER.instance()
+				creep_spawner.position = pos
+				spawner_manager.add_child(creep_spawner)
+				dict[pos] = PoolVector2Array([tilemap.map_to_world(cur_cell) + offset])
+				_add_point(pos)
 		else:
-			var creep_spawner = CREEP_SPAWNER.instance()
-			num_spawners += 1
-			creep_spawner.name = 'CreepSpawner' + str(num_spawners)
-			creep_spawner.position = tilemap.map_to_world(next_cell) + offset
-			creep_spawners.add_child(creep_spawner)
-			dict[tilemap.map_to_world(next_cell) + offset] = \
-			     PoolVector2Array([tilemap.map_to_world(cur_cell) + offset])
+			base = pos
+			adj_cells.append(pos)
+			_add_point(pos)
 	return adj_cells

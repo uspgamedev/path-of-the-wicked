@@ -13,3 +13,6 @@ func get_hud():
 
 func get_panel():
 	return get_node('Camera2D/HUD/Panel')
+
+func game_over():
+	print('Game Over')

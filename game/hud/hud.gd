@@ -6,12 +6,13 @@ onready var panel = get_node('Panel')
 onready var gem_db = preload('res://gems/gem_db.gd')
 onready var label = get_node('Label')
 
-var gold = 0
+var gold = 10000
 var gathered = 0
 var gathered_label = null
 var tween_label = null
 
 func _ready():
+	label.set_text('Gold: %d' % (gold - gathered))
 	randomize()
 	for slot in panel.get_children():
 		if slot.is_in_group('slot'):
@@ -29,7 +30,7 @@ func update_gold(amount):
 	gold += amount
 	gathered += amount
 	if gold <= 0:
-		print('Game Over')
+		main.game_over()
 	if gathered_label == null:
 		gathered_label = label.duplicate(DUPLICATE_USE_INSTANCING)
 		gathered_label.margin_top = 48

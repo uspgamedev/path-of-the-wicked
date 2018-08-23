@@ -1,14 +1,14 @@
 [ ] Add hurt animation on creeps
-[ ] Add juice to shot trajectory
+[ ] Add juiciness to shot trajectory
 [ ] Add shot queue free on last creep position
 [ ] Add custom cursor shape when interacting with gems
 [ ] Add shop market
-[ ] Add simple AI to creeps
-    [ ] Add game over scene
+[ ] Add game over scene
 [ ] Balance creep attributes
 [ ] Add tower placement
 [ ] Add gem effects
 [ ] Add creep weaknesses and strengths to gems
+[ ] Add wave system
 
 ###############################################################################
 
@@ -31,4 +31,5 @@
 [X] Fix bug that swaps a gem that returns to its source
 [X] Add gold
 [X] Add juiciness to gold counter
+[X] Add simple AI to creeps
 

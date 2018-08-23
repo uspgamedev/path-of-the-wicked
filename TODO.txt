@@ -1,14 +1,17 @@
-[ ] Add hurt animation on creeps
+[ ] Add shop market
+[ ] Add game over scene
+[ ] Add tower placement
+[ ] Add gem effects
+    [ ] Add creep weaknesses and strengths to gems
+        [ ] Balance creep attributes
+[ ] Add wave system
+[ ] Update game name
+
+###############################################################################
+
 [ ] Add juiciness to shot trajectory
 [ ] Add shot queue free on last creep position
 [ ] Add custom cursor shape when interacting with gems
-[ ] Add shop market
-[ ] Add game over scene
-[ ] Balance creep attributes
-[ ] Add tower placement
-[ ] Add gem effects
-[ ] Add creep weaknesses and strengths to gems
-[ ] Add wave system
 
 ###############################################################################
 
@@ -32,4 +35,5 @@
 [X] Add gold
 [X] Add juiciness to gold counter
 [X] Add simple AI to creeps
+[X] Add wounded animation on creeps
 

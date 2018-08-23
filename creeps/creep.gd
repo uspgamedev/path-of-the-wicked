@@ -37,6 +37,8 @@ func take_damage(dmg):
 	hp_bar.value += dmg
 	if hp_bar.visible == false:
 		hp_bar.visible = true
+		if anim.has_animation('move-wounded'):
+			anim.play('move-wounded')
 	if hp <= 0:
 		die()
 

@@ -11,11 +11,11 @@ func _on_Slot_mouse_entered():
 	if main.cursor != null:
 		main.cursor.target = self
 	self.self_modulate = Color(2, 2, 2, 1)
-	self.mouse_default_cursor_shape = CURSOR_POINTING_HAND
+#	self.mouse_default_cursor_shape = CURSOR_POINTING_HAND
 
 func _on_Slot_mouse_exited():
 	self.self_modulate = Color(.7, .7, .7, 1)
-	self.mouse_default_cursor_shape = CURSOR_ARROW
+#	self.mouse_default_cursor_shape = CURSOR_ARROW
 	get_viewport().warp_mouse(get_viewport().get_mouse_position())
 
 func _gui_input(event):

@@ -13,13 +13,6 @@ var tween_label = null
 
 func _ready():
 	label.set_text('Gold: %d' % (gold - gathered))
-	randomize()
-	for slot in panel.get_children():
-		if slot.is_in_group('slot'):
-			var gem = gem_db.GEMS[randi() % gem_db.GEMS.size()].instance()
-			slot.gem = gem
-			slot.add_child(gem)
-			gem.position = slot.offset
 
 func _physics_process(delta):
 	panel.rect_size = Vector2(panel.rect_size.x, OS.window_size.y)

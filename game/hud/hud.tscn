@@ -1,8 +1,25 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://game/hud/hud.gd" type="Script" id=1]
-[ext_resource path="res://game/hud/slot.tscn" type="PackedScene" id=2]
+[ext_resource path="res://game/hud/shop_button.gd" type="Script" id=2]
 [ext_resource path="res://misc/font/Rise of Kingdom.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://game/hud/slot.tscn" type="PackedScene" id=4]
+[ext_resource path="res://game/hud/button.tscn" type="PackedScene" id=5]
+[ext_resource path="res://gems/Clear/clear_gem1.tscn" type="PackedScene" id=6]
+[ext_resource path="res://gems/Clear/clear_gem2.tscn" type="PackedScene" id=7]
+[ext_resource path="res://gems/Clear/clear_gem3.tscn" type="PackedScene" id=8]
+[ext_resource path="res://gems/Clear/clear_gem4.tscn" type="PackedScene" id=9]
+[ext_resource path="res://gems/Clear/clear_gem5.tscn" type="PackedScene" id=10]
+[ext_resource path="res://gems/Clear/clear_gem6.tscn" type="PackedScene" id=11]
+[ext_resource path="res://tower/tower.tscn" type="PackedScene" id=12]
+
+[sub_resource type="DynamicFont" id=2]
+
+size = 30
+use_mipmaps = false
+use_filter = false
+font_data = ExtResource( 3 )
+_sections_unfolded = [ "Font", "Settings" ]
 
 [sub_resource type="DynamicFont" id=1]
 
@@ -12,7 +29,7 @@ use_filter = false
 font_data = ExtResource( 3 )
 _sections_unfolded = [ "Extra Spacing", "Font", "Settings" ]
 
-[node name="HUD" type="Control"]
+[node name="HUD" type="Control" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -29,7 +46,6 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="Panel" type="Panel" parent="." index="0"]
 
-editor/display_folded = true
 self_modulate = Color( 0.333333, 0.333333, 0.333333, 1 )
 anchor_left = 0.0
 anchor_top = 0.0
@@ -47,6 +63,7 @@ size_flags_vertical = 1
 
 [node name="Area2D" type="Area2D" parent="Panel" index="0"]
 
+editor/display_folded = true
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -60,89 +77,374 @@ audio_bus_name = "Master"
 build_mode = 0
 polygon = PoolVector2Array( 0, 0, 160, 0, 160, 544, 0, 544 )
 
-[node name="Slot1" parent="Panel" index="1" instance=ExtResource( 2 )]
+[node name="ShopButton" type="Button" parent="Panel" index="1"]
 
+editor/display_folded = true
+self_modulate = Color( 0.698039, 0.698039, 0.698039, 1 )
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
 margin_left = 10.0
 margin_top = 10.0
-margin_right = 50.0
-margin_bottom = 50.0
-
-[node name="Slot2" parent="Panel" index="2" instance=ExtResource( 2 )]
-
-margin_left = 60.0
-margin_top = 10.0
-margin_right = 100.0
-margin_bottom = 50.0
-
-[node name="Slot3" parent="Panel" index="3" instance=ExtResource( 2 )]
-
-margin_left = 110.0
-margin_top = 10.0
 margin_right = 150.0
-margin_bottom = 50.0
+margin_bottom = 80.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = true
+enabled_focus_mode = 0
+shortcut = null
+group = null
+flat = false
+align = 1
+script = ExtResource( 2 )
+_sections_unfolded = [ "Rect", "Visibility" ]
 
-[node name="Slot4" parent="Panel" index="4" instance=ExtResource( 2 )]
+[node name="Label" type="Label" parent="Panel/ShopButton" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 140.0
+margin_bottom = 70.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 2 )
+custom_constants/shadow_offset_x = 1
+custom_constants/shadow_offset_y = 1
+custom_constants/shadow_as_outline = 1
+text = "Shop"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Inventory" type="Node2D" parent="Panel" index="2"]
+
+editor/display_folded = true
+_sections_unfolded = [ "Visibility" ]
+
+[node name="Slot1" parent="Panel/Inventory" index="0" instance=ExtResource( 4 )]
 
 margin_left = 10.0
-margin_top = 70.0
+margin_top = 90.0
 margin_right = 50.0
-margin_bottom = 110.0
+margin_bottom = 130.0
+_sections_unfolded = [ "Rect", "Visibility" ]
 
-[node name="Slot5" parent="Panel" index="5" instance=ExtResource( 2 )]
+[node name="Slot2" parent="Panel/Inventory" index="1" instance=ExtResource( 4 )]
 
 margin_left = 60.0
-margin_top = 70.0
+margin_top = 90.0
 margin_right = 100.0
-margin_bottom = 110.0
+margin_bottom = 130.0
+_sections_unfolded = [ "Rect", "Visibility" ]
 
-[node name="Slot6" parent="Panel" index="6" instance=ExtResource( 2 )]
+[node name="Slot3" parent="Panel/Inventory" index="2" instance=ExtResource( 4 )]
 
 margin_left = 110.0
-margin_top = 70.0
+margin_top = 90.0
 margin_right = 150.0
-margin_bottom = 110.0
+margin_bottom = 130.0
+_sections_unfolded = [ "Rect", "Visibility" ]
 
-[node name="Slot7" parent="Panel" index="7" instance=ExtResource( 2 )]
+[node name="Slot4" parent="Panel/Inventory" index="3" instance=ExtResource( 4 )]
 
 margin_left = 10.0
-margin_top = 130.0
+margin_top = 140.0
 margin_right = 50.0
-margin_bottom = 170.0
+margin_bottom = 180.0
+_sections_unfolded = [ "Rect", "Visibility" ]
 
-[node name="Slot8" parent="Panel" index="8" instance=ExtResource( 2 )]
+[node name="Slot5" parent="Panel/Inventory" index="4" instance=ExtResource( 4 )]
 
 margin_left = 60.0
-margin_top = 130.0
+margin_top = 140.0
 margin_right = 100.0
-margin_bottom = 170.0
+margin_bottom = 180.0
+_sections_unfolded = [ "Rect", "Visibility" ]
 
-[node name="Slot9" parent="Panel" index="9" instance=ExtResource( 2 )]
+[node name="Slot6" parent="Panel/Inventory" index="5" instance=ExtResource( 4 )]
 
 margin_left = 110.0
-margin_top = 130.0
+margin_top = 140.0
 margin_right = 150.0
-margin_bottom = 170.0
+margin_bottom = 180.0
+_sections_unfolded = [ "Rect", "Visibility" ]
 
-[node name="Slot10" parent="Panel" index="10" instance=ExtResource( 2 )]
+[node name="Slot7" parent="Panel/Inventory" index="6" instance=ExtResource( 4 )]
 
 margin_left = 10.0
 margin_top = 190.0
 margin_right = 50.0
 margin_bottom = 230.0
+_sections_unfolded = [ "Rect", "Visibility" ]
 
-[node name="Slot11" parent="Panel" index="11" instance=ExtResource( 2 )]
+[node name="Slot8" parent="Panel/Inventory" index="7" instance=ExtResource( 4 )]
+
+margin_left = 60.0
+margin_top = 190.0
+margin_right = 100.0
+margin_bottom = 230.0
+_sections_unfolded = [ "Rect", "Visibility" ]
+
+[node name="Slot9" parent="Panel/Inventory" index="8" instance=ExtResource( 4 )]
+
+margin_left = 110.0
+margin_top = 190.0
+margin_right = 150.0
+margin_bottom = 230.0
+_sections_unfolded = [ "Rect", "Visibility" ]
+
+[node name="Slot10" parent="Panel/Inventory" index="9" instance=ExtResource( 4 )]
+
+margin_left = 10.0
+margin_top = 240.0
+margin_right = 50.0
+margin_bottom = 280.0
+_sections_unfolded = [ "Rect", "Visibility" ]
+
+[node name="Slot11" parent="Panel/Inventory" index="10" instance=ExtResource( 4 )]
+
+margin_left = 60.0
+margin_top = 240.0
+margin_right = 100.0
+margin_bottom = 280.0
+_sections_unfolded = [ "Rect", "Visibility" ]
+
+[node name="Slot12" parent="Panel/Inventory" index="11" instance=ExtResource( 4 )]
+
+margin_left = 110.0
+margin_top = 240.0
+margin_right = 150.0
+margin_bottom = 280.0
+_sections_unfolded = [ "Rect", "Visibility" ]
+
+[node name="Slot13" parent="Panel/Inventory" index="12" instance=ExtResource( 4 )]
+
+margin_left = 10.0
+margin_top = 290.0
+margin_right = 50.0
+margin_bottom = 330.0
+_sections_unfolded = [ "Rect", "Visibility" ]
+
+[node name="Slot14" parent="Panel/Inventory" index="13" instance=ExtResource( 4 )]
+
+margin_left = 60.0
+margin_top = 290.0
+margin_right = 100.0
+margin_bottom = 330.0
+_sections_unfolded = [ "Rect", "Visibility" ]
+
+[node name="Slot15" parent="Panel/Inventory" index="14" instance=ExtResource( 4 )]
+
+margin_left = 110.0
+margin_top = 290.0
+margin_right = 150.0
+margin_bottom = 330.0
+_sections_unfolded = [ "Rect", "Visibility" ]
+
+[node name="Slot16" parent="Panel/Inventory" index="15" instance=ExtResource( 4 )]
+
+margin_left = 10.0
+margin_top = 340.0
+margin_right = 50.0
+margin_bottom = 380.0
+_sections_unfolded = [ "Rect", "Visibility" ]
+
+[node name="Slot17" parent="Panel/Inventory" index="16" instance=ExtResource( 4 )]
+
+margin_left = 60.0
+margin_top = 340.0
+margin_right = 100.0
+margin_bottom = 380.0
+_sections_unfolded = [ "Rect", "Visibility" ]
+
+[node name="Slot18" parent="Panel/Inventory" index="17" instance=ExtResource( 4 )]
+
+margin_left = 110.0
+margin_top = 340.0
+margin_right = 150.0
+margin_bottom = 380.0
+_sections_unfolded = [ "Rect", "Visibility" ]
+
+[node name="Slot19" parent="Panel/Inventory" index="18" instance=ExtResource( 4 )]
+
+margin_left = 10.0
+margin_top = 390.0
+margin_right = 50.0
+margin_bottom = 430.0
+_sections_unfolded = [ "Rect", "Visibility" ]
+
+[node name="Slot20" parent="Panel/Inventory" index="19" instance=ExtResource( 4 )]
+
+margin_left = 60.0
+margin_top = 390.0
+margin_right = 100.0
+margin_bottom = 430.0
+_sections_unfolded = [ "Rect", "Visibility" ]
+
+[node name="Slot21" parent="Panel/Inventory" index="20" instance=ExtResource( 4 )]
+
+margin_left = 110.0
+margin_top = 390.0
+margin_right = 150.0
+margin_bottom = 430.0
+_sections_unfolded = [ "Rect", "Visibility" ]
+
+[node name="Slot22" parent="Panel/Inventory" index="21" instance=ExtResource( 4 )]
+
+margin_left = 10.0
+margin_top = 440.0
+margin_right = 50.0
+margin_bottom = 480.0
+_sections_unfolded = [ "Rect", "Visibility" ]
+
+[node name="Slot23" parent="Panel/Inventory" index="22" instance=ExtResource( 4 )]
+
+margin_left = 60.0
+margin_top = 440.0
+margin_right = 100.0
+margin_bottom = 480.0
+_sections_unfolded = [ "Rect", "Visibility" ]
+
+[node name="Slot24" parent="Panel/Inventory" index="23" instance=ExtResource( 4 )]
+
+margin_left = 110.0
+margin_top = 440.0
+margin_right = 150.0
+margin_bottom = 480.0
+_sections_unfolded = [ "Rect", "Visibility" ]
+
+[node name="Slot25" parent="Panel/Inventory" index="24" instance=ExtResource( 4 )]
+
+margin_left = 10.0
+margin_top = 490.0
+margin_right = 50.0
+margin_bottom = 530.0
+_sections_unfolded = [ "Rect", "Visibility" ]
+
+[node name="Slot26" parent="Panel/Inventory" index="25" instance=ExtResource( 4 )]
+
+margin_left = 60.0
+margin_top = 490.0
+margin_right = 100.0
+margin_bottom = 530.0
+_sections_unfolded = [ "Rect", "Visibility" ]
+
+[node name="Slot27" parent="Panel/Inventory" index="26" instance=ExtResource( 4 )]
+
+margin_left = 110.0
+margin_top = 490.0
+margin_right = 150.0
+margin_bottom = 530.0
+_sections_unfolded = [ "Rect", "Visibility" ]
+
+[node name="Goods" type="Node2D" parent="Panel" index="3"]
+
+visible = false
+
+[node name="Button1" parent="Panel/Goods" index="0" instance=ExtResource( 5 )]
+
+editor/display_folded = true
+margin_left = 10.0
+margin_top = 90.0
+margin_right = 50.0
+margin_bottom = 130.0
+
+[node name="ClearGem1" parent="Panel/Goods/Button1" index="0" instance=ExtResource( 6 )]
+
+position = Vector2( 20, 20 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Button2" parent="Panel/Goods" index="1" instance=ExtResource( 5 )]
+
+editor/display_folded = true
+margin_left = 60.0
+margin_top = 90.0
+margin_right = 100.0
+margin_bottom = 130.0
+_sections_unfolded = [ "Rect", "Visibility" ]
+
+[node name="ClearGem2" parent="Panel/Goods/Button2" index="0" instance=ExtResource( 7 )]
+
+position = Vector2( 20, 20 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Button3" parent="Panel/Goods" index="2" instance=ExtResource( 5 )]
+
+editor/display_folded = true
+margin_left = 110.0
+margin_top = 90.0
+margin_right = 150.0
+margin_bottom = 130.0
+
+[node name="ClearGem3" parent="Panel/Goods/Button3" index="0" instance=ExtResource( 8 )]
+
+position = Vector2( 20, 20 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Button4" parent="Panel/Goods" index="3" instance=ExtResource( 5 )]
+
+editor/display_folded = true
+margin_left = 10.0
+margin_top = 140.0
+margin_right = 50.0
+margin_bottom = 180.0
+
+[node name="ClearGem4" parent="Panel/Goods/Button4" index="0" instance=ExtResource( 9 )]
+
+position = Vector2( 20, 20 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Button5" parent="Panel/Goods" index="4" instance=ExtResource( 5 )]
+
+editor/display_folded = true
+margin_left = 60.0
+margin_top = 140.0
+margin_right = 100.0
+margin_bottom = 180.0
+
+[node name="ClearGem5" parent="Panel/Goods/Button5" index="0" instance=ExtResource( 10 )]
+
+position = Vector2( 20, 20 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Button6" parent="Panel/Goods" index="5" instance=ExtResource( 5 )]
+
+editor/display_folded = true
+margin_left = 110.0
+margin_top = 140.0
+margin_right = 150.0
+margin_bottom = 180.0
+
+[node name="ClearGem6" parent="Panel/Goods/Button6" index="0" instance=ExtResource( 11 )]
+
+position = Vector2( 20, 20 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Button7" parent="Panel/Goods" index="6" instance=ExtResource( 5 )]
 
 margin_left = 60.0
 margin_top = 190.0
 margin_right = 100.0
 margin_bottom = 230.0
 
-[node name="Slot12" parent="Panel" index="12" instance=ExtResource( 2 )]
+[node name="Tower" parent="Panel/Goods/Button7" index="0" instance=ExtResource( 12 )]
 
-margin_left = 110.0
-margin_top = 190.0
-margin_right = 150.0
-margin_bottom = 230.0
+position = Vector2( 20, 20 )
+scale = Vector2( 0.5, 0.5 )
+_sections_unfolded = [ "Transform" ]
 
 [node name="Label" type="Label" parent="." index="1"]
 
@@ -171,7 +473,7 @@ align = 2
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
-_sections_unfolded = [ "Margin" ]
+_sections_unfolded = [ "custom_constants" ]
 
 [node name="Timer" type="Timer" parent="Label" index="0"]
 
@@ -192,6 +494,12 @@ playback/speed = 1.0
 [connection signal="area_entered" from="Panel/Area2D" to="." method="_on_Area2D_area_entered"]
 
 [connection signal="area_exited" from="Panel/Area2D" to="." method="_on_Area2D_area_exited"]
+
+[connection signal="button_down" from="Panel/ShopButton" to="Panel/ShopButton" method="_on_ShopButton_button_down"]
+
+[connection signal="mouse_entered" from="Panel/ShopButton" to="Panel/ShopButton" method="_on_ShopButton_mouse_entered"]
+
+[connection signal="mouse_exited" from="Panel/ShopButton" to="Panel/ShopButton" method="_on_ShopButton_mouse_exited"]
 
 [connection signal="timeout" from="Label/Timer" to="." method="_on_Timer_timeout"]
 

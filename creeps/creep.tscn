@@ -4,7 +4,7 @@
 [ext_resource path="res://creeps/health-bar-green.png" type="Texture" id=2]
 [ext_resource path="res://creeps/health-bar-red.png" type="Texture" id=3]
 
-[node name="Creep" type="KinematicBody2D" index="0" groups=[
+[node name="Creep" type="KinematicBody2D" groups=[
 "creep",
 ]]
 
@@ -14,7 +14,7 @@ collision_mask = 1
 collision/safe_margin = 0.08
 script = ExtResource( 1 )
 hp = 100
-vel = 200
+vel = 50
 reward = 100
 
 [node name="Sprite" type="Sprite" parent="." index="0"]

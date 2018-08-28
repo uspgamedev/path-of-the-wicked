@@ -1,15 +1,15 @@
-[ ] Add shop market
-[ ] Add game over scene
+[/] Add shop market
 [ ] Add tower placement
+[ ] Add wave system
 [ ] Add gem effects
     [ ] Add creep weaknesses and strengths to gems
         [ ] Balance creep attributes
-[ ] Add wave system
+[ ] Add game over scene
+[ ] Add music and sfx
 [ ] Update game name
 
 ###############################################################################
 
-[ ] Add juiciness to shot trajectory
 [ ] Add shot queue free on last creep position
 [ ] Add custom cursor shape when interacting with gems
 

@@ -16,16 +16,32 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="MapGenerator" parent="." index="0" instance=ExtResource( 2 )]
+[node name="Control" type="Control" parent="." index="0"]
 
-[node name="SpawnerManager" type="Node2D" parent="." index="1"]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 1920.0
+margin_bottom = 1080.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+_sections_unfolded = [ "Rect" ]
+
+[node name="MapGenerator" parent="." index="1" instance=ExtResource( 2 )]
+
+[node name="SpawnerManager" type="Node2D" parent="." index="2"]
 
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Creeps" type="Node2D" parent="." index="2"]
+[node name="Creeps" type="Node2D" parent="." index="3"]
 
 scale = Vector2( 0.5, 0.5 )
 script = ExtResource( 4 )
@@ -34,7 +50,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Towers" type="Node2D" parent="." index="3"]
+[node name="Towers" type="Node2D" parent="." index="4"]
 
 editor/display_folded = true
 _sections_unfolded = [ "Transform" ]
@@ -106,20 +122,20 @@ position = Vector2( 928, 144 )
 
 position = Vector2( 1312, 784 )
 
-[node name="Base" parent="." index="4" instance=ExtResource( 6 )]
+[node name="Base" parent="." index="5" instance=ExtResource( 6 )]
 
 position = Vector2( 1488, 944 )
 scale = Vector2( 0.5, 0.5 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="Projectiles" type="Node2D" parent="." index="5"]
+[node name="Projectiles" type="Node2D" parent="." index="6"]
 
 position = Vector2( 0, -1 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Camera2D" type="Camera2D" parent="." index="6"]
+[node name="Camera2D" type="Camera2D" parent="." index="7"]
 
 editor/display_folded = true
 anchor_mode = 0
@@ -153,6 +169,114 @@ free_camera = false
 [node name="HUD" parent="Camera2D" index="0" instance=ExtResource( 8 )]
 
 margin_bottom = 64.0
+
+[node name="Slot1" parent="Camera2D/HUD/Panel/Inventory" index="0"]
+
+_sections_unfolded = [ "Rect", "Visibility" ]
+
+[node name="Slot2" parent="Camera2D/HUD/Panel/Inventory" index="1"]
+
+_sections_unfolded = [ "Rect", "Visibility" ]
+
+[node name="Slot3" parent="Camera2D/HUD/Panel/Inventory" index="2"]
+
+_sections_unfolded = [ "Rect", "Visibility" ]
+
+[node name="Slot4" parent="Camera2D/HUD/Panel/Inventory" index="3"]
+
+_sections_unfolded = [ "Rect", "Visibility" ]
+
+[node name="Slot5" parent="Camera2D/HUD/Panel/Inventory" index="4"]
+
+_sections_unfolded = [ "Rect", "Visibility" ]
+
+[node name="Slot6" parent="Camera2D/HUD/Panel/Inventory" index="5"]
+
+_sections_unfolded = [ "Rect", "Visibility" ]
+
+[node name="Slot7" parent="Camera2D/HUD/Panel/Inventory" index="6"]
+
+_sections_unfolded = [ "Rect", "Visibility" ]
+
+[node name="Slot8" parent="Camera2D/HUD/Panel/Inventory" index="7"]
+
+_sections_unfolded = [ "Rect", "Visibility" ]
+
+[node name="Slot9" parent="Camera2D/HUD/Panel/Inventory" index="8"]
+
+_sections_unfolded = [ "Rect", "Visibility" ]
+
+[node name="Slot10" parent="Camera2D/HUD/Panel/Inventory" index="9"]
+
+_sections_unfolded = [ "Rect", "Visibility" ]
+
+[node name="Slot11" parent="Camera2D/HUD/Panel/Inventory" index="10"]
+
+_sections_unfolded = [ "Rect", "Visibility" ]
+
+[node name="Slot12" parent="Camera2D/HUD/Panel/Inventory" index="11"]
+
+_sections_unfolded = [ "Rect", "Visibility" ]
+
+[node name="Slot13" parent="Camera2D/HUD/Panel/Inventory" index="12"]
+
+_sections_unfolded = [ "Rect", "Visibility" ]
+
+[node name="Slot14" parent="Camera2D/HUD/Panel/Inventory" index="13"]
+
+_sections_unfolded = [ "Rect", "Visibility" ]
+
+[node name="Slot15" parent="Camera2D/HUD/Panel/Inventory" index="14"]
+
+_sections_unfolded = [ "Rect", "Visibility" ]
+
+[node name="Slot16" parent="Camera2D/HUD/Panel/Inventory" index="15"]
+
+_sections_unfolded = [ "Rect", "Visibility" ]
+
+[node name="Slot17" parent="Camera2D/HUD/Panel/Inventory" index="16"]
+
+_sections_unfolded = [ "Rect", "Visibility" ]
+
+[node name="Slot18" parent="Camera2D/HUD/Panel/Inventory" index="17"]
+
+_sections_unfolded = [ "Rect", "Visibility" ]
+
+[node name="Slot19" parent="Camera2D/HUD/Panel/Inventory" index="18"]
+
+_sections_unfolded = [ "Rect", "Visibility" ]
+
+[node name="Slot20" parent="Camera2D/HUD/Panel/Inventory" index="19"]
+
+_sections_unfolded = [ "Rect", "Visibility" ]
+
+[node name="Slot21" parent="Camera2D/HUD/Panel/Inventory" index="20"]
+
+_sections_unfolded = [ "Rect", "Visibility" ]
+
+[node name="Slot22" parent="Camera2D/HUD/Panel/Inventory" index="21"]
+
+_sections_unfolded = [ "Rect", "Visibility" ]
+
+[node name="Slot23" parent="Camera2D/HUD/Panel/Inventory" index="22"]
+
+_sections_unfolded = [ "Rect", "Visibility" ]
+
+[node name="Slot24" parent="Camera2D/HUD/Panel/Inventory" index="23"]
+
+_sections_unfolded = [ "Rect", "Visibility" ]
+
+[node name="Slot25" parent="Camera2D/HUD/Panel/Inventory" index="24"]
+
+_sections_unfolded = [ "Rect", "Visibility" ]
+
+[node name="Slot26" parent="Camera2D/HUD/Panel/Inventory" index="25"]
+
+_sections_unfolded = [ "Rect", "Visibility" ]
+
+[node name="Slot27" parent="Camera2D/HUD/Panel/Inventory" index="26"]
+
+_sections_unfolded = [ "Rect", "Visibility" ]
 
 
 [editable path="Camera2D/HUD"]

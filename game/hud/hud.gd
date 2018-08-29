@@ -3,7 +3,6 @@ extends Node
 onready var main = get_node('/root/Global').get_main()
 onready var camera = get_parent()
 onready var panel = get_node('Panel')
-onready var gem_db = preload('res://gems/gem_db.gd')
 onready var label = get_node('Label')
 
 var gold = 10000

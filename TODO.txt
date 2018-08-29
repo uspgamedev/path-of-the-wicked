@@ -1,10 +1,14 @@
-[/] Add shop market
+[ ] Fix gem placement on towers behind hud
+    [ ] Fix gem placement near origin through hud
+[ ] Fix gem shooting only when a creep enter the area
 [ ] Add tower placement
 [ ] Add wave system
-[ ] Add gem effects
-    [ ] Add creep weaknesses and strengths to gems
-        [ ] Balance creep attributes
+[ ] Add popup dialog on gems
+    [ ] Add gem effects
+        [ ] Add creep weaknesses and strengths to gems
+            [ ] Balance creep attributes
 [ ] Add game over scene
+[ ] Add death animation on creeps
 [ ] Add music and sfx
 [ ] Update game name
 
@@ -36,4 +40,5 @@
 [X] Add juiciness to gold counter
 [X] Add simple AI to creeps
 [X] Add wounded animation on creeps
+[X] Add shop system
 

@@ -96,6 +96,60 @@ const YELLOW_GEMS = [
       YELLOW_GEM6
 ]
 
+const GEMS1 = [
+      BLUE_GEM1, 
+      CLEAR_GEM1, 
+      GREEN_GEM1, 
+      PINK_GEM1, 
+      RED_GEM1, 
+      YELLOW_GEM1
+]
+
+const GEMS2 = [
+      BLUE_GEM2, 
+      CLEAR_GEM2, 
+      GREEN_GEM2, 
+      PINK_GEM2, 
+      RED_GEM2, 
+      YELLOW_GEM2
+]
+
+const GEMS3 = [
+      BLUE_GEM3, 
+      CLEAR_GEM3, 
+      GREEN_GEM3, 
+      PINK_GEM3, 
+      RED_GEM3, 
+      YELLOW_GEM3
+]
+
+const GEMS4 = [
+      BLUE_GEM4, 
+      CLEAR_GEM4, 
+      GREEN_GEM4, 
+      PINK_GEM4, 
+      RED_GEM4, 
+      YELLOW_GEM4
+]
+
+const GEMS5 = [
+      BLUE_GEM5, 
+      CLEAR_GEM5, 
+      GREEN_GEM5, 
+      PINK_GEM5, 
+      RED_GEM5, 
+      YELLOW_GEM5
+]
+
+const GEMS6 = [
+      BLUE_GEM6, 
+      CLEAR_GEM6, 
+      GREEN_GEM6, 
+      PINK_GEM6, 
+      RED_GEM6, 
+      YELLOW_GEM6
+]
+
 const GEMS = [
       BLUE_GEM1,
       BLUE_GEM2,

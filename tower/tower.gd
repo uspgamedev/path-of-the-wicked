@@ -48,8 +48,8 @@ func _on_AreaCollider_input_event(viewport, event, shape_idx):
 			self.gem = null
 		elif event.is_action_pressed('ui_slot'):
 			self.remove_child(gem)
-			for slot in main.get_panel().get_children():
-				if slot.is_in_group('slot') and slot.gem == null:
+			for slot in main.get_panel().get_node('Inventory').get_children():
+				if slot.gem == null:
 					slot.gem = self.gem
 					slot.add_child(gem)
 					gem.position = slot.offset

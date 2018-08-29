@@ -20,6 +20,9 @@ func move_gem(node = source, _gem = gem):
 	elif node.is_in_group('tower'):
 		node.start_cooldown()
 		_gem.position = Vector2(0, 0)
+	elif node.is_in_group('discard'):
+		_gem.queue_free()
+		node.gem = null
 
 func swap_gems():
 	var gem_on_target = target.gem

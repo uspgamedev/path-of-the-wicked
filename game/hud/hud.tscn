@@ -1,19 +1,21 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://game/hud/hud.gd" type="Script" id=1]
 [ext_resource path="res://game/hud/shop_button.gd" type="Script" id=2]
 [ext_resource path="res://misc/font/Rise of Kingdom.ttf" type="DynamicFontData" id=3]
-[ext_resource path="res://game/hud/slot.tscn" type="PackedScene" id=4]
-[ext_resource path="res://game/hud/button.tscn" type="PackedScene" id=5]
-[ext_resource path="res://gems/Clear/clear_gem1.tscn" type="PackedScene" id=6]
-[ext_resource path="res://gems/Clear/clear_gem2.tscn" type="PackedScene" id=7]
-[ext_resource path="res://gems/Clear/clear_gem3.tscn" type="PackedScene" id=8]
-[ext_resource path="res://gems/Clear/clear_gem4.tscn" type="PackedScene" id=9]
-[ext_resource path="res://gems/Clear/clear_gem5.tscn" type="PackedScene" id=10]
-[ext_resource path="res://gems/Clear/clear_gem6.tscn" type="PackedScene" id=11]
-[ext_resource path="res://tower/tower.tscn" type="PackedScene" id=12]
+[ext_resource path="res://game/hud/inventory.gd" type="Script" id=4]
+[ext_resource path="res://game/hud/slot.tscn" type="PackedScene" id=5]
+[ext_resource path="res://game/hud/button.tscn" type="PackedScene" id=6]
+[ext_resource path="res://gems/Clear/clear_gem1.tscn" type="PackedScene" id=7]
+[ext_resource path="res://gems/Clear/clear_gem2.tscn" type="PackedScene" id=8]
+[ext_resource path="res://gems/Clear/clear_gem3.tscn" type="PackedScene" id=9]
+[ext_resource path="res://gems/Clear/clear_gem4.tscn" type="PackedScene" id=10]
+[ext_resource path="res://gems/Clear/clear_gem5.tscn" type="PackedScene" id=11]
+[ext_resource path="res://gems/Clear/clear_gem6.tscn" type="PackedScene" id=12]
+[ext_resource path="res://tower/tower.tscn" type="PackedScene" id=13]
+[ext_resource path="res://game/hud/discard.gd" type="Script" id=14]
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=1]
 
 size = 30
 use_mipmaps = false
@@ -21,7 +23,148 @@ use_filter = false
 font_data = ExtResource( 3 )
 _sections_unfolded = [ "Font", "Settings" ]
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="Shader" id=5]
+
+code = "shader_type canvas_item;
+
+render_mode blend_mix;
+uniform vec4 modulate:hint_color;
+
+void fragment(){
+	
+	COLOR = vec4(modulate.rgb, texture(TEXTURE, UV).a * modulate.a);
+	
+}"
+
+[sub_resource type="ShaderMaterial" id=6]
+
+render_priority = 0
+shader = SubResource( 5 )
+shader_param/modulate = Color( 1, 1, 1, 1 )
+_sections_unfolded = [ "shader_param" ]
+
+[sub_resource type="Shader" id=7]
+
+code = "shader_type canvas_item;
+
+render_mode blend_mix;
+uniform vec4 modulate:hint_color;
+
+void fragment(){
+	
+	COLOR = vec4(modulate.rgb, texture(TEXTURE, UV).a * modulate.a);
+	
+}"
+
+[sub_resource type="ShaderMaterial" id=8]
+
+render_priority = 0
+shader = SubResource( 7 )
+shader_param/modulate = Color( 1, 1, 1, 1 )
+_sections_unfolded = [ "shader_param" ]
+
+[sub_resource type="Shader" id=9]
+
+code = "shader_type canvas_item;
+
+render_mode blend_mix;
+uniform vec4 modulate:hint_color;
+
+void fragment(){
+	
+	COLOR = vec4(modulate.rgb, texture(TEXTURE, UV).a * modulate.a);
+	
+}"
+
+[sub_resource type="ShaderMaterial" id=10]
+
+render_priority = 0
+shader = SubResource( 9 )
+shader_param/modulate = Color( 1, 1, 1, 1 )
+_sections_unfolded = [ "shader_param" ]
+
+[sub_resource type="Shader" id=15]
+
+code = "shader_type canvas_item;
+
+render_mode blend_mix;
+uniform vec4 modulate:hint_color;
+
+void fragment(){
+	
+	COLOR = vec4(modulate.rgb, texture(TEXTURE, UV).a * modulate.a);
+	
+}"
+
+[sub_resource type="ShaderMaterial" id=16]
+
+render_priority = 0
+shader = SubResource( 15 )
+shader_param/modulate = Color( 1, 1, 1, 1 )
+_sections_unfolded = [ "shader_param" ]
+
+[sub_resource type="Shader" id=11]
+
+code = "shader_type canvas_item;
+
+render_mode blend_mix;
+uniform vec4 modulate:hint_color;
+
+void fragment(){
+	
+	COLOR = vec4(modulate.rgb, texture(TEXTURE, UV).a * modulate.a);
+	
+}"
+
+[sub_resource type="ShaderMaterial" id=12]
+
+render_priority = 0
+shader = SubResource( 11 )
+shader_param/modulate = Color( 1, 1, 1, 1 )
+_sections_unfolded = [ "shader_param" ]
+
+[sub_resource type="Shader" id=13]
+
+code = "shader_type canvas_item;
+
+render_mode blend_mix;
+uniform vec4 modulate:hint_color;
+
+void fragment(){
+	
+	COLOR = vec4(modulate.rgb, texture(TEXTURE, UV).a * modulate.a);
+	
+}"
+_sections_unfolded = [ "Resource" ]
+
+[sub_resource type="ShaderMaterial" id=14]
+
+render_priority = 0
+shader = SubResource( 13 )
+shader_param/modulate = Color( 1, 1, 1, 1 )
+_sections_unfolded = [ "shader_param" ]
+
+[sub_resource type="Shader" id=17]
+
+code = "shader_type canvas_item;
+
+render_mode blend_mix;
+uniform vec4 modulate:hint_color;
+
+void fragment(){
+	
+	COLOR = vec4(modulate.rgb, texture(TEXTURE, UV).a * modulate.a);
+	
+}"
+
+[sub_resource type="ShaderMaterial" id=18]
+
+render_priority = 0
+shader = SubResource( 17 )
+shader_param/modulate = Color( 1, 1, 1, 1 )
+_sections_unfolded = [ "shader_param" ]
+
+[sub_resource type="DynamicFont" id=4]
 
 size = 30
 use_mipmaps = false
@@ -79,7 +222,6 @@ polygon = PoolVector2Array( 0, 0, 160, 0, 160, 544, 0, 544 )
 
 [node name="ShopButton" type="Button" parent="Panel" index="1"]
 
-editor/display_folded = true
 self_modulate = Color( 0.698039, 0.698039, 0.698039, 1 )
 anchor_left = 0.0
 anchor_top = 0.0
@@ -118,7 +260,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 1 )
 custom_constants/shadow_offset_x = 1
 custom_constants/shadow_offset_y = 1
 custom_constants/shadow_as_outline = 1
@@ -132,9 +274,10 @@ max_lines_visible = -1
 [node name="Inventory" type="Node2D" parent="Panel" index="2"]
 
 editor/display_folded = true
+script = ExtResource( 4 )
 _sections_unfolded = [ "Visibility" ]
 
-[node name="Slot1" parent="Panel/Inventory" index="0" instance=ExtResource( 4 )]
+[node name="Slot1" parent="Panel/Inventory" index="0" instance=ExtResource( 5 )]
 
 margin_left = 10.0
 margin_top = 90.0
@@ -142,7 +285,7 @@ margin_right = 50.0
 margin_bottom = 130.0
 _sections_unfolded = [ "Rect", "Visibility" ]
 
-[node name="Slot2" parent="Panel/Inventory" index="1" instance=ExtResource( 4 )]
+[node name="Slot2" parent="Panel/Inventory" index="1" instance=ExtResource( 5 )]
 
 margin_left = 60.0
 margin_top = 90.0
@@ -150,7 +293,7 @@ margin_right = 100.0
 margin_bottom = 130.0
 _sections_unfolded = [ "Rect", "Visibility" ]
 
-[node name="Slot3" parent="Panel/Inventory" index="2" instance=ExtResource( 4 )]
+[node name="Slot3" parent="Panel/Inventory" index="2" instance=ExtResource( 5 )]
 
 margin_left = 110.0
 margin_top = 90.0
@@ -158,7 +301,7 @@ margin_right = 150.0
 margin_bottom = 130.0
 _sections_unfolded = [ "Rect", "Visibility" ]
 
-[node name="Slot4" parent="Panel/Inventory" index="3" instance=ExtResource( 4 )]
+[node name="Slot4" parent="Panel/Inventory" index="3" instance=ExtResource( 5 )]
 
 margin_left = 10.0
 margin_top = 140.0
@@ -166,7 +309,7 @@ margin_right = 50.0
 margin_bottom = 180.0
 _sections_unfolded = [ "Rect", "Visibility" ]
 
-[node name="Slot5" parent="Panel/Inventory" index="4" instance=ExtResource( 4 )]
+[node name="Slot5" parent="Panel/Inventory" index="4" instance=ExtResource( 5 )]
 
 margin_left = 60.0
 margin_top = 140.0
@@ -174,7 +317,7 @@ margin_right = 100.0
 margin_bottom = 180.0
 _sections_unfolded = [ "Rect", "Visibility" ]
 
-[node name="Slot6" parent="Panel/Inventory" index="5" instance=ExtResource( 4 )]
+[node name="Slot6" parent="Panel/Inventory" index="5" instance=ExtResource( 5 )]
 
 margin_left = 110.0
 margin_top = 140.0
@@ -182,7 +325,7 @@ margin_right = 150.0
 margin_bottom = 180.0
 _sections_unfolded = [ "Rect", "Visibility" ]
 
-[node name="Slot7" parent="Panel/Inventory" index="6" instance=ExtResource( 4 )]
+[node name="Slot7" parent="Panel/Inventory" index="6" instance=ExtResource( 5 )]
 
 margin_left = 10.0
 margin_top = 190.0
@@ -190,7 +333,7 @@ margin_right = 50.0
 margin_bottom = 230.0
 _sections_unfolded = [ "Rect", "Visibility" ]
 
-[node name="Slot8" parent="Panel/Inventory" index="7" instance=ExtResource( 4 )]
+[node name="Slot8" parent="Panel/Inventory" index="7" instance=ExtResource( 5 )]
 
 margin_left = 60.0
 margin_top = 190.0
@@ -198,7 +341,7 @@ margin_right = 100.0
 margin_bottom = 230.0
 _sections_unfolded = [ "Rect", "Visibility" ]
 
-[node name="Slot9" parent="Panel/Inventory" index="8" instance=ExtResource( 4 )]
+[node name="Slot9" parent="Panel/Inventory" index="8" instance=ExtResource( 5 )]
 
 margin_left = 110.0
 margin_top = 190.0
@@ -206,7 +349,7 @@ margin_right = 150.0
 margin_bottom = 230.0
 _sections_unfolded = [ "Rect", "Visibility" ]
 
-[node name="Slot10" parent="Panel/Inventory" index="9" instance=ExtResource( 4 )]
+[node name="Slot10" parent="Panel/Inventory" index="9" instance=ExtResource( 5 )]
 
 margin_left = 10.0
 margin_top = 240.0
@@ -214,7 +357,7 @@ margin_right = 50.0
 margin_bottom = 280.0
 _sections_unfolded = [ "Rect", "Visibility" ]
 
-[node name="Slot11" parent="Panel/Inventory" index="10" instance=ExtResource( 4 )]
+[node name="Slot11" parent="Panel/Inventory" index="10" instance=ExtResource( 5 )]
 
 margin_left = 60.0
 margin_top = 240.0
@@ -222,7 +365,7 @@ margin_right = 100.0
 margin_bottom = 280.0
 _sections_unfolded = [ "Rect", "Visibility" ]
 
-[node name="Slot12" parent="Panel/Inventory" index="11" instance=ExtResource( 4 )]
+[node name="Slot12" parent="Panel/Inventory" index="11" instance=ExtResource( 5 )]
 
 margin_left = 110.0
 margin_top = 240.0
@@ -230,7 +373,7 @@ margin_right = 150.0
 margin_bottom = 280.0
 _sections_unfolded = [ "Rect", "Visibility" ]
 
-[node name="Slot13" parent="Panel/Inventory" index="12" instance=ExtResource( 4 )]
+[node name="Slot13" parent="Panel/Inventory" index="12" instance=ExtResource( 5 )]
 
 margin_left = 10.0
 margin_top = 290.0
@@ -238,7 +381,7 @@ margin_right = 50.0
 margin_bottom = 330.0
 _sections_unfolded = [ "Rect", "Visibility" ]
 
-[node name="Slot14" parent="Panel/Inventory" index="13" instance=ExtResource( 4 )]
+[node name="Slot14" parent="Panel/Inventory" index="13" instance=ExtResource( 5 )]
 
 margin_left = 60.0
 margin_top = 290.0
@@ -246,7 +389,7 @@ margin_right = 100.0
 margin_bottom = 330.0
 _sections_unfolded = [ "Rect", "Visibility" ]
 
-[node name="Slot15" parent="Panel/Inventory" index="14" instance=ExtResource( 4 )]
+[node name="Slot15" parent="Panel/Inventory" index="14" instance=ExtResource( 5 )]
 
 margin_left = 110.0
 margin_top = 290.0
@@ -254,7 +397,7 @@ margin_right = 150.0
 margin_bottom = 330.0
 _sections_unfolded = [ "Rect", "Visibility" ]
 
-[node name="Slot16" parent="Panel/Inventory" index="15" instance=ExtResource( 4 )]
+[node name="Slot16" parent="Panel/Inventory" index="15" instance=ExtResource( 5 )]
 
 margin_left = 10.0
 margin_top = 340.0
@@ -262,7 +405,7 @@ margin_right = 50.0
 margin_bottom = 380.0
 _sections_unfolded = [ "Rect", "Visibility" ]
 
-[node name="Slot17" parent="Panel/Inventory" index="16" instance=ExtResource( 4 )]
+[node name="Slot17" parent="Panel/Inventory" index="16" instance=ExtResource( 5 )]
 
 margin_left = 60.0
 margin_top = 340.0
@@ -270,7 +413,7 @@ margin_right = 100.0
 margin_bottom = 380.0
 _sections_unfolded = [ "Rect", "Visibility" ]
 
-[node name="Slot18" parent="Panel/Inventory" index="17" instance=ExtResource( 4 )]
+[node name="Slot18" parent="Panel/Inventory" index="17" instance=ExtResource( 5 )]
 
 margin_left = 110.0
 margin_top = 340.0
@@ -278,7 +421,7 @@ margin_right = 150.0
 margin_bottom = 380.0
 _sections_unfolded = [ "Rect", "Visibility" ]
 
-[node name="Slot19" parent="Panel/Inventory" index="18" instance=ExtResource( 4 )]
+[node name="Slot19" parent="Panel/Inventory" index="18" instance=ExtResource( 5 )]
 
 margin_left = 10.0
 margin_top = 390.0
@@ -286,7 +429,7 @@ margin_right = 50.0
 margin_bottom = 430.0
 _sections_unfolded = [ "Rect", "Visibility" ]
 
-[node name="Slot20" parent="Panel/Inventory" index="19" instance=ExtResource( 4 )]
+[node name="Slot20" parent="Panel/Inventory" index="19" instance=ExtResource( 5 )]
 
 margin_left = 60.0
 margin_top = 390.0
@@ -294,7 +437,7 @@ margin_right = 100.0
 margin_bottom = 430.0
 _sections_unfolded = [ "Rect", "Visibility" ]
 
-[node name="Slot21" parent="Panel/Inventory" index="20" instance=ExtResource( 4 )]
+[node name="Slot21" parent="Panel/Inventory" index="20" instance=ExtResource( 5 )]
 
 margin_left = 110.0
 margin_top = 390.0
@@ -302,59 +445,12 @@ margin_right = 150.0
 margin_bottom = 430.0
 _sections_unfolded = [ "Rect", "Visibility" ]
 
-[node name="Slot22" parent="Panel/Inventory" index="21" instance=ExtResource( 4 )]
+[node name="Items" type="Node2D" parent="Panel" index="3"]
 
-margin_left = 10.0
-margin_top = 440.0
-margin_right = 50.0
-margin_bottom = 480.0
-_sections_unfolded = [ "Rect", "Visibility" ]
-
-[node name="Slot23" parent="Panel/Inventory" index="22" instance=ExtResource( 4 )]
-
-margin_left = 60.0
-margin_top = 440.0
-margin_right = 100.0
-margin_bottom = 480.0
-_sections_unfolded = [ "Rect", "Visibility" ]
-
-[node name="Slot24" parent="Panel/Inventory" index="23" instance=ExtResource( 4 )]
-
-margin_left = 110.0
-margin_top = 440.0
-margin_right = 150.0
-margin_bottom = 480.0
-_sections_unfolded = [ "Rect", "Visibility" ]
-
-[node name="Slot25" parent="Panel/Inventory" index="24" instance=ExtResource( 4 )]
-
-margin_left = 10.0
-margin_top = 490.0
-margin_right = 50.0
-margin_bottom = 530.0
-_sections_unfolded = [ "Rect", "Visibility" ]
-
-[node name="Slot26" parent="Panel/Inventory" index="25" instance=ExtResource( 4 )]
-
-margin_left = 60.0
-margin_top = 490.0
-margin_right = 100.0
-margin_bottom = 530.0
-_sections_unfolded = [ "Rect", "Visibility" ]
-
-[node name="Slot27" parent="Panel/Inventory" index="26" instance=ExtResource( 4 )]
-
-margin_left = 110.0
-margin_top = 490.0
-margin_right = 150.0
-margin_bottom = 530.0
-_sections_unfolded = [ "Rect", "Visibility" ]
-
-[node name="Goods" type="Node2D" parent="Panel" index="3"]
-
+editor/display_folded = true
 visible = false
 
-[node name="Button1" parent="Panel/Goods" index="0" instance=ExtResource( 5 )]
+[node name="Button1" parent="Panel/Items" index="0" instance=ExtResource( 6 )]
 
 editor/display_folded = true
 margin_left = 10.0
@@ -362,12 +458,19 @@ margin_top = 90.0
 margin_right = 50.0
 margin_bottom = 130.0
 
-[node name="ClearGem1" parent="Panel/Goods/Button1" index="0" instance=ExtResource( 6 )]
+[node name="ClearGem1" parent="Panel/Items/Button1" index="0" instance=ExtResource( 7 )]
 
+editor/display_folded = true
 position = Vector2( 20, 20 )
-_sections_unfolded = [ "Transform" ]
+_sections_unfolded = [ "Material", "Transform", "Visibility" ]
 
-[node name="Button2" parent="Panel/Goods" index="1" instance=ExtResource( 5 )]
+[node name="AnimatedSprite" parent="Panel/Items/Button1/ClearGem1" index="0"]
+
+material = SubResource( 6 )
+frame = 0
+_sections_unfolded = [ "Material" ]
+
+[node name="Button2" parent="Panel/Items" index="1" instance=ExtResource( 6 )]
 
 editor/display_folded = true
 margin_left = 60.0
@@ -376,12 +479,19 @@ margin_right = 100.0
 margin_bottom = 130.0
 _sections_unfolded = [ "Rect", "Visibility" ]
 
-[node name="ClearGem2" parent="Panel/Goods/Button2" index="0" instance=ExtResource( 7 )]
+[node name="ClearGem2" parent="Panel/Items/Button2" index="0" instance=ExtResource( 8 )]
 
+editor/display_folded = true
 position = Vector2( 20, 20 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="Button3" parent="Panel/Goods" index="2" instance=ExtResource( 5 )]
+[node name="AnimatedSprite" parent="Panel/Items/Button2/ClearGem2" index="0"]
+
+material = SubResource( 8 )
+frame = 7
+_sections_unfolded = [ "Material" ]
+
+[node name="Button3" parent="Panel/Items" index="2" instance=ExtResource( 6 )]
 
 editor/display_folded = true
 margin_left = 110.0
@@ -389,12 +499,19 @@ margin_top = 90.0
 margin_right = 150.0
 margin_bottom = 130.0
 
-[node name="ClearGem3" parent="Panel/Goods/Button3" index="0" instance=ExtResource( 8 )]
+[node name="ClearGem3" parent="Panel/Items/Button3" index="0" instance=ExtResource( 9 )]
 
+editor/display_folded = true
 position = Vector2( 20, 20 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="Button4" parent="Panel/Goods" index="3" instance=ExtResource( 5 )]
+[node name="AnimatedSprite" parent="Panel/Items/Button3/ClearGem3" index="0"]
+
+material = SubResource( 10 )
+frame = 35
+_sections_unfolded = [ "Material" ]
+
+[node name="Button4" parent="Panel/Items" index="3" instance=ExtResource( 6 )]
 
 editor/display_folded = true
 margin_left = 10.0
@@ -402,12 +519,19 @@ margin_top = 140.0
 margin_right = 50.0
 margin_bottom = 180.0
 
-[node name="ClearGem4" parent="Panel/Goods/Button4" index="0" instance=ExtResource( 9 )]
+[node name="ClearGem4" parent="Panel/Items/Button4" index="0" instance=ExtResource( 10 )]
 
+editor/display_folded = true
 position = Vector2( 20, 20 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="Button5" parent="Panel/Goods" index="4" instance=ExtResource( 5 )]
+[node name="AnimatedSprite" parent="Panel/Items/Button4/ClearGem4" index="0"]
+
+material = SubResource( 16 )
+frame = 35
+_sections_unfolded = [ "Material" ]
+
+[node name="Button5" parent="Panel/Items" index="4" instance=ExtResource( 6 )]
 
 editor/display_folded = true
 margin_left = 60.0
@@ -415,12 +539,19 @@ margin_top = 140.0
 margin_right = 100.0
 margin_bottom = 180.0
 
-[node name="ClearGem5" parent="Panel/Goods/Button5" index="0" instance=ExtResource( 10 )]
+[node name="ClearGem5" parent="Panel/Items/Button5" index="0" instance=ExtResource( 11 )]
 
+editor/display_folded = true
 position = Vector2( 20, 20 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="Button6" parent="Panel/Goods" index="5" instance=ExtResource( 5 )]
+[node name="AnimatedSprite" parent="Panel/Items/Button5/ClearGem5" index="0"]
+
+material = SubResource( 12 )
+frame = 19
+_sections_unfolded = [ "Material" ]
+
+[node name="Button6" parent="Panel/Items" index="5" instance=ExtResource( 6 )]
 
 editor/display_folded = true
 margin_left = 110.0
@@ -428,23 +559,95 @@ margin_top = 140.0
 margin_right = 150.0
 margin_bottom = 180.0
 
-[node name="ClearGem6" parent="Panel/Goods/Button6" index="0" instance=ExtResource( 11 )]
+[node name="ClearGem6" parent="Panel/Items/Button6" index="0" instance=ExtResource( 12 )]
 
+editor/display_folded = true
+material = SubResource( 14 )
 position = Vector2( 20, 20 )
-_sections_unfolded = [ "Transform" ]
+_sections_unfolded = [ "Material", "Transform" ]
 
-[node name="Button7" parent="Panel/Goods" index="6" instance=ExtResource( 5 )]
+[node name="AnimatedSprite" parent="Panel/Items/Button6/ClearGem6" index="0"]
 
-margin_left = 60.0
+material = SubResource( 18 )
+frame = 28
+_sections_unfolded = [ "Material" ]
+
+[node name="Button7" parent="Panel/Items" index="6" instance=ExtResource( 6 )]
+
+editor/display_folded = true
+margin_left = 40.0
 margin_top = 190.0
-margin_right = 100.0
-margin_bottom = 230.0
+margin_right = 120.0
+margin_bottom = 270.0
+_sections_unfolded = [ "Rect", "Visibility" ]
 
-[node name="Tower" parent="Panel/Goods/Button7" index="0" instance=ExtResource( 12 )]
+[node name="Tower" parent="Panel/Items/Button7" index="0" instance=ExtResource( 13 )]
 
-position = Vector2( 20, 20 )
-scale = Vector2( 0.5, 0.5 )
+position = Vector2( 40, 40 )
 _sections_unfolded = [ "Transform" ]
+
+[node name="Discard" type="PanelContainer" parent="Panel" index="4" groups=[
+"discard",
+]]
+
+self_modulate = Color( 0.698039, 0.698039, 0.698039, 1 )
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 10.0
+margin_top = 440.0
+margin_right = 150.0
+margin_bottom = 530.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+script = ExtResource( 14 )
+
+[node name="Label" type="Label" parent="Panel/Discard" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 7.0
+margin_top = 29.0
+margin_right = 133.0
+margin_bottom = 60.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 1 )
+custom_constants/shadow_offset_x = 1
+custom_constants/shadow_offset_y = 1
+custom_constants/shadow_as_outline = 1
+text = "Discard"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Area2D" type="Area2D" parent="Panel/Discard" index="1"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Panel/Discard/Area2D" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( 10, 10, 10, 80, 130, 80, 130, 10 )
 
 [node name="Label" type="Label" parent="." index="1"]
 
@@ -463,7 +666,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 4 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 1
 custom_constants/shadow_offset_y = 1
@@ -501,8 +704,18 @@ playback/speed = 1.0
 
 [connection signal="mouse_exited" from="Panel/ShopButton" to="Panel/ShopButton" method="_on_ShopButton_mouse_exited"]
 
+[connection signal="area_entered" from="Panel/Discard/Area2D" to="Panel/Discard" method="_on_Area2D_area_entered"]
+
+[connection signal="area_exited" from="Panel/Discard/Area2D" to="Panel/Discard" method="_on_Area2D_area_exited"]
+
 [connection signal="timeout" from="Label/Timer" to="." method="_on_Timer_timeout"]
 
 [connection signal="tween_completed" from="Label/Tween" to="." method="_on_Tween_tween_completed"]
 
 
+[editable path="Panel/Items/Button1/ClearGem1"]
+[editable path="Panel/Items/Button2/ClearGem2"]
+[editable path="Panel/Items/Button3/ClearGem3"]
+[editable path="Panel/Items/Button4/ClearGem4"]
+[editable path="Panel/Items/Button5/ClearGem5"]
+[editable path="Panel/Items/Button6/ClearGem6"]

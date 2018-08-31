@@ -44,6 +44,7 @@ script = ExtResource( 1 )
 modulate = Color( 0.402344, 0.402344, 0.402344, 1 )
 frames = SubResource( 1 )
 animation = "default"
+frame = 8
 playing = true
 _sections_unfolded = [ "Visibility" ]
 
@@ -64,7 +65,6 @@ polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
 
 [node name="NearbyArea" type="Area2D" parent="." index="2"]
 
-visible = false
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0

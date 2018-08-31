@@ -25,11 +25,11 @@ func set_area_radius(new_radius):
 
 func _on_NearbyArea_area_entered(area):
 	var creep = area.get_parent()
-	if gem != null and creep != null and creep.is_in_group('creep'):
+	if creep != null and creep.is_in_group('creep'):
 		nearby_creeps.append(creep)
 		creep.towers.append(self)
 		if nearby_creeps.size() == 1 and cooldown.visible == false:
-			if gem.timer.time_left == 0:
+			if gem != null and gem.timer.time_left == 0:
 				gem.shoot()
 
 func _on_NearbyArea_area_exited(area):

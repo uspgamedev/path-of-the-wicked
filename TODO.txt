@@ -1,4 +1,3 @@
-[ ] Fix gem shooting only when a creep enter the area
 [ ] Add tower placement
 [ ] Add wave system
 [ ] Add popup dialog on gems
@@ -41,4 +40,5 @@
 [X] Add shop system
 [X] Fix gem placement on towers behind hud
 [X] Fix gem placement near origin through hud
+[X] Fix gem not shooting when a creep is near
 

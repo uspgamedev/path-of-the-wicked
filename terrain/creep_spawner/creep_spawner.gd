@@ -1,6 +1,6 @@
 extends Node2D
 
-onready var map = get_node('/root/Global').get_main().get_node('MapGenerator')
+onready var map = get_node('/root/Main/Map')
 
 var path = PoolVector2Array([])
 

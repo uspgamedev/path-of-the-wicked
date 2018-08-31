@@ -1,6 +1,6 @@
 extends Node
 
-onready var main = get_node('/root/Global').get_main()
+onready var main = get_node('/root/Main')
 onready var camera = get_parent()
 onready var panel = get_node('Panel')
 onready var label = get_node('Label')

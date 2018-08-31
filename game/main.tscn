@@ -1,13 +1,12 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://game/main.gd" type="Script" id=1]
-[ext_resource path="res://terrain/map_generator/map_generator.tscn" type="PackedScene" id=2]
+[ext_resource path="res://terrain/map/map.tscn" type="PackedScene" id=2]
 [ext_resource path="res://terrain/creep_spawner/spawner_manager.gd" type="Script" id=3]
 [ext_resource path="res://creeps/creep_db.gd" type="Script" id=4]
-[ext_resource path="res://tower/tower.tscn" type="PackedScene" id=5]
-[ext_resource path="res://base/base.tscn" type="PackedScene" id=6]
-[ext_resource path="res://game/camera.gd" type="Script" id=7]
-[ext_resource path="res://game/hud/hud.tscn" type="PackedScene" id=8]
+[ext_resource path="res://base/base.tscn" type="PackedScene" id=5]
+[ext_resource path="res://game/camera.gd" type="Script" id=6]
+[ext_resource path="res://game/hud/hud.tscn" type="PackedScene" id=7]
 
 [node name="Main" type="Node2D"]
 
@@ -16,7 +15,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="MapGenerator" parent="." index="0" instance=ExtResource( 2 )]
+[node name="Map" parent="." index="0" instance=ExtResource( 2 )]
 
 [node name="SpawnerManager" type="Node2D" parent="." index="1"]
 
@@ -41,71 +40,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Tower1" parent="Towers" index="0" instance=ExtResource( 5 )]
-
-position = Vector2( 656, 224 )
-
-[node name="Tower2" parent="Towers" index="1" instance=ExtResource( 5 )]
-
-position = Vector2( 816, 512 )
-
-[node name="Tower3" parent="Towers" index="2" instance=ExtResource( 5 )]
-
-position = Vector2( 272, 496 )
-
-[node name="Tower4" parent="Towers" index="3" instance=ExtResource( 5 )]
-
-position = Vector2( 288, 880 )
-
-[node name="Tower5" parent="Towers" index="4" instance=ExtResource( 5 )]
-
-position = Vector2( 920, 896 )
-
-[node name="Tower6" parent="Towers" index="5" instance=ExtResource( 5 )]
-
-position = Vector2( 1344, 304 )
-
-[node name="Tower7" parent="Towers" index="6" instance=ExtResource( 5 )]
-
-position = Vector2( 912, 704 )
-
-[node name="Tower8" parent="Towers" index="7" instance=ExtResource( 5 )]
-
-position = Vector2( 544, 800 )
-
-[node name="Tower9" parent="Towers" index="8" instance=ExtResource( 5 )]
-
-position = Vector2( 640, 416 )
-
-[node name="Tower10" parent="Towers" index="9" instance=ExtResource( 5 )]
-
-position = Vector2( 1104, 416 )
-
-[node name="Tower11" parent="Towers" index="10" instance=ExtResource( 5 )]
-
-position = Vector2( 336, 624 )
-
-[node name="Tower12" parent="Towers" index="11" instance=ExtResource( 5 )]
-
-position = Vector2( 336, 48 )
-
-[node name="Tower13" parent="Towers" index="12" instance=ExtResource( 5 )]
-
-position = Vector2( 1184, 48 )
-
-[node name="Tower14" parent="Towers" index="13" instance=ExtResource( 5 )]
-
-position = Vector2( 64, 912 )
-
-[node name="Tower15" parent="Towers" index="14" instance=ExtResource( 5 )]
-
-position = Vector2( 928, 144 )
-
-[node name="Tower16" parent="Towers" index="15" instance=ExtResource( 5 )]
-
-position = Vector2( 1312, 784 )
-
-[node name="Base" parent="." index="4" instance=ExtResource( 6 )]
+[node name="Base" parent="." index="4" instance=ExtResource( 5 )]
 
 position = Vector2( 1488, 944 )
 scale = Vector2( 0.5, 0.5 )
@@ -120,6 +55,7 @@ __meta__ = {
 
 [node name="Camera2D" type="Camera2D" parent="." index="6"]
 
+editor/display_folded = true
 anchor_mode = 0
 rotating = false
 current = true
@@ -142,13 +78,13 @@ drag_margin_bottom = 0.2
 editor_draw_screen = true
 editor_draw_limits = false
 editor_draw_drag_margin = false
-script = ExtResource( 7 )
+script = ExtResource( 6 )
 __meta__ = {
 "_edit_lock_": true
 }
 free_camera = false
 
-[node name="HUD" parent="Camera2D" index="0" instance=ExtResource( 8 )]
+[node name="HUD" parent="Camera2D" index="0" instance=ExtResource( 7 )]
 
 editor/display_folded = true
 margin_bottom = 64.0

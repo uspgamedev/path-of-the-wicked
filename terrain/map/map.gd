@@ -10,13 +10,18 @@ const UL = [4, 8, 11, 13, 14, 18, 21, 23, 24, 27, 29, 30, 32, 33, 35]
 const UR = [5, 9, 12, 14, 15, 19, 22, 24, 25, 28, 30, 31, 33, 34, 35]
 
 const CREEP_SPAWNER = preload('res://terrain/creep_spawner/creep_spawner.tscn')
+const TOWER_PH = preload('res://tower/tower_placeholder.tscn')
+const TOWER = preload('res://tower/tower.tscn')
 
 onready var spawner_manager = get_node('../SpawnerManager')
+onready var towers = get_node('../Towers')
 onready var tilemap = get_node('TileMap')
+onready var tower_phs = get_node('TowerPlaceholders')
 onready var a_star = AStar.new()
 
-var dict = {} # {Vector2 : PoolVector2Array}
+var adj_cells_dict = {} # {Vector2 : PoolVector2Array}
 var idx_dict = {} # {Vector2 : int}
+var grass_coord = []
 var offset
 var base
 
@@ -24,13 +29,16 @@ func _ready():
 	offset = Vector2(tilemap.cell_size.x / 2, \
 	         tilemap.cell_size.y * 5/8 + tilemap.cell_quadrant_size / 2 + tilemap.position.y)
 	for cell in tilemap.get_used_cells():
+		var pos = tilemap.map_to_world(cell) + offset
 		if tilemap.get_cellv(cell) != GRASS:
-			var pos = tilemap.map_to_world(cell) + offset
-			dict[pos] = get_adj_cells(cell)
+			adj_cells_dict[pos] = get_adj_cells(cell)
 			_add_point(pos)
-	for key in dict.keys():
-		for value in dict[key]:
+		else:
+			grass_coord.append(pos)
+	for key in adj_cells_dict.keys():
+		for value in adj_cells_dict[key]:
 			a_star.connect_points(idx_dict[key], idx_dict[value], false)
+	create_tower_placeholders()
 
 func get_adj_cells(cell):
 	var adj_cells = PoolVector2Array([])
@@ -65,10 +73,31 @@ func add_adj_cell(cur_cell, ARRAY, next_cell, adj_cells):
 				var creep_spawner = CREEP_SPAWNER.instance()
 				creep_spawner.position = pos
 				spawner_manager.add_child(creep_spawner)
-				dict[pos] = PoolVector2Array([tilemap.map_to_world(cur_cell) + offset])
+				adj_cells_dict[pos] = PoolVector2Array([tilemap.map_to_world(cur_cell) + offset])
 				_add_point(pos)
 		else:
 			base = pos
 			adj_cells.append(pos)
 			_add_point(pos)
 	return adj_cells
+
+func create_tower_placeholders():
+	for pos in grass_coord:
+		var tower_ph = TOWER_PH.instance()
+		tower_ph.position = pos
+		tower_ph.visible = false
+		tower_phs.add_child(tower_ph)
+
+func show_tower_phs():
+	for tower_ph in tower_phs.get_children():
+		tower_ph.visible = true
+
+func hide_tower_phs():
+	for tower_ph in tower_phs.get_children():
+		tower_ph.visible = false
+
+func place_tower(pos):
+	var tower = TOWER.instance()
+	tower.position = pos
+	towers.add_child(tower)
+	hide_tower_phs()

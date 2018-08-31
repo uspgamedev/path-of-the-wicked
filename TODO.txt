@@ -1,4 +1,3 @@
-[ ] Add tower placement
 [ ] Add wave system
 [ ] Add popup dialog on gems
     [ ] Add gem effects
@@ -41,4 +40,5 @@
 [X] Fix gem placement on towers behind hud
 [X] Fix gem placement near origin through hud
 [X] Fix gem not shooting when a creep is near
+[X] Add tower placement
 

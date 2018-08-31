@@ -2,7 +2,7 @@ extends PanelContainer
 
 const CURSOR = preload('res://game/cursor.tscn')
 
-onready var main = get_node('/root/Global').get_main()
+onready var main = get_node('/root/Main')
 onready var offset = self.rect_size / 2
 
 var gem = null
@@ -21,7 +21,6 @@ func _on_Slot_mouse_exited():
 func _gui_input(event):
 	if event.is_action_pressed('ui_select') and gem != null:
 		var cursor = CURSOR.instance()
-		var main = get_node('/root/Global').get_main()
 		cursor.source = self
 		cursor.gem = self.gem
 		gem.position = Vector2(0, 0)

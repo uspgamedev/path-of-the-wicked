@@ -6,10 +6,10 @@ export(int) var reward = 100
 
 onready var hp_bar = get_node('TextureProgress')
 onready var tween = get_node('Tween')
-onready var map = get_node('../../MapGenerator')
+onready var map = get_node('../../Map')
 onready var sprite = get_node('Sprite')
 onready var anim = get_node('AnimationPlayer')
-onready var hud = get_node('/root/Global').get_main().get_hud()
+onready var hud = get_node('/root/Main/Camera2D/HUD')
 
 var spawner
 var projectiles = []

@@ -1,0 +1,65 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://tower/tower_placeholder.gd" type="Script" id=1]
+[ext_resource path="res://tower/sprites/alien10001.png" type="Texture" id=2]
+[ext_resource path="res://tower/sprites/alien10002.png" type="Texture" id=3]
+[ext_resource path="res://tower/sprites/alien10003.png" type="Texture" id=4]
+[ext_resource path="res://tower/sprites/alien10004.png" type="Texture" id=5]
+[ext_resource path="res://tower/sprites/alien10005.png" type="Texture" id=6]
+[ext_resource path="res://tower/sprites/alien10006.png" type="Texture" id=7]
+[ext_resource path="res://tower/sprites/alien10007.png" type="Texture" id=8]
+[ext_resource path="res://tower/sprites/alien10008.png" type="Texture" id=9]
+[ext_resource path="res://tower/sprites/alien10009.png" type="Texture" id=10]
+[ext_resource path="res://tower/sprites/alien10010.png" type="Texture" id=11]
+[ext_resource path="res://tower/sprites/alien10011.png" type="Texture" id=12]
+[ext_resource path="res://tower/sprites/alien10012.png" type="Texture" id=13]
+[ext_resource path="res://tower/sprites/alien10013.png" type="Texture" id=14]
+[ext_resource path="res://tower/sprites/alien10014.png" type="Texture" id=15]
+[ext_resource path="res://tower/sprites/alien10015.png" type="Texture" id=16]
+
+[sub_resource type="SpriteFrames" id=1]
+
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ) ],
+"loop": true,
+"name": "default",
+"speed": 20.0
+} ]
+
+[node name="TowerPlaceholder" type="Node2D"]
+
+scale = Vector2( 2, 2 )
+script = ExtResource( 1 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="." index="0"]
+
+modulate = Color( 0.4, 0.4, 0.4, 0.67451 )
+frames = SubResource( 1 )
+animation = "default"
+frame = 4
+playing = true
+_sections_unfolded = [ "Visibility" ]
+
+[node name="AreaCollider" type="Area2D" parent="." index="1"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AreaCollider" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
+
+[connection signal="input_event" from="AreaCollider" to="." method="_on_AreaCollider_input_event"]
+
+[connection signal="mouse_entered" from="AreaCollider" to="." method="_on_AreaCollider_mouse_entered"]
+
+[connection signal="mouse_exited" from="AreaCollider" to="." method="_on_AreaCollider_mouse_exited"]
+
+

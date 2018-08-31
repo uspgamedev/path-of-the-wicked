@@ -3,7 +3,7 @@ extends Node2D
 const PROJ = preload('res://projectiles/projectile.tscn')
 const GEM_COLORS = preload('res://gems/gem_colors.gd')
 
-onready var projectiles = get_node('/root/Global').get_main().get_node('Projectiles')
+onready var projectiles = get_node('/root/Main/Projectiles')
 onready var timer = get_node('Timer')
 
 var tower

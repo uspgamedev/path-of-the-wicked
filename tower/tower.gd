@@ -6,7 +6,7 @@ onready var cooldown = get_node('TextureProgress')
 onready var area_collider = get_node('AreaCollider')
 onready var nearby_area = get_node('NearbyArea')
 onready var nearby_area_shape = nearby_area.get_node('CollisionShape2D')
-onready var main = get_node('/root/Global').get_main()
+onready var main = get_node('/root/Main')
 onready var hud_area = main.get_node('Camera2D/HUD/Panel/Area2D')
 
 var gem = null
@@ -51,7 +51,7 @@ func _on_AreaCollider_input_event(viewport, event, shape_idx):
 			self.gem = null
 		elif event.is_action_pressed('ui_slot'):
 			self.remove_child(gem)
-			for slot in main.get_panel().get_node('Inventory').get_children():
+			for slot in main.get_node('Camera2D/HUD/Panel/Inventory').get_children():
 				if slot.gem == null:
 					slot.gem = self.gem
 					slot.add_child(gem)

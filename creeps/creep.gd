@@ -1,4 +1,4 @@
-extends KinematicBody2D
+extends Node2D
 
 export(int) var hp = 100
 export(int) var vel = 50

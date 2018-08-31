@@ -37,7 +37,8 @@ func _on_Timer_timeout():
 	tween.interpolate_property(tween_label, 'margin_top', \
 	            48, 16, .5, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	tween.interpolate_property(tween_label, 'self_modulate', \
-	            Color(1, 1, 1, 1), Color(1, 1, 1, 0), .5, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	            Color(1, 1, 1, 1), Color(1, 1, 1, 0), .5, \
+	                  Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	tween.start()
 	label.get_node('Timer').stop()
 	gathered_label.queue_free()

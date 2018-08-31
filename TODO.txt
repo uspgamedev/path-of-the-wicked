@@ -1,5 +1,3 @@
-[ ] Fix gem placement on towers behind hud
-    [ ] Fix gem placement near origin through hud
 [ ] Fix gem shooting only when a creep enter the area
 [ ] Add tower placement
 [ ] Add wave system
@@ -41,4 +39,6 @@
 [X] Add simple AI to creeps
 [X] Add wounded animation on creeps
 [X] Add shop system
+[X] Fix gem placement on towers behind hud
+[X] Fix gem placement near origin through hud
 

@@ -36,7 +36,6 @@ __meta__ = {
 
 [node name="Towers" type="Node2D" parent="." index="3"]
 
-editor/display_folded = true
 _sections_unfolded = [ "Transform" ]
 __meta__ = {
 "_edit_lock_": true
@@ -121,7 +120,6 @@ __meta__ = {
 
 [node name="Camera2D" type="Camera2D" parent="." index="6"]
 
-editor/display_folded = true
 anchor_mode = 0
 rotating = false
 current = true
@@ -152,6 +150,7 @@ free_camera = false
 
 [node name="HUD" parent="Camera2D" index="0" instance=ExtResource( 8 )]
 
+editor/display_folded = true
 margin_bottom = 64.0
 
 

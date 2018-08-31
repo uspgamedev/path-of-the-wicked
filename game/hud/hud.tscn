@@ -23,7 +23,7 @@ use_filter = false
 font_data = ExtResource( 3 )
 _sections_unfolded = [ "Font", "Settings" ]
 
-[sub_resource type="Shader" id=5]
+[sub_resource type="Shader" id=2]
 
 code = "shader_type canvas_item;
 
@@ -36,14 +36,14 @@ void fragment(){
 	
 }"
 
-[sub_resource type="ShaderMaterial" id=6]
+[sub_resource type="ShaderMaterial" id=3]
 
 render_priority = 0
-shader = SubResource( 5 )
+shader = SubResource( 2 )
 shader_param/modulate = Color( 1, 1, 1, 1 )
 _sections_unfolded = [ "shader_param" ]
 
-[sub_resource type="Shader" id=7]
+[sub_resource type="Shader" id=4]
 
 code = "shader_type canvas_item;
 
@@ -56,14 +56,14 @@ void fragment(){
 	
 }"
 
-[sub_resource type="ShaderMaterial" id=8]
+[sub_resource type="ShaderMaterial" id=5]
 
 render_priority = 0
-shader = SubResource( 7 )
+shader = SubResource( 4 )
 shader_param/modulate = Color( 1, 1, 1, 1 )
 _sections_unfolded = [ "shader_param" ]
 
-[sub_resource type="Shader" id=9]
+[sub_resource type="Shader" id=6]
 
 code = "shader_type canvas_item;
 
@@ -76,14 +76,14 @@ void fragment(){
 	
 }"
 
-[sub_resource type="ShaderMaterial" id=10]
+[sub_resource type="ShaderMaterial" id=7]
 
 render_priority = 0
-shader = SubResource( 9 )
+shader = SubResource( 6 )
 shader_param/modulate = Color( 1, 1, 1, 1 )
 _sections_unfolded = [ "shader_param" ]
 
-[sub_resource type="Shader" id=15]
+[sub_resource type="Shader" id=8]
 
 code = "shader_type canvas_item;
 
@@ -96,14 +96,14 @@ void fragment(){
 	
 }"
 
-[sub_resource type="ShaderMaterial" id=16]
+[sub_resource type="ShaderMaterial" id=9]
 
 render_priority = 0
-shader = SubResource( 15 )
+shader = SubResource( 8 )
 shader_param/modulate = Color( 1, 1, 1, 1 )
 _sections_unfolded = [ "shader_param" ]
 
-[sub_resource type="Shader" id=11]
+[sub_resource type="Shader" id=10]
 
 code = "shader_type canvas_item;
 
@@ -116,14 +116,14 @@ void fragment(){
 	
 }"
 
-[sub_resource type="ShaderMaterial" id=12]
+[sub_resource type="ShaderMaterial" id=11]
 
 render_priority = 0
-shader = SubResource( 11 )
+shader = SubResource( 10 )
 shader_param/modulate = Color( 1, 1, 1, 1 )
 _sections_unfolded = [ "shader_param" ]
 
-[sub_resource type="Shader" id=13]
+[sub_resource type="Shader" id=12]
 
 code = "shader_type canvas_item;
 
@@ -137,14 +137,14 @@ void fragment(){
 }"
 _sections_unfolded = [ "Resource" ]
 
-[sub_resource type="ShaderMaterial" id=14]
+[sub_resource type="ShaderMaterial" id=13]
 
 render_priority = 0
-shader = SubResource( 13 )
+shader = SubResource( 12 )
 shader_param/modulate = Color( 1, 1, 1, 1 )
 _sections_unfolded = [ "shader_param" ]
 
-[sub_resource type="Shader" id=17]
+[sub_resource type="Shader" id=14]
 
 code = "shader_type canvas_item;
 
@@ -157,14 +157,14 @@ void fragment(){
 	
 }"
 
-[sub_resource type="ShaderMaterial" id=18]
+[sub_resource type="ShaderMaterial" id=15]
 
 render_priority = 0
-shader = SubResource( 17 )
+shader = SubResource( 14 )
 shader_param/modulate = Color( 1, 1, 1, 1 )
 _sections_unfolded = [ "shader_param" ]
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=16]
 
 size = 30
 use_mipmaps = false
@@ -172,7 +172,7 @@ use_filter = false
 font_data = ExtResource( 3 )
 _sections_unfolded = [ "Extra Spacing", "Font", "Settings" ]
 
-[node name="HUD" type="Control" index="0"]
+[node name="HUD" type="Control"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -222,6 +222,7 @@ polygon = PoolVector2Array( 0, 0, 160, 0, 160, 544, 0, 544 )
 
 [node name="ShopButton" type="Button" parent="Panel" index="1"]
 
+editor/display_folded = true
 self_modulate = Color( 0.698039, 0.698039, 0.698039, 1 )
 anchor_left = 0.0
 anchor_top = 0.0
@@ -466,8 +467,8 @@ _sections_unfolded = [ "Material", "Transform", "Visibility" ]
 
 [node name="AnimatedSprite" parent="Panel/Items/Button1/ClearGem1" index="0"]
 
-material = SubResource( 6 )
-frame = 0
+material = SubResource( 3 )
+frame = 51
 _sections_unfolded = [ "Material" ]
 
 [node name="Button2" parent="Panel/Items" index="1" instance=ExtResource( 6 )]
@@ -487,8 +488,8 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="AnimatedSprite" parent="Panel/Items/Button2/ClearGem2" index="0"]
 
-material = SubResource( 8 )
-frame = 7
+material = SubResource( 5 )
+frame = 58
 _sections_unfolded = [ "Material" ]
 
 [node name="Button3" parent="Panel/Items" index="2" instance=ExtResource( 6 )]
@@ -507,8 +508,8 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="AnimatedSprite" parent="Panel/Items/Button3/ClearGem3" index="0"]
 
-material = SubResource( 10 )
-frame = 35
+material = SubResource( 7 )
+frame = 26
 _sections_unfolded = [ "Material" ]
 
 [node name="Button4" parent="Panel/Items" index="3" instance=ExtResource( 6 )]
@@ -527,8 +528,8 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="AnimatedSprite" parent="Panel/Items/Button4/ClearGem4" index="0"]
 
-material = SubResource( 16 )
-frame = 35
+material = SubResource( 9 )
+frame = 26
 _sections_unfolded = [ "Material" ]
 
 [node name="Button5" parent="Panel/Items" index="4" instance=ExtResource( 6 )]
@@ -547,8 +548,8 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="AnimatedSprite" parent="Panel/Items/Button5/ClearGem5" index="0"]
 
-material = SubResource( 12 )
-frame = 19
+material = SubResource( 11 )
+frame = 10
 _sections_unfolded = [ "Material" ]
 
 [node name="Button6" parent="Panel/Items" index="5" instance=ExtResource( 6 )]
@@ -562,14 +563,14 @@ margin_bottom = 180.0
 [node name="ClearGem6" parent="Panel/Items/Button6" index="0" instance=ExtResource( 12 )]
 
 editor/display_folded = true
-material = SubResource( 14 )
+material = SubResource( 13 )
 position = Vector2( 20, 20 )
 _sections_unfolded = [ "Material", "Transform" ]
 
 [node name="AnimatedSprite" parent="Panel/Items/Button6/ClearGem6" index="0"]
 
-material = SubResource( 18 )
-frame = 28
+material = SubResource( 15 )
+frame = 19
 _sections_unfolded = [ "Material" ]
 
 [node name="Button7" parent="Panel/Items" index="6" instance=ExtResource( 6 )]
@@ -581,7 +582,9 @@ margin_right = 120.0
 margin_bottom = 270.0
 _sections_unfolded = [ "Rect", "Visibility" ]
 
-[node name="Tower" parent="Panel/Items/Button7" index="0" instance=ExtResource( 13 )]
+[node name="Tower" parent="Panel/Items/Button7" index="0" groups=[
+"shop",
+] instance=ExtResource( 13 )]
 
 position = Vector2( 40, 40 )
 _sections_unfolded = [ "Transform" ]
@@ -590,6 +593,7 @@ _sections_unfolded = [ "Transform" ]
 "discard",
 ]]
 
+editor/display_folded = true
 self_modulate = Color( 0.698039, 0.698039, 0.698039, 1 )
 anchor_left = 0.0
 anchor_top = 0.0
@@ -636,6 +640,7 @@ max_lines_visible = -1
 
 [node name="Area2D" type="Area2D" parent="Panel/Discard" index="1"]
 
+editor/display_folded = true
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -651,6 +656,7 @@ polygon = PoolVector2Array( 10, 10, 10, 80, 130, 80, 130, 10 )
 
 [node name="Label" type="Label" parent="." index="1"]
 
+editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -666,7 +672,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 16 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 1
 custom_constants/shadow_offset_y = 1

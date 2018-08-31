@@ -4,14 +4,10 @@
 [ext_resource path="res://creeps/health-bar-green.png" type="Texture" id=2]
 [ext_resource path="res://creeps/health-bar-red.png" type="Texture" id=3]
 
-[node name="Creep" type="KinematicBody2D" groups=[
+[node name="Creep" type="Node2D" index="0" groups=[
 "creep",
 ]]
 
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-collision/safe_margin = 0.08
 script = ExtResource( 1 )
 hp = 100
 vel = 50

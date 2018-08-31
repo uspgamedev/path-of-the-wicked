@@ -1,4 +1,4 @@
-extends StaticBody2D
+extends Node2D
 
 const PROJ = preload('res://projectiles/projectile.tscn')
 const GEM_COLORS = preload('res://gems/gem_colors.gd')
@@ -10,7 +10,6 @@ var tower
 
 func _ready():
 	timer.connect('timeout', self, '_on_Timer_timeout')
-	self.input_pickable = true
 
 func _on_Timer_timeout():
 	shoot()

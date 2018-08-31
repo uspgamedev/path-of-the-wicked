@@ -1,4 +1,4 @@
-extends StaticBody2D
+extends Node2D
 
 func _on_Area2D_area_entered(area):
 	var creep = area.get_parent()

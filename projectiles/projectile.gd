@@ -1,5 +1,4 @@
-extends KinematicBody2D
-
+extends Node2D
 
 onready var creep_wr = weakref(creep)
 

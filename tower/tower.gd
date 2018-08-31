@@ -1,20 +1,23 @@
-extends StaticBody2D
-
+extends Node2D
 
 const CURSOR = preload('res://game/cursor.tscn')
 
 onready var cooldown = get_node('TextureProgress')
+onready var area_collider = get_node('AreaCollider')
 onready var nearby_area = get_node('NearbyArea')
 onready var nearby_area_shape = nearby_area.get_node('CollisionShape2D')
 onready var main = get_node('/root/Global').get_main()
+onready var hud_area = main.get_node('Camera2D/HUD/Panel/Area2D')
 
 var gem = null
 var radius = 200
 var nearby_creeps = []
 
 func _ready():
+	if self.is_in_group('shop'):
+		area_collider.disconnect('area_entered', self, '_on_AreaCollider_area_entered')
+		area_collider.disconnect('area_exited', self, '_on_AreaCollider_area_exited')
 	set_area_radius(radius)
-	self.input_pickable = true
 
 func set_area_radius(new_radius):
 	nearby_area_shape.shape.radius = new_radius
@@ -65,12 +68,16 @@ func start_cooldown():
 
 func _on_Tween_tween_completed(object, key):
 	cooldown.visible = false
-	gem.shoot()
+	if gem != null:
+		gem.shoot()
+
+func set_target(area, value):
+	if area.get_parent().is_in_group('cursor') and main.cursor != null:
+		if self.position.x <= hud_area.global_position.x:
+			main.cursor.target = value
 
 func _on_AreaCollider_area_entered(area):
-	if area.get_parent().is_in_group('cursor') and main.cursor != null:
-		main.cursor.target = self
+	set_target(area, self)
 
 func _on_AreaCollider_area_exited(area):
-	if area.get_parent().is_in_group('cursor') and main.cursor != null:
-		main.cursor.target = null
+	set_target(area, null)

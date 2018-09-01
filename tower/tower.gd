@@ -101,3 +101,9 @@ func _on_AreaCollider_mouse_exited():
 	draw_circle = false
 	self.z_index = 0
 	update()
+
+func _on_TextureProgress_mouse_exited():
+	_on_AreaCollider_mouse_exited()
+
+func _on_TextureProgress_mouse_entered():
+	_on_AreaCollider_mouse_entered()

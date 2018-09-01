@@ -8,6 +8,7 @@ var target
 
 func _ready():
 	self.add_child(gem)
+	self.z_index = 3
 	if source.is_in_group('slot'):
 		gem.scale = camera.zoom
 	self.position = get_global_mouse_position()

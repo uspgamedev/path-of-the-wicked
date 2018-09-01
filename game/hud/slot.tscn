@@ -34,8 +34,9 @@ audio_bus_name = "Master"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D" index="0"]
 
+position = Vector2( -2, -2 )
 build_mode = 0
-polygon = PoolVector2Array( 10, 10, 30, 10, 30, 30, 10, 30 )
+polygon = PoolVector2Array( 6, 6, 38, 6, 38, 38, 6, 38 )
 
 [connection signal="mouse_entered" from="." to="." method="_on_Slot_mouse_entered"]
 

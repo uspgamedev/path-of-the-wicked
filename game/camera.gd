@@ -9,6 +9,9 @@ var init_pos = Vector2(0, 0)
 var holding_cam = false
 var _window_size = OS.window_size
 
+func _ready():
+	self.z_index = 2
+
 func _input(event):
 	if event.is_action_pressed('ui_camera'):
 		init_pos = get_viewport().get_mouse_position() + self.offset

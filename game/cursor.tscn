@@ -2,7 +2,7 @@
 
 [ext_resource path="res://game/cursor.gd" type="Script" id=1]
 
-[node name="Cursor" type="Node2D" groups=[
+[node name="Cursor" type="Node2D" index="0" groups=[
 "cursor",
 ]]
 
@@ -21,6 +21,6 @@ audio_bus_name = "Master"
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D" index="0"]
 
 build_mode = 0
-polygon = PoolVector2Array( -16, -16, 16, -16, 16, 16, -16, 16 )
+polygon = PoolVector2Array( -16, -7, -7, -16, 7, -16, 16, -7, 16, 7, 7, 16, -7, 16, -16, 7 )
 
 

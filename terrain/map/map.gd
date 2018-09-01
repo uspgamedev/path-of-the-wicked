@@ -13,6 +13,7 @@ const CREEP_SPAWNER = preload('res://terrain/creep_spawner/creep_spawner.tscn')
 const TOWER_PH = preload('res://tower/tower_placeholder.tscn')
 const TOWER = preload('res://tower/tower.tscn')
 
+onready var hud = get_node('../Camera2D/HUD')
 onready var spawner_manager = get_node('../SpawnerManager')
 onready var towers = get_node('../Towers')
 onready var tilemap = get_node('TileMap')
@@ -100,4 +101,7 @@ func place_tower(pos):
 	var tower = TOWER.instance()
 	tower.position = pos
 	towers.add_child(tower)
+	hud.update_gold(-tower.cost)
+	tower.draw_circle = true
+	tower.update()
 	hide_tower_phs()

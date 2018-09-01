@@ -26,7 +26,6 @@ func _on_Button_mouse_exited():
 func button_down():
 	shop_button._on_ShopButton_button_down()
 	shop_button.pressed = false
-	hud.update_gold(-cost)
 
 func _on_Button_button_down():
 	if hud.gold >= cost:
@@ -37,4 +36,5 @@ func _on_Button_button_down():
 			var slot = inventory.get_empty_slot()
 			if slot:
 				button_down()
+				hud.update_gold(-cost)
 				inventory.add_gem_on_slot(slot, item)

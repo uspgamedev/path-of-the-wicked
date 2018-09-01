@@ -1,6 +1,7 @@
 extends Node2D
 
 const CURSOR = preload('res://game/cursor.tscn')
+const CIRCLE = preload('res://tower/circle_drawing.gd')
 
 onready var cooldown = get_node('TextureProgress')
 onready var area_collider = get_node('AreaCollider')
@@ -12,12 +13,18 @@ onready var hud_area = main.get_node('Camera2D/HUD/Panel/Area2D')
 var gem = null
 var radius = 200
 var nearby_creeps = []
+var draw_circle = false
+var cost = 700
 
 func _ready():
 	if self.is_in_group('shop'):
 		area_collider.disconnect('area_entered', self, '_on_AreaCollider_area_entered')
 		area_collider.disconnect('area_exited', self, '_on_AreaCollider_area_exited')
 	set_area_radius(radius)
+
+func _draw():
+	if not self.is_in_group('shop') and draw_circle:
+		CIRCLE.draw_circle(self, radius)
 
 func set_area_radius(new_radius):
 	nearby_area_shape.shape.radius = new_radius
@@ -72,12 +79,25 @@ func _on_Tween_tween_completed(object, key):
 		gem.shoot()
 
 func set_target(area, value):
-	if area.get_parent().is_in_group('cursor') and main.cursor != null:
-		if self.position.x <= hud_area.global_position.x:
-			main.cursor.target = value
+	if main.cursor != null and self.position.x <= hud_area.global_position.x:
+		main.cursor.target = value
 
 func _on_AreaCollider_area_entered(area):
-	set_target(area, self)
+	if area.get_parent().is_in_group('cursor'):
+		set_target(area, self)
+		_on_AreaCollider_mouse_entered()
 
 func _on_AreaCollider_area_exited(area):
-	set_target(area, null)
+	if area.get_parent().is_in_group('cursor'):
+		set_target(area, null)
+		if not cooldown.visible:
+			_on_AreaCollider_mouse_exited()
+
+func _on_AreaCollider_mouse_entered():
+	draw_circle = true
+	update()
+
+func _on_AreaCollider_mouse_exited():
+	draw_circle = false
+	self.z_index = 0
+	update()

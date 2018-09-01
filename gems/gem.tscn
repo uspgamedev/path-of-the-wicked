@@ -23,7 +23,7 @@ audio_bus_name = "Master"
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D" index="0"]
 
 build_mode = 0
-polygon = PoolVector2Array( -20, -20, 20, -20, 20, 20, -20, 20 )
+polygon = PoolVector2Array( -16, -7, -7, -16, 7, -16, 16, -7, 16, 7, 7, 16, -7, 16, -16, 7 )
 
 [node name="Timer" type="Timer" parent="." index="2"]
 

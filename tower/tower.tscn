@@ -33,7 +33,7 @@ animations = [ {
 custom_solver_bias = 0.0
 radius = 200.0
 
-[node name="Tower" type="Node2D" index="0" groups=[
+[node name="Tower" type="Node2D" groups=[
 "tower",
 ]]
 
@@ -61,10 +61,11 @@ audio_bus_name = "Master"
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AreaCollider" index="0"]
 
 build_mode = 0
-polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
+polygon = PoolVector2Array( -32, -13, -13, -32, 13, -32, 32, -13, 32, 13, 13, 32, -13, 32, -32, 13 )
 
 [node name="NearbyArea" type="Area2D" parent="." index="2"]
 
+visible = false
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -124,6 +125,10 @@ playback/speed = 1.0
 [connection signal="area_exited" from="AreaCollider" to="." method="_on_AreaCollider_area_exited"]
 
 [connection signal="input_event" from="AreaCollider" to="." method="_on_AreaCollider_input_event"]
+
+[connection signal="mouse_entered" from="AreaCollider" to="." method="_on_AreaCollider_mouse_entered"]
+
+[connection signal="mouse_exited" from="AreaCollider" to="." method="_on_AreaCollider_mouse_exited"]
 
 [connection signal="area_entered" from="NearbyArea" to="." method="_on_NearbyArea_area_entered"]
 

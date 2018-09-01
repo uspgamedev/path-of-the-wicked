@@ -1,6 +1,6 @@
 extends Node2D
 
-onready var gem_db = preload('res://gems/gem_db.gd')
+const GEM_DB = preload('res://gems/gem_db.gd')
 
 func get_empty_slot():
 	for slot in self.get_children():
@@ -11,7 +11,7 @@ func get_empty_slot():
 func add_gem_on_slot(slot, gem_id):
 	var const_name = str('GEMS', gem_id)
 	randomize()
-	var gem = gem_db.get(const_name)[randi() % gem_db.get(const_name).size()].instance()
+	var gem = GEM_DB.get(const_name)[randi() % GEM_DB.get(const_name).size()].instance()
 	slot.gem = gem
 	slot.add_child(gem)
 	gem.position = slot.offset

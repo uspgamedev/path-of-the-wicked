@@ -1,15 +1,16 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://game/main.gd" type="Script" id=1]
 [ext_resource path="res://terrain/map/map.tscn" type="PackedScene" id=2]
 [ext_resource path="res://terrain/creep_spawner/spawner_manager.gd" type="Script" id=3]
 [ext_resource path="res://creeps/creep_db.gd" type="Script" id=4]
 [ext_resource path="res://base/base.tscn" type="PackedScene" id=5]
-[ext_resource path="res://game/WaveManager.tscn" type="PackedScene" id=6]
-[ext_resource path="res://game/camera.gd" type="Script" id=7]
-[ext_resource path="res://game/hud/hud.tscn" type="PackedScene" id=8]
+[ext_resource path="res://game/wave_manager/wave_manager.tscn" type="PackedScene" id=6]
+[ext_resource path="res://game/wave_manager/wave_manager.gd" type="Script" id=7]
+[ext_resource path="res://game/camera.gd" type="Script" id=8]
+[ext_resource path="res://game/hud/hud.tscn" type="PackedScene" id=9]
 
-[node name="Main" type="Node2D"]
+[node name="Main" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 __meta__ = {
@@ -56,6 +57,8 @@ __meta__ = {
 
 [node name="WaveManager" parent="." index="6" instance=ExtResource( 6 )]
 
+script = ExtResource( 7 )
+
 [node name="Camera2D" type="Camera2D" parent="." index="7"]
 
 editor/display_folded = true
@@ -82,15 +85,16 @@ drag_margin_bottom = 0.2
 editor_draw_screen = true
 editor_draw_limits = false
 editor_draw_drag_margin = false
-script = ExtResource( 7 )
+script = ExtResource( 8 )
 _sections_unfolded = [ "Z Index" ]
 __meta__ = {
 "_edit_lock_": true
 }
 free_camera = false
 
-[node name="HUD" parent="Camera2D" index="0" instance=ExtResource( 8 )]
+[node name="HUD" parent="Camera2D" index="0" instance=ExtResource( 9 )]
 
+editor/display_folded = true
 margin_bottom = 64.0
 
 [node name="Tower" parent="Camera2D/HUD/Panel/Items/Button7" index="0"]
@@ -99,7 +103,7 @@ editor/display_folded = true
 
 [node name="AnimatedSprite" parent="Camera2D/HUD/Panel/Items/Button7/Tower" index="0"]
 
-frame = 2
+frame = 8
 
 
 [editable path="Camera2D/HUD"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://game/hud/hud.gd" type="Script" id=1]
 [ext_resource path="res://game/hud/shop_button.gd" type="Script" id=2]
@@ -14,6 +14,9 @@
 [ext_resource path="res://gems/Clear/clear_gem6.tscn" type="PackedScene" id=12]
 [ext_resource path="res://tower/tower.tscn" type="PackedScene" id=13]
 [ext_resource path="res://game/hud/discard.gd" type="Script" id=14]
+[ext_resource path="res://game/hud/hud_manager.gd" type="Script" id=15]
+[ext_resource path="res://game/wave_manager/wave_white.png" type="Texture" id=16]
+[ext_resource path="res://game/wave_manager/wave_black.png" type="Texture" id=17]
 
 [sub_resource type="DynamicFont" id=1]
 
@@ -164,15 +167,46 @@ shader = SubResource( 14 )
 shader_param/modulate = Color( 1, 1, 1, 1 )
 _sections_unfolded = [ "shader_param" ]
 
-[sub_resource type="DynamicFont" id=16]
+[sub_resource type="DynamicFontData" id=16]
+
+hinting = 2
+font_path = "res://misc/font/Rise of Kingdom.ttf"
+
+[sub_resource type="DynamicFont" id=17]
 
 size = 30
 use_mipmaps = false
 use_filter = false
-font_data = ExtResource( 3 )
+font_data = SubResource( 16 )
 _sections_unfolded = [ "Extra Spacing", "Font", "Settings" ]
 
-[node name="HUD" type="Control" index="0"]
+[sub_resource type="DynamicFontData" id=18]
+
+hinting = 2
+font_path = "res://misc/font/Rise of Kingdom.ttf"
+
+[sub_resource type="DynamicFont" id=19]
+
+size = 30
+use_mipmaps = false
+use_filter = false
+font_data = SubResource( 18 )
+_sections_unfolded = [ "Extra Spacing", "Font", "Settings" ]
+
+[sub_resource type="DynamicFontData" id=21]
+
+hinting = 2
+font_path = "res://misc/font/Rise of Kingdom.ttf"
+
+[sub_resource type="DynamicFont" id=22]
+
+size = 80
+use_mipmaps = false
+use_filter = false
+font_data = SubResource( 21 )
+_sections_unfolded = [ "Extra Spacing", "Font", "Settings" ]
+
+[node name="HUD" type="Control"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -185,16 +219,18 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 script = ExtResource( 1 )
-_sections_unfolded = [ "Transform" ]
+_sections_unfolded = [ "Rect", "Transform" ]
 
 [node name="Panel" type="Panel" parent="." index="0"]
 
+editor/display_folded = true
 self_modulate = Color( 0.333333, 0.333333, 0.333333, 1 )
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 160.0
+margin_left = 800.0
+margin_right = 960.0
 margin_bottom = 540.0
 grow_horizontal = 0
 rect_pivot_offset = Vector2( 0, 0 )
@@ -203,6 +239,7 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
+_sections_unfolded = [ "Rect" ]
 
 [node name="Area2D" type="Area2D" parent="Panel" index="0"]
 
@@ -468,7 +505,7 @@ _sections_unfolded = [ "Material", "Transform", "Visibility" ]
 [node name="AnimatedSprite" parent="Panel/Items/Button1/ClearGem1" index="0"]
 
 material = SubResource( 3 )
-frame = 16
+frame = 10
 _sections_unfolded = [ "Material" ]
 
 [node name="Button2" parent="Panel/Items" index="1" instance=ExtResource( 6 )]
@@ -489,7 +526,7 @@ _sections_unfolded = [ "Transform" ]
 [node name="AnimatedSprite" parent="Panel/Items/Button2/ClearGem2" index="0"]
 
 material = SubResource( 5 )
-frame = 23
+frame = 17
 _sections_unfolded = [ "Material" ]
 
 [node name="Button3" parent="Panel/Items" index="2" instance=ExtResource( 6 )]
@@ -509,7 +546,7 @@ _sections_unfolded = [ "Transform" ]
 [node name="AnimatedSprite" parent="Panel/Items/Button3/ClearGem3" index="0"]
 
 material = SubResource( 7 )
-frame = 51
+frame = 45
 _sections_unfolded = [ "Material" ]
 
 [node name="Button4" parent="Panel/Items" index="3" instance=ExtResource( 6 )]
@@ -529,7 +566,7 @@ _sections_unfolded = [ "Transform" ]
 [node name="AnimatedSprite" parent="Panel/Items/Button4/ClearGem4" index="0"]
 
 material = SubResource( 9 )
-frame = 51
+frame = 45
 _sections_unfolded = [ "Material" ]
 
 [node name="Button5" parent="Panel/Items" index="4" instance=ExtResource( 6 )]
@@ -549,7 +586,7 @@ _sections_unfolded = [ "Transform" ]
 [node name="AnimatedSprite" parent="Panel/Items/Button5/ClearGem5" index="0"]
 
 material = SubResource( 11 )
-frame = 5
+frame = 29
 _sections_unfolded = [ "Material" ]
 
 [node name="Button6" parent="Panel/Items" index="5" instance=ExtResource( 6 )]
@@ -570,7 +607,7 @@ _sections_unfolded = [ "Material", "Transform" ]
 [node name="AnimatedSprite" parent="Panel/Items/Button6/ClearGem6" index="0"]
 
 material = SubResource( 15 )
-frame = 14
+frame = 8
 _sections_unfolded = [ "Material" ]
 
 [node name="Button7" parent="Panel/Items" index="6" instance=ExtResource( 6 )]
@@ -654,16 +691,16 @@ audio_bus_name = "Master"
 build_mode = 0
 polygon = PoolVector2Array( 10, 10, 10, 80, 130, 80, 130, 10 )
 
-[node name="Label" type="Label" parent="." index="1"]
+[node name="Gold" type="Label" parent="." index="1"]
 
 editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = -208.0
+margin_left = 592.0
 margin_top = 16.0
-margin_right = -15.0
+margin_right = 785.0
 margin_bottom = 88.0
 grow_horizontal = 0
 rect_pivot_offset = Vector2( 0, 0 )
@@ -672,7 +709,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = SubResource( 16 )
+custom_fonts/font = SubResource( 17 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 1
 custom_constants/shadow_offset_y = 1
@@ -682,16 +719,154 @@ align = 2
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
-_sections_unfolded = [ "custom_constants" ]
+_sections_unfolded = [ "Anchor", "Rect", "custom_constants", "custom_fonts" ]
 
-[node name="Timer" type="Timer" parent="Label" index="0"]
+[node name="Timer" type="Timer" parent="Gold" index="0"]
 
 process_mode = 1
 wait_time = 1.0
 one_shot = false
 autostart = false
 
-[node name="Tween" type="Tween" parent="Label" index="1"]
+[node name="Tween" type="Tween" parent="Gold" index="1"]
+
+repeat = false
+playback_process_mode = 1
+playback_speed = 1.0
+playback/active = false
+playback/repeat = false
+playback/speed = 1.0
+
+[node name="HUDManager" type="Control" parent="." index="2"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 40.0
+margin_bottom = 40.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+script = ExtResource( 15 )
+_sections_unfolded = [ "Rect" ]
+
+[node name="NextWave" type="Label" parent="HUDManager" index="0"]
+
+visible = false
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 20.0
+margin_top = 16.0
+margin_right = 335.0
+margin_bottom = 88.0
+grow_horizontal = 0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 19 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 1
+custom_constants/shadow_offset_y = 1
+custom_constants/shadow_as_outline = 1
+text = "Next Wave"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Rect", "custom_constants" ]
+
+[node name="TextureProgress" type="TextureProgress" parent="HUDManager/NextWave" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 150.0
+margin_top = 4.0
+margin_right = 350.0
+margin_bottom = 24.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+min_value = 0.0
+max_value = 100.0
+step = 1.0
+page = 0.0
+value = 0.0
+exp_edit = false
+rounded = false
+texture_under = ExtResource( 16 )
+texture_over = null
+texture_progress = ExtResource( 17 )
+fill_mode = 1
+radial_fill_degrees = 360.0
+radial_center_offset = Vector2( 0, 0 )
+nine_patch_stretch = false
+_sections_unfolded = [ "Textures" ]
+
+[node name="NextWaveTimer" type="Timer" parent="HUDManager/NextWave" index="1"]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = false
+autostart = false
+
+[node name="Tween" type="Tween" parent="HUDManager/NextWave" index="2"]
+
+repeat = false
+playback_process_mode = 1
+playback_speed = 1.0
+playback/active = false
+playback/repeat = false
+playback/speed = 1.0
+
+[node name="Notifications" type="Label" parent="HUDManager" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 800.0
+margin_bottom = 540.0
+grow_horizontal = 0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 22 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 1
+custom_constants/shadow_offset_y = 1
+custom_constants/shadow_as_outline = 1
+text = "Get Ready!"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Visibility", "custom_constants" ]
+
+[node name="NotificationsTimer" type="Timer" parent="HUDManager/Notifications" index="0"]
+
+process_mode = 1
+wait_time = 3.0
+one_shot = true
+autostart = true
+
+[node name="Tween" type="Tween" parent="HUDManager/Notifications" index="1"]
 
 repeat = false
 playback_process_mode = 1
@@ -714,9 +889,13 @@ playback/speed = 1.0
 
 [connection signal="area_exited" from="Panel/Discard/Area2D" to="Panel/Discard" method="_on_Area2D_area_exited"]
 
-[connection signal="timeout" from="Label/Timer" to="." method="_on_Timer_timeout"]
+[connection signal="timeout" from="Gold/Timer" to="." method="_on_Timer_timeout"]
 
-[connection signal="tween_completed" from="Label/Tween" to="." method="_on_Tween_tween_completed"]
+[connection signal="tween_completed" from="Gold/Tween" to="." method="_on_Tween_tween_completed"]
+
+[connection signal="tween_completed" from="HUDManager/NextWave/Tween" to="HUDManager" method="_on_Tween_tween_completed"]
+
+[connection signal="timeout" from="HUDManager/Notifications/NotificationsTimer" to="HUDManager" method="_on_NotificationsTimer_timeout"]
 
 
 [editable path="Panel/Items/Button1/ClearGem1"]

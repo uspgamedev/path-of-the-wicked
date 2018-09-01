@@ -11,6 +11,10 @@ var _window_size = OS.window_size
 
 func _ready():
 	self.z_index = 2
+	self.offset = Vector2(0, 0)
+	self.zoom = Vector2(2, 2)
+	get_node('HUD').rect_scale = Vector2(2, 2)
+	OS.window_resizable = false
 
 func _input(event):
 	if event.is_action_pressed('ui_camera'):

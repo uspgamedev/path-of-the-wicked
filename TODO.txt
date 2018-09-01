@@ -1,12 +1,13 @@
-[ ] Add wave system
 [ ] Add popup dialog on gems
     [ ] Add gem effects
         [ ] Add creep weaknesses and strengths to gems
             [ ] Balance creep attributes
 [ ] Add game over scene
 [ ] Add death animation on creeps
+[ ] Add menu
 [ ] Add music and sfx
 [ ] Update game name
+[ ] Add credits
 
 ###############################################################################
 
@@ -41,4 +42,5 @@
 [X] Fix gem placement near origin through hud
 [X] Fix gem not shooting when a creep is near
 [X] Add tower placement
+[X] Add wave system
 

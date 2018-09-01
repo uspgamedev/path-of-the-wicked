@@ -3,6 +3,7 @@ extends Node2D
 export(int) var hp = 100
 export(int) var vel = 50
 export(int) var reward = 100
+export(int) var value = 2 # points on wave manager
 
 onready var hp_bar = get_node('TextureProgress')
 onready var tween = get_node('Tween')

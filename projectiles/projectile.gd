@@ -3,7 +3,8 @@ extends Node2D
 onready var creep_wr = weakref(creep)
 
 var vel = 40
-var dmg = 10
+var fx
+var dmg
 var vector
 var creep # Assigned at gem.gd
 

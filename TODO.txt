@@ -1,18 +1,18 @@
-[ ] Add popup dialog on gems
-    [ ] Add gem effects
-        [ ] Add creep weaknesses and strengths to gems
-            [ ] Balance creep attributes
+[ ] Add gem effects
+    [ ] Add creep weaknesses and strengths to gems
+        [ ] Balance creep attributes
 [ ] Add game over scene
 [ ] Add death animation on creeps
 [ ] Add menu
 [ ] Add music and sfx
 [ ] Update game name
 [ ] Add credits
+[ ] Add procedural map generation
+[ ] Refine AI on creeps
 
 ###############################################################################
 
 [ ] Add shot queue free on last creep position
-[ ] Add custom cursor shape when interacting with gems
 
 ###############################################################################
 
@@ -43,4 +43,5 @@
 [X] Fix gem not shooting when a creep is near
 [X] Add tower placement
 [X] Add wave system
+[X] Add popup panel
 

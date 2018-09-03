@@ -101,7 +101,7 @@ func place_tower(pos):
 	var tower = TOWER.instance()
 	tower.position = pos
 	towers.add_child(tower)
-	hud.update_gold(-tower.cost)
+	hud.update_gold(-tower.price)
 	tower.draw_circle = true
 	tower.update()
 	hide_tower_phs()

@@ -1,4 +1,4 @@
-extends Node2D
+extends Control
 
 const GEM_DB = preload('res://gems/gem_db.gd')
 
@@ -8,8 +8,8 @@ func get_empty_slot():
 			return slot
 	return false
 
-func add_gem_on_slot(slot, gem_id):
-	var const_name = str('GEMS', gem_id)
+func add_gem_on_slot(slot, gem_type):
+	var const_name = str('GEMS', gem_type)
 	randomize()
 	var gem = GEM_DB.get(const_name)[randi() % GEM_DB.get(const_name).size()].instance()
 	slot.gem = gem

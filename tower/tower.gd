@@ -8,13 +8,14 @@ onready var area_collider = get_node('AreaCollider')
 onready var nearby_area = get_node('NearbyArea')
 onready var nearby_area_shape = nearby_area.get_node('CollisionShape2D')
 onready var main = get_node('/root/Main')
-onready var hud_area = main.get_node('Camera2D/HUD/Panel/Area2D')
+onready var hud = main.get_node('Camera2D/HUD')
+onready var hud_area = hud.get_node('Panel/PanelArea')
 
 var gem = null
 var radius = 200
 var nearby_creeps = []
 var draw_circle = false
-var cost = 700
+var price = 700
 
 func _ready():
 	if self.is_in_group('shop'):
@@ -65,6 +66,7 @@ func _on_AreaCollider_input_event(viewport, event, shape_idx):
 					gem.position = slot.offset
 					break
 			self.gem = null
+			_on_AreaCollider_mouse_entered()
 
 func start_cooldown():
 	var tween = cooldown.get_node('Tween')
@@ -72,6 +74,7 @@ func start_cooldown():
 	tween.stop_all()
 	tween.interpolate_property(cooldown, 'value', 0, 100, 1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	tween.start()
+	_on_AreaCollider_mouse_entered()
 
 func _on_Tween_tween_completed(object, key):
 	cooldown.visible = false
@@ -94,12 +97,23 @@ func _on_AreaCollider_area_exited(area):
 			_on_AreaCollider_mouse_exited()
 
 func _on_AreaCollider_mouse_entered():
+	var camera = hud.camera
+	var offset = Vector2(-34, 34) / camera.zoom.x
+	var pos =  self.position / camera.zoom.x - camera.offset - Vector2(OS.window_size.x - \
+	           hud.panel.rect_size.x, 0) + offset
 	draw_circle = true
+	if gem == null:
+		hud.set_popup_text(str('Tower\n\nRange: ', radius))
+	else:
+		hud.set_popup_text(str('Tower with \n', gem.real_name, '\n\nType: ', gem.type, \
+		             '\n\nEffect:\n', gem.fx, '\n\nDamage: ', gem.dmg, '\n\nRange: ', radius))
+	hud.show_popup(pos)
 	update()
 
 func _on_AreaCollider_mouse_exited():
 	draw_circle = false
 	self.z_index = 0
+	hud.hide_popup()
 	update()
 
 func _on_TextureProgress_mouse_exited():

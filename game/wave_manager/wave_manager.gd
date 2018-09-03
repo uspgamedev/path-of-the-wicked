@@ -14,4 +14,4 @@ func end_wave():
 	cur_points = 0
 	cur_wave += 1
 	wave_points += cur_wave * 10
-	hud.get_node('HUDManager').start_countdown()
+	hud.start_countdown()

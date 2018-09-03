@@ -44,7 +44,7 @@ script = ExtResource( 1 )
 modulate = Color( 0.402344, 0.402344, 0.402344, 1 )
 frames = SubResource( 1 )
 animation = "default"
-frame = 4
+frame = 2
 playing = true
 _sections_unfolded = [ "Visibility" ]
 

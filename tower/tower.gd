@@ -74,7 +74,9 @@ func start_cooldown():
 	tween.stop_all()
 	tween.interpolate_property(cooldown, 'value', 0, 100, 1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	tween.start()
-	_on_AreaCollider_mouse_entered()
+	if (self.position / hud.camera.zoom.x - hud.camera.offset - \
+	                    get_viewport().get_mouse_position()).length() > 32:
+		_on_AreaCollider_mouse_exited()
 
 func _on_Tween_tween_completed(object, key):
 	cooldown.visible = false

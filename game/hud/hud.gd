@@ -14,7 +14,8 @@ var gold = 1000000
 var gathered = 0
 var gathered_label = null
 var tween_label = null
-var wave_delay = 3
+#var wave_delay = 15
+var wave_delay = .3
 
 func _ready():
 	gold_label.set_text('Gold: %d' % (gold - gathered))

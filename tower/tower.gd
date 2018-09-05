@@ -106,7 +106,7 @@ func _on_AreaCollider_mouse_entered():
 		hud.set_popup_text(str('Tower\n\nRange: ', radius))
 	else:
 		hud.set_popup_text(str('Tower with \n', gem.real_name, '\n\nType: ', gem.type, \
-		             '\n\nEffect:\n', gem.fx, '\n\nDamage: ', gem.dmg, '\n\nRange: ', radius))
+		             '\n\nEffect:\n', gem.fx_str, '\n\nDamage: ', gem.dmg, '\n\nRange: ', radius))
 	hud.show_popup(pos)
 	update()
 

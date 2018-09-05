@@ -7,12 +7,15 @@ const PINK   = Color('ff6cff')
 const RED    = Color('c6110c')
 const YELLOW = Color('ffff89')
 
-const BLUE_FX   = 'Blue Effect'
-const CLEAR_FX  = 'Clear Effect'
-const GREEN_FX  = 'Green Effect'
-const PINK_FX   = 'Pink Effect'
-const RED_FX    = 'Red Effect'
-const YELLOW_FX = 'Yellow Effect'
+const STRING = 0
+const SCRIPT = 1
+
+const BLUE_FX   = ['Slow down',    'res://gems/Blue/slow_down.gd']
+const CLEAR_FX  = ['Shock',        'res://gems/Clear/shock.gd']
+const GREEN_FX  = ['Poison',       'res://gems/Green/poison.gd']
+const PINK_FX   = ['Critical Hit', 'res://gems/Pink/critical_hit.gd']
+const RED_FX    = ['Splash',       'res://gems/Red/splash.gd']
+const YELLOW_FX = ['Bonus Gold',   'res://gems/Yellow/bonus_gold.gd']
 
 const TYPE1_DMG = 10
 const TYPE2_DMG = 20
@@ -20,6 +23,10 @@ const TYPE3_DMG = 30
 const TYPE4_DMG = 40
 const TYPE5_DMG = 50
 const TYPE6_DMG = 60
+
+const COLOR = 0
+const FX = 1
+const REAL_NAME = 2
 
 func get_gem_color_info(gem_name):
 	if gem_name.begins_with('Blue'):
@@ -34,6 +41,9 @@ func get_gem_color_info(gem_name):
 		return [RED, RED_FX, 'Red Gem']
 	if gem_name.begins_with('Yellow'):
 		return [YELLOW, YELLOW_FX, 'Yellow Gem']
+
+const TYPE = 0
+const DMG = 1
 
 func get_gem_type_info(gem_name):
 	if gem_name.ends_with('1'):

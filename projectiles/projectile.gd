@@ -3,7 +3,7 @@ extends Node2D
 onready var creep_wr = weakref(creep)
 
 var vel = 40
-var fx
+var fx_script
 var dmg
 var vector
 var creep # Assigned at gem.gd
@@ -17,7 +17,9 @@ func _physics_process(delta):
 func _on_Area2D_area_entered(area):
 	var _creep = area.get_parent()
 	if _creep != null and _creep.is_in_group('creep'):
+		var fx = fx_script.new()
 		_creep.take_damage(dmg)
+		fx.apply_fx(_creep)
 		_queue_free()
 
 func _queue_free():

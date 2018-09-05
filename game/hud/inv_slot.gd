@@ -14,7 +14,7 @@ func _on_Slot_mouse_entered():
 	self.self_modulate = Color(2, 2, 2, 1)
 	if gem != null:
 		hud.set_popup_text(str(gem.real_name, '\n\nType: ', \
-		               gem.type, '\n\nEffect:\n', gem.fx, '\n\nDamage: ', gem.dmg))
+		               gem.type, '\n\nEffect:\n', gem.fx_str, '\n\nDamage: ', gem.dmg))
 		hud.show_popup(self.rect_position)
 
 func _on_Slot_mouse_exited():

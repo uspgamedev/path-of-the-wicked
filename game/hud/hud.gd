@@ -14,6 +14,7 @@ var gold = 1000000
 var gathered = 0
 var gathered_label = null
 var tween_label = null
+var wave_delay = 3
 
 func _ready():
 	gold_label.set_text('Gold: %d' % (gold - gathered))
@@ -70,7 +71,8 @@ func start_countdown():
 	var nw_tween = get_node('NextWave/NextWaveTween')
 	var bar = get_node('NextWave/TextureProgress')
 	next_wave.visible = true
-	nw_tween.interpolate_property(bar, 'value', 0, 100, 15, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	nw_tween.interpolate_property(bar, 'value', 0, 100, wave_delay, \
+	                              Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	nw_tween.start()
 
 func _on_NotificationsTimer_timeout():

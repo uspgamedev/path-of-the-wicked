@@ -100,8 +100,8 @@ const GEMS1 = [
 #      BLUE_GEM1,
 #      CLEAR_GEM1,
 #      GREEN_GEM1,
-      PINK_GEM1
-#      RED_GEM1,
+#      PINK_GEM1,
+      RED_GEM1
 #      YELLOW_GEM1
 ]
 

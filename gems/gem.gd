@@ -15,7 +15,7 @@ var fx_script
 var dmg
 var type
 var price
-var wait_time = .5 #.2
+var wait_time = .4
 
 func _ready():
 	var color_info = gem_info.get_gem_color_info(self.name)

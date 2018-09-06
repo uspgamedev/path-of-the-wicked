@@ -7,6 +7,7 @@ var fx_script
 var dmg
 var vector
 var creep # Assigned at gem.gd
+var gem_color
 
 func _physics_process(delta):
 	if creep_wr.get_ref():
@@ -18,7 +19,7 @@ func _on_Area2D_area_entered(area):
 	var _creep = area.get_parent()
 	if _creep != null and _creep.is_in_group('creep'):
 		var fx = fx_script.new()
-		_creep.take_damage(dmg)
+		_creep.take_damage(dmg, gem_color)
 		fx.apply_fx(_creep, dmg)
 		_queue_free()
 

@@ -1,6 +1,4 @@
-[ ] Add gem effects
-    [ ] Add creep weaknesses and strengths to gems
-        [ ] Balance creep attributes
+[ ] Balance creep attributes
 [ ] Add game over scene
 [ ] Add death animation on creeps
 [ ] Add menu
@@ -12,6 +10,7 @@
 
 ###############################################################################
 
+[ ] Add shot transition to next creep when current dies
 [ ] Add shot queue free on last creep position
 
 ###############################################################################
@@ -44,4 +43,6 @@
 [X] Add tower placement
 [X] Add wave system
 [X] Add popup panel
+[X] Add gem effects
+[X] Add creep weaknesses and strengths to gems
 

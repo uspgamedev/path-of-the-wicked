@@ -4,15 +4,13 @@
 [ext_resource path="res://creeps/health-bar-green.png" type="Texture" id=2]
 [ext_resource path="res://creeps/health-bar-red.png" type="Texture" id=3]
 
-[node name="Creep" type="Node2D" groups=[
+[node name="Creep" type="Node2D" index="0" groups=[
 "creep",
 ]]
 
 script = ExtResource( 1 )
 hp = 100
 vel = 50
-reward = 100
-value = 2
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
 

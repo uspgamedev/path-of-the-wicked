@@ -38,7 +38,8 @@ func shoot():
 		var proj = PROJ.instance()
 		proj.position = tower.position
 		proj.creep = tower.nearby_creeps[0]
-		proj.modulate = color
+		proj.modulate = self.color
+		proj.gem_color = self.real_name
 		proj.dmg = self.dmg
 		proj.fx_script = self.fx_script
 		tower.nearby_creeps[0].projectiles.append(proj)

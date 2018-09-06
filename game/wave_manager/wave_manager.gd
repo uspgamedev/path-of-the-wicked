@@ -5,7 +5,7 @@ onready var spawner_manager = get_node('../SpawnerManager')
 
 var cur_wave = 1
 var cur_points = 0
-var wave_points = 100
+var wave_points = 1000
 
 func start_wave():
 	spawner_manager.start_wave()
@@ -13,5 +13,5 @@ func start_wave():
 func end_wave():
 	cur_points = 0
 	cur_wave += 1
-	wave_points += cur_wave * 10
+	wave_points += cur_wave * 100
 	hud.start_countdown()

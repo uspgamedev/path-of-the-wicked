@@ -19,10 +19,10 @@ const YELLOW_FX = ['Bonus Gold',   'res://gems/Yellow/bonus_gold.gd']
 
 const TYPE1_DMG = 10
 const TYPE2_DMG = 20
-const TYPE3_DMG = 30
-const TYPE4_DMG = 40
-const TYPE5_DMG = 50
-const TYPE6_DMG = 60
+const TYPE3_DMG = 40
+const TYPE4_DMG = 70
+const TYPE5_DMG = 110
+const TYPE6_DMG = 160
 
 const COLOR = 0
 const FX = 1

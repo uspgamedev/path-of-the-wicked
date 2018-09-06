@@ -19,7 +19,7 @@ func _on_Area2D_area_entered(area):
 	if _creep != null and _creep.is_in_group('creep'):
 		var fx = fx_script.new()
 		_creep.take_damage(dmg)
-		fx.apply_fx(_creep)
+		fx.apply_fx(_creep, dmg)
 		_queue_free()
 
 func _queue_free():

@@ -1,6 +1,6 @@
 extends Node
 
-func apply_fx(creep):
+func apply_fx(creep, dmg):
 	for child in creep.get_children():
 		if child.is_in_group('slow down'):
 			return

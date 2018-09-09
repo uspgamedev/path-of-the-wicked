@@ -1,17 +1,14 @@
-[ ] Balance creep attributes
+[ ] Add wave number indicator
+[ ] Balance gems and tower price
 [ ] Add game over scene
 [ ] Add death animation on creeps
+[ ] Add shot transition to next creep when current dies
 [ ] Add menu
 [ ] Add music and sfx
-[ ] Update game name
-[ ] Add credits
 [ ] Add procedural map generation
 [ ] Refine AI on creeps
-
-###############################################################################
-
-[ ] Add shot transition to next creep when current dies
-[ ] Add shot queue free on last creep position
+[ ] Update game name
+[ ] Add credits
 
 ###############################################################################
 
@@ -45,4 +42,5 @@
 [X] Add popup panel
 [X] Add gem effects
 [X] Add creep weaknesses and strengths to gems
+[X] Balance creep attributes
 

@@ -9,25 +9,22 @@ onready var gem_info = GEM_INFO.new()
 
 var tower
 var real_name
-var color
 var fx_str
 var fx_script
-var dmg
+var color
 var type
+var dmg
 var price
-var wait_time = .4
 
 func _ready():
-	var color_info = gem_info.get_gem_color_info(self.name)
-	var type_info = gem_info.get_gem_type_info(self.name)
-	color = color_info[gem_info.COLOR]
-	fx_str = color_info[gem_info.FX][gem_info.STRING]
-	fx_script = load(color_info[gem_info.FX][gem_info.SCRIPT])
-	real_name = color_info[gem_info.REAL_NAME]
-	type = type_info[gem_info.TYPE]
-	dmg = type_info[gem_info.DMG]
-	price = type * 100
-	timer.wait_time = wait_time
+	real_name = gem_info.get_gem_real_name(self.name)
+	fx_str = gem_info.get_gem_fx_str(self.name)
+	fx_script = gem_info.get_gem_fx_script(self.name)
+	color = gem_info.get_gem_color(self.name)
+	type = self.name[-1]
+	dmg = gem_info.get_gem_dmg(type)
+	price = gem_info.get_gem_price(type)
+	timer.wait_time = gem_info.get_gem_shot_cooldown()
 
 func _on_Timer_timeout():
 	shoot()

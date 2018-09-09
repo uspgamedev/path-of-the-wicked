@@ -1,7 +1,10 @@
 extends Node2D
 
+const CREEP_DB = preload('res://creeps/creep_db.gd')
+
 onready var creeps = get_node('../Creeps')
 onready var wave_manager = get_node('../WaveManager')
+onready var creep_db = CREEP_DB.new()
 
 func _ready():
 	for spawner in self.get_children():
@@ -10,8 +13,8 @@ func _ready():
 func spawn_creep(spawner):
 	if wave_manager.cur_points <= wave_manager.wave_points:
 		randomize()
-		var creep_idx = randi() % creeps.CREEPS.size()
-		var creep = creeps.CREEPS[creep_idx].instance()
+		var creep_idx = randi() % min((6 + wave_manager.cur_wave), creep_db.CREEPS.size())
+		var creep = creep_db.CREEPS[creep_idx].instance()
 		creep.offset = Vector2(-40 + randi() % 81, -30 + randi() % 61)
 		creep.position = spawner.position + creep.offset
 		creep.spawner = spawner

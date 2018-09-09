@@ -1,8 +1,5 @@
 extends Node2D
 
-export(int) var hp = 100
-export(int) var vel = 50
-
 const CREEP_INFO = preload('res://creeps/creep_info.gd')
 
 onready var hp_bar = get_node('TextureProgress')
@@ -11,9 +8,12 @@ onready var map = get_node('../../Map')
 onready var sprite = get_node('Sprite')
 onready var anim = get_node('AnimationPlayer')
 onready var hud = get_node('/root/Main/Camera2D/HUD')
+onready var creep_info = CREEP_INFO.new()
 
-var reward = int(hp * vel / 10)
-var value = int(reward / 10)
+var max_hp
+var hp
+var vel
+var value
 var weakness
 var strength
 var spawner
@@ -22,7 +22,10 @@ var towers = []
 var offset
 
 func _ready():
-	var creep_info = CREEP_INFO.new()
+	max_hp = creep_info.get_creep_hp(self.name)
+	hp = max_hp
+	vel = creep_info.get_creep_vel(self.name)
+	value = int(hp * vel / 100)
 	weakness = creep_info.get_creep_weakness(self.name)
 	strength = creep_info.get_creep_strength(self.name)
 	hp_bar.max_value = hp
@@ -37,7 +40,7 @@ func die():
 		if self in tower.nearby_creeps:
 			var self_idx = tower.nearby_creeps.find(self)
 			tower.nearby_creeps.remove(self_idx)
-	hud.update_gold(reward)
+	hud.update_gold(self.value)
 	self.queue_free()
 
 func take_damage(dmg, gem_color = ''):

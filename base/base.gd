@@ -6,5 +6,5 @@ func _ready():
 func _on_Area2D_area_entered(area):
 	var creep = area.get_parent()
 	if creep.is_in_group('creep'):
-		creep.reward *= -5
+		creep.value = int(creep.value * -10 * float(creep.hp) / creep.max_hp)
 		creep.die()

@@ -1,60 +1,50 @@
 extends Node
 
-const BLUE   = Color('00ffff')
-const CLEAR  = Color('ffffff')
-const GREEN  = Color('02ff1a')
-const PINK   = Color('ff6cff')
-const RED    = Color('c6110c')
-const YELLOW = Color('ffff89')
+const REAL_NAME = 0
+const FX_STR = 1
+const FX_SCRIPT = 2
+const COLOR = 3
 
-const STRING = 0
-const SCRIPT = 1
+const COLOR_INFO = {
+	'BlueGem'   : ['Blue Gem',   'Slow down',    preload('res://gems/Blue/slow_down.gd'),    Color('00ffff')],
+	'ClearGem'  : ['Clear Gem',  'Shock',        preload('res://gems/Clear/shock.gd'),       Color('ffffff')],
+	'GreenGem'  : ['Green Gem',  'Poison',       preload('res://gems/Green/poison.gd'),      Color('02ff1a')],
+	'PinkGem'   : ['Pink Gem',   'Critical Hit', preload('res://gems/Pink/critical_hit.gd'), Color('ff6cff')],
+	'RedGem'    : ['Red Gem',    'Splash',       preload('res://gems/Red/splash.gd'),        Color('c6110c')],
+	'YellowGem' : ['Yellow Gem', 'Bonus Gold',   preload('res://gems/Yellow/bonus_gold.gd'), Color('ffff89')]
+}
 
-const BLUE_FX   = ['Slow down',    'res://gems/Blue/slow_down.gd']
-const CLEAR_FX  = ['Shock',        'res://gems/Clear/shock.gd']
-const GREEN_FX  = ['Poison',       'res://gems/Green/poison.gd']
-const PINK_FX   = ['Critical Hit', 'res://gems/Pink/critical_hit.gd']
-const RED_FX    = ['Splash',       'res://gems/Red/splash.gd']
-const YELLOW_FX = ['Bonus Gold',   'res://gems/Yellow/bonus_gold.gd']
+const DMG = 0
+const PRICE = 1
 
-const TYPE1_DMG = 10
-const TYPE2_DMG = 20
-const TYPE3_DMG = 40
-const TYPE4_DMG = 70
-const TYPE5_DMG = 110
-const TYPE6_DMG = 160
+const TYPE_INFO = {
+	'1' : [10,  100],
+	'2' : [20,  200],
+	'3' : [30,  300],
+	'4' : [40,  400],
+	'5' : [50,  500],
+	'6' : [60,  600]
+}
 
-const COLOR = 0
-const FX = 1
-const REAL_NAME = 2
+const SHOT_COOLDOWN = .4
 
-func get_gem_color_info(gem_name):
-	if gem_name.begins_with('Blue'):
-		return [BLUE, BLUE_FX, 'Blue Gem']
-	if gem_name.begins_with('Clear'):
-		return [CLEAR, CLEAR_FX, 'Clear Gem']
-	if gem_name.begins_with('Green'):
-		return [GREEN, GREEN_FX, 'Green Gem']
-	if gem_name.begins_with('Pink'):
-		return [PINK, PINK_FX, 'Pink Gem']
-	if gem_name.begins_with('Red'):
-		return [RED, RED_FX, 'Red Gem']
-	if gem_name.begins_with('Yellow'):
-		return [YELLOW, YELLOW_FX, 'Yellow Gem']
+func get_gem_real_name(gem_name):
+	return COLOR_INFO[gem_name.substr(0, gem_name.length() -1)][REAL_NAME]
 
-const TYPE = 0
-const DMG = 1
+func get_gem_fx_str(gem_name):
+	return COLOR_INFO[gem_name.substr(0, gem_name.length() -1)][FX_STR]
 
-func get_gem_type_info(gem_name):
-	if gem_name.ends_with('1'):
-		return [1, TYPE1_DMG]
-	if gem_name.ends_with('2'):
-		return [2, TYPE2_DMG]
-	if gem_name.ends_with('3'):
-		return [3, TYPE3_DMG]
-	if gem_name.ends_with('4'):
-		return [4, TYPE4_DMG]
-	if gem_name.ends_with('5'):
-		return [5, TYPE5_DMG]
-	if gem_name.ends_with('6'):
-		return [6, TYPE6_DMG]
+func get_gem_fx_script(gem_name):
+	return COLOR_INFO[gem_name.substr(0, gem_name.length() -1)][FX_SCRIPT]
+
+func get_gem_color(gem_name):
+	return COLOR_INFO[gem_name.substr(0, gem_name.length() -1)][COLOR]
+
+func get_gem_dmg(gem_type):
+	return TYPE_INFO[gem_type][DMG]
+
+func get_gem_price(gem_type):
+	return TYPE_INFO[gem_type][PRICE]
+
+func get_gem_shot_cooldown():
+	return SHOT_COOLDOWN

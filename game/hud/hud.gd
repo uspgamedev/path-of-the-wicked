@@ -10,12 +10,11 @@ onready var notif = get_node('Notifications')
 onready var popup = get_node('Popup')
 onready var info = popup.get_node('Info')
 
-var gold = 1000000
+var gold = 10000
 var gathered = 0
 var gathered_label = null
 var tween_label = null
-#var wave_delay = 15
-var wave_delay = .3
+var wave_delay = 15
 
 func _ready():
 	gold_label.set_text('Gold: %d' % (gold - gathered))

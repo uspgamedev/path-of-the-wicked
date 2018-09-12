@@ -11,12 +11,16 @@
 
 [node name="Main" type="Node2D" index="0"]
 
+pause_mode = 2
 script = ExtResource( 1 )
+_sections_unfolded = [ "Pause" ]
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="Map" parent="." index="0" instance=ExtResource( 2 )]
+
+_sections_unfolded = [ "Pause", "Transform" ]
 
 [node name="SpawnerManager" type="Node2D" parent="." index="1"]
 
@@ -99,6 +103,10 @@ margin_bottom = 64.0
 [node name="Tower" parent="Camera2D/HUD/Panel/Items/Button7" index="0"]
 
 editor/display_folded = true
+
+[node name="AnimatedSprite" parent="Camera2D/HUD/Panel/Items/Button7/Tower" index="0"]
+
+frame = 12
 
 
 [editable path="Camera2D/HUD"]

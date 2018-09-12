@@ -1,7 +1,7 @@
 extends Camera2D
 
 export(bool) var free_camera = false
-export(bool) var zoomed = false
+export(bool) var zoomed = true
 
 const SMALL_WINDOW = Vector2(960, 540)
 const MAX_WINDOW_SIZE = Vector2(1920 - 160, 1080)
@@ -14,7 +14,7 @@ var _window_size = OS.window_size
 
 func _ready():
 	self.z_index = 2
-	if zoomed:
+	if not zoomed:
 		self.offset = Vector2(0, 0)
 		self.zoom = Vector2(2, 2)
 		get_node('HUD').rect_scale = Vector2(2, 2)

@@ -18,6 +18,7 @@ var wave_delay = 15
 
 func _ready():
 	gold_label.set_text('Gold: %d' % (gold - gathered))
+	notif.get('custom_fonts/font').set_size(80)
 
 func _physics_process(delta):
 	panel.rect_size = Vector2(panel.rect_size.x, OS.window_size.y)
@@ -35,14 +36,14 @@ func update_gold(amount):
 	if gathered_label == null:
 		gathered_label = gold_label.duplicate(DUPLICATE_USE_INSTANCING)
 		gathered_label.margin_top = 48
-		self.add_child(gathered_label)
+		self.add_child_below_node(gold_label, gathered_label)
 		gold_timer.start()
 	gathered_label.set_text('%+d' % gathered)
 
 func _on_GoldTimer_timeout():
 	var gold_tween = gold_label.get_node('GoldTween')
 	tween_label = gathered_label.duplicate(DUPLICATE_USE_INSTANCING)
-	self.add_child(tween_label)
+	self.add_child_below_node(gold_label, tween_label)
 	gold_tween.interpolate_property(tween_label, 'margin_top', \
 	            48, 16, .5, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	gold_tween.interpolate_property(tween_label, 'self_modulate', \

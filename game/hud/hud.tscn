@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=2]
+[gd_scene load_steps=42 format=2]
 
 [ext_resource path="res://game/hud/hud.gd" type="Script" id=1]
 [ext_resource path="res://game/wave_manager/wave_white.png" type="Texture" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://gems/Clear/clear_gem6.tscn" type="PackedScene" id=14]
 [ext_resource path="res://tower/tower.tscn" type="PackedScene" id=15]
 [ext_resource path="res://game/hud/discard.gd" type="Script" id=16]
+[ext_resource path="res://game/hud/white.png" type="Texture" id=17]
 
 [sub_resource type="DynamicFontData" id=1]
 
@@ -197,14 +198,6 @@ _sections_unfolded = [ "Extra Spacing", "Font", "Settings" ]
 hinting = 2
 font_path = "res://misc/font/Rise of Kingdom.ttf"
 
-[sub_resource type="DynamicFont" id=21]
-
-size = 80
-use_mipmaps = false
-use_filter = false
-font_data = SubResource( 20 )
-_sections_unfolded = [ "Extra Spacing", "Font", "Settings" ]
-
 [sub_resource type="DynamicFont" id=22]
 
 size = 16
@@ -213,7 +206,33 @@ use_filter = false
 font_data = SubResource( 20 )
 _sections_unfolded = [ "Font", "Settings" ]
 
-[node name="HUD" type="Control" index="0"]
+[sub_resource type="Shader" id=23]
+
+code = "shader_type canvas_item;
+
+uniform float amount : hint_range(0,5);
+
+void fragment() {
+
+	COLOR.rgb = textureLod(SCREEN_TEXTURE,SCREEN_UV,amount).rgb;
+}"
+
+[sub_resource type="ShaderMaterial" id=24]
+
+render_priority = 0
+shader = SubResource( 23 )
+shader_param/amount = 2.0
+_sections_unfolded = [ "shader_param" ]
+
+[sub_resource type="DynamicFont" id=21]
+
+size = 80
+use_mipmaps = false
+use_filter = false
+font_data = SubResource( 20 )
+_sections_unfolded = [ "Extra Spacing", "Font", "Resource", "Settings" ]
+
+[node name="HUD" type="Control"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -230,6 +249,7 @@ _sections_unfolded = [ "Rect", "Transform" ]
 
 [node name="NextWave" type="Label" parent="." index="0"]
 
+editor/display_folded = true
 visible = false
 anchor_left = 0.0
 anchor_top = 0.0
@@ -610,7 +630,7 @@ _sections_unfolded = [ "Material", "Transform", "Visibility" ]
 [node name="AnimatedSprite" parent="Panel/Items/Button1/ClearGem1" index="0"]
 
 material = SubResource( 5 )
-frame = 17
+frame = 1
 _sections_unfolded = [ "Material" ]
 
 [node name="Button2" parent="Panel/Items" index="1" instance=ExtResource( 8 )]
@@ -633,7 +653,7 @@ _sections_unfolded = [ "Transform" ]
 [node name="AnimatedSprite" parent="Panel/Items/Button2/ClearGem2" index="0"]
 
 material = SubResource( 7 )
-frame = 24
+frame = 8
 _sections_unfolded = [ "Material" ]
 
 [node name="Button3" parent="Panel/Items" index="2" instance=ExtResource( 8 )]
@@ -655,7 +675,7 @@ _sections_unfolded = [ "Transform" ]
 [node name="AnimatedSprite" parent="Panel/Items/Button3/ClearGem3" index="0"]
 
 material = SubResource( 9 )
-frame = 52
+frame = 36
 _sections_unfolded = [ "Material" ]
 
 [node name="Button4" parent="Panel/Items" index="3" instance=ExtResource( 8 )]
@@ -677,7 +697,7 @@ _sections_unfolded = [ "Transform" ]
 [node name="AnimatedSprite" parent="Panel/Items/Button4/ClearGem4" index="0"]
 
 material = SubResource( 11 )
-frame = 52
+frame = 36
 _sections_unfolded = [ "Material" ]
 
 [node name="Button5" parent="Panel/Items" index="4" instance=ExtResource( 8 )]
@@ -699,7 +719,7 @@ _sections_unfolded = [ "Transform" ]
 [node name="AnimatedSprite" parent="Panel/Items/Button5/ClearGem5" index="0"]
 
 material = SubResource( 13 )
-frame = 6
+frame = 20
 _sections_unfolded = [ "Material" ]
 
 [node name="Button6" parent="Panel/Items" index="5" instance=ExtResource( 8 )]
@@ -722,7 +742,7 @@ _sections_unfolded = [ "Material", "Transform" ]
 [node name="AnimatedSprite" parent="Panel/Items/Button6/ClearGem6" index="0"]
 
 material = SubResource( 17 )
-frame = 15
+frame = 29
 _sections_unfolded = [ "Material" ]
 
 [node name="Button7" parent="Panel/Items" index="6" instance=ExtResource( 8 )]
@@ -852,51 +872,7 @@ playback/active = false
 playback/repeat = false
 playback/speed = 1.0
 
-[node name="Notifications" type="Label" parent="." index="3"]
-
-editor/display_folded = true
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = -800.0
-margin_bottom = 540.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
-custom_fonts/font = SubResource( 21 )
-custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
-custom_constants/shadow_offset_x = 1
-custom_constants/shadow_offset_y = 1
-custom_constants/shadow_as_outline = 1
-text = "Get Ready!"
-align = 1
-valign = 1
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "Rect" ]
-
-[node name="NotificationsTimer" type="Timer" parent="Notifications" index="0"]
-
-process_mode = 1
-wait_time = 3.0
-one_shot = true
-autostart = true
-
-[node name="Tween" type="Tween" parent="Notifications" index="1"]
-
-repeat = false
-playback_process_mode = 1
-playback_speed = 1.0
-playback/active = false
-playback/repeat = false
-playback/speed = 1.0
-
-[node name="Popup" type="Panel" parent="." index="4"]
+[node name="Popup" type="Panel" parent="." index="3"]
 
 visible = false
 self_modulate = Color( 1, 1, 1, 0.784314 )
@@ -942,6 +918,72 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Rect", "custom_fonts" ]
 
+[node name="BlurShader" type="TextureRect" parent="." index="4"]
+
+visible = false
+material = SubResource( 24 )
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = -800.0
+margin_right = 160.0
+margin_bottom = 540.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+texture = ExtResource( 17 )
+expand = true
+stretch_mode = 0
+_sections_unfolded = [ "Material", "Rect" ]
+
+[node name="Notifications" type="Label" parent="." index="5"]
+
+editor/display_folded = true
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = -800.0
+margin_bottom = 540.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 21 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 1
+custom_constants/shadow_offset_y = 1
+custom_constants/shadow_as_outline = 1
+text = "Get Ready!"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "custom_fonts" ]
+
+[node name="NotificationsTimer" type="Timer" parent="Notifications" index="0"]
+
+process_mode = 1
+wait_time = 3.0
+one_shot = true
+autostart = true
+
+[node name="Tween" type="Tween" parent="Notifications" index="1"]
+
+repeat = false
+playback_process_mode = 1
+playback_speed = 1.0
+playback/active = false
+playback/repeat = false
+playback/speed = 1.0
+
 [connection signal="tween_completed" from="NextWave/NextWaveTween" to="." method="_on_NextWaveTween_tween_completed"]
 
 [connection signal="area_entered" from="Panel/PanelArea" to="." method="_on_PanelArea_area_entered"]
@@ -962,9 +1004,9 @@ _sections_unfolded = [ "Rect", "custom_fonts" ]
 
 [connection signal="tween_completed" from="Gold/GoldTween" to="." method="_on_GoldTween_tween_completed"]
 
-[connection signal="timeout" from="Notifications/NotificationsTimer" to="." method="_on_NotificationsTimer_timeout"]
-
 [connection signal="mouse_entered" from="Popup" to="." method="_on_Popup_mouse_entered"]
+
+[connection signal="timeout" from="Notifications/NotificationsTimer" to="." method="_on_NotificationsTimer_timeout"]
 
 
 [editable path="Panel/Items/Button1/ClearGem1"]

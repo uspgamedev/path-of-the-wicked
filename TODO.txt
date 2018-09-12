@@ -1,4 +1,3 @@
-[ ] Add game over scene
 [ ] Add death animation on creeps
 [ ] Add shot transition to next creep when current dies
 [ ] Balance gems and tower price
@@ -43,4 +42,5 @@
 [X] Add creep weaknesses and strengths to gems
 [X] Balance creep attributes
 [X] Add wave number indicator
+[X] Add game over scene
 

@@ -70,7 +70,9 @@ func _on_PanelArea_area_exited(area):
 func start_countdown():
 	var nw_tween = get_node('NextWave/NextWaveTween')
 	var bar = get_node('NextWave/TextureProgress')
+	next_wave.text = 'Next Wave'
 	next_wave.visible = true
+	next_wave.get_node('TextureProgress').visible = true
 	nw_tween.interpolate_property(bar, 'value', 0, 100, wave_delay, \
 	                              Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	nw_tween.start()
@@ -84,7 +86,8 @@ func _on_NotificationsTimer_timeout():
 
 func _on_NextWaveTween_tween_completed(object, key):
 	var wave_manager = get_node('/root/Main/WaveManager')
-	next_wave.visible = false
+	next_wave.get_node('TextureProgress').visible = false
+	next_wave.text = str('Wave ', wave_manager.cur_wave)
 	wave_manager.start_wave()
 
 func set_popup_text(_text):

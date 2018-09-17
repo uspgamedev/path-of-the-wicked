@@ -1,11 +1,13 @@
 extends Node2D
 
-onready var hud = get_node('Camera2D/HUD')
 const STOP = 1
+
+onready var hud = get_node('Camera2D/HUD')
 
 var cursor = null
 
 func _ready():
+	get_tree().paused = false
 	OS.window_resizable = true
 
 func _input(event):

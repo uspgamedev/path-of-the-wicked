@@ -1,17 +1,21 @@
 extends Node2D
 
 var tower
-#var vel = 40
-var vel = 15
+var vel = 25
 var fx_script
 var dmg
 var vector
+var angle
 var creep
 var gem_color
 
-func _physics_process(delta):
+func _ready():
 	vector = creep.position - self.position * 2
 	vector = vector.normalized()
+
+func _physics_process(delta):
+	angle = vector.angle_to(creep.position - self.position * 2)
+	vector = vector.rotated(angle * delta * 5)
 	self.position += vector * vel/10
 
 func _on_Area2D_area_entered(area):

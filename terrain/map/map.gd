@@ -89,6 +89,10 @@ func create_tower_placeholders():
 		tower_ph.visible = false
 		tower_phs.add_child(tower_ph)
 
+func _input(event):
+	if event.is_action_pressed('ui_buy_tower'):
+		show_tower_phs()
+
 func show_tower_phs():
 	for tower_ph in tower_phs.get_children():
 		tower_ph.visible = true

@@ -49,7 +49,7 @@ func die():
 			else:
 				var node = Node2D.new()
 				var node_area = self.get_node('Area2D').duplicate(DUPLICATE_USE_INSTANCING)
-				node.position = self.position
+				node.position = proj.creep.position
 				node.add_child(node_area)
 				node.add_to_group(str(proj.name))
 				get_parent().add_child(node)

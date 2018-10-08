@@ -1,4 +1,3 @@
-[ ] Fix wrong creep placeholder on projectiles
 [ ] Add procedural map generation
 [ ] Refine AI on creeps
 [ ] Balance gems and tower price

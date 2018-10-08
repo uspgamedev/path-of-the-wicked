@@ -24,7 +24,7 @@ func game_over():
 		child.pause_mode = STOP
 	notif.modulate = Color(1, 1, 1, 1)
 	notif.get('custom_fonts/font').set_size(50)
-	notif.text = 'Game Over\n\nPress Space to play again'
+	notif.text = 'Game Over\n\nPress Enter to play again'
 	blur_shader.rect_position.x = -OS.window_size.x + panel.rect_size.x
 	blur_shader.rect_size = OS.window_size
 	blur_shader.visible = true

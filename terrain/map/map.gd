@@ -20,8 +20,8 @@ onready var tilemap = get_node('TileMap')
 onready var tower_phs = get_node('TowerPlaceholders')
 onready var a_star = AStar.new()
 
-var adj_cells_dict = {} # {Vector2 : PoolVector2Array}
-var idx_dict = {} # {Vector2 : int}
+var adj_cells_dict = {}
+var idx_dict = {}
 var grass_coord = []
 var offset
 var base

@@ -33,13 +33,16 @@ func shoot():
 	tower = get_parent()
 	if tower.is_in_group('tower') and tower.nearby_creeps.size() > 0:
 		var proj = PROJ.instance()
+		proj.name = str('Projectile', projectiles.unique_id)
+		projectiles.unique_id += 1
 		proj.position = tower.position
 		proj.creep = tower.nearby_creeps[0]
 		proj.modulate = self.color
 		proj.gem_color = self.real_name
 		proj.dmg = self.dmg
 		proj.fx_script = self.fx_script
-		tower.nearby_creeps[0].projectiles.append(proj)
+		proj.tower = self.tower
+		proj.creep.projectiles[proj.name] = proj
 		projectiles.add_child(proj)
 		timer.start()
 

@@ -14,8 +14,9 @@ func apply_fx(creep, dmg):
 		creep.add_child(timer)
 		creep.get_node('ShockTimer').connect('timeout', self, 'remove_fx', [creep, timer])
 		timer.start()
-		creep.tween.playback_speed = 0
-		creep.anim.playback_speed = 0
+		if not creep.dying:
+			creep.tween.playback_speed = 0
+			creep.anim.playback_speed = 0
 
 func remove_fx(creep, timer):
 	creep.remove_child(timer)

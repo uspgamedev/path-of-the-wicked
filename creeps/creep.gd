@@ -8,6 +8,7 @@ onready var map = get_node('../../Map')
 onready var sprite = get_node('Sprite')
 onready var anim = get_node('AnimationPlayer')
 onready var hud = get_node('/root/Main/Camera2D/HUD')
+onready var projectiles_node = get_node('/root/Main/Projectiles')
 onready var creep_info = CREEP_INFO.new()
 
 var max_hp
@@ -17,9 +18,10 @@ var value
 var weakness
 var strength
 var spawner
-var projectiles = []
+var projectiles = {}
 var towers = []
 var offset
+var dying = false
 
 func _ready():
 	max_hp = creep_info.get_creep_hp(self.name)
@@ -34,13 +36,37 @@ func _ready():
 	move()
 
 func die():
-	for proj in projectiles:
-		proj.queue_free()
-	for tower in towers:
-		if self in tower.nearby_creeps:
-			var self_idx = tower.nearby_creeps.find(self)
-			tower.nearby_creeps.remove(self_idx)
+	dying = true
+	tween.stop_all()
 	hud.update_gold(self.value)
+	for tower in towers:
+		tower.nearby_creeps.erase(self)
+	for proj in projectiles_node.get_children():
+		if proj in projectiles.values():
+			if proj.tower.nearby_creeps.size() > 0:
+				proj.creep = proj.tower.nearby_creeps[0]
+				proj.creep.projectiles[proj.name] = proj
+			else:
+				var node = Node2D.new()
+				var node_area = self.get_node('Area2D').duplicate(DUPLICATE_USE_INSTANCING)
+				node.position = self.position
+				node.add_child(node_area)
+				node.add_to_group(str(proj.name))
+				get_parent().add_child(node)
+				proj.creep = node
+	self.get_node('Area2D').monitoring = false
+	if anim.has_animation('death') and not anim.current_animation == 'death':
+		var timer = Timer.new()
+		timer.wait_time = anim.current_animation_length
+		timer.connect('timeout', self, '_queue_free')
+		self.add_child(timer)
+		timer.start()
+		anim.play('death')
+		self.anim.playback_speed = 1
+	else:
+		_queue_free()
+
+func _queue_free():
 	self.queue_free()
 
 func take_damage(dmg, gem_color = ''):
@@ -50,11 +76,11 @@ func take_damage(dmg, gem_color = ''):
 		dmg /= 2
 	hp -= dmg
 	hp_bar.value += dmg
-	if hp_bar.visible == false:
+	if not hp_bar.visible:
 		hp_bar.visible = true
 		if anim.has_animation('move-wounded'):
 			anim.play('move-wounded')
-	if hp <= 0:
+	if hp <= 0 and not dying:
 		die()
 
 func move():

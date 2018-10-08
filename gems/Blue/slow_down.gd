@@ -14,8 +14,9 @@ func apply_fx(creep, dmg):
 		creep.add_child(timer)
 		creep.get_node('SlowDownTimer').connect('timeout', self, 'remove_fx', [creep, timer])
 		timer.start()
-		creep.tween.playback_speed = .5
-		creep.anim.playback_speed = .5
+		if not creep.dying:
+			creep.tween.playback_speed = .5
+			creep.anim.playback_speed = .5
 
 func remove_fx(creep, timer):
 	creep.remove_child(timer)

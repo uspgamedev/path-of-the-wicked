@@ -9,8 +9,6 @@
 ]]
 
 script = ExtResource( 1 )
-hp = 100
-vel = 50
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
 

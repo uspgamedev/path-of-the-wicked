@@ -1,9 +1,9 @@
-[ ] Add death animation on creeps
+[ ] Fix wrong creep placeholder on projectiles
+[ ] Add procedural map generation
+[ ] Refine AI on creeps
 [ ] Balance gems and tower price
 [ ] Add menu
 [ ] Add music and sfx
-[ ] Add procedural map generation
-[ ] Refine AI on creeps
 [ ] Update game name
 [ ] Add credits
 
@@ -43,4 +43,5 @@
 [X] Add wave number indicator
 [X] Add game over scene
 [X] Fix tower placing after game over
+[X] Add death animation on creeps
 

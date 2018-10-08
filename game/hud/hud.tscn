@@ -198,7 +198,7 @@ _sections_unfolded = [ "Extra Spacing", "Font", "Settings" ]
 hinting = 2
 font_path = "res://misc/font/Rise of Kingdom.ttf"
 
-[sub_resource type="DynamicFont" id=22]
+[sub_resource type="DynamicFont" id=21]
 
 size = 16
 use_mipmaps = false
@@ -206,7 +206,7 @@ use_filter = false
 font_data = SubResource( 20 )
 _sections_unfolded = [ "Font", "Settings" ]
 
-[sub_resource type="Shader" id=23]
+[sub_resource type="Shader" id=22]
 
 code = "shader_type canvas_item;
 
@@ -217,14 +217,14 @@ void fragment() {
 	COLOR.rgb = textureLod(SCREEN_TEXTURE,SCREEN_UV,amount).rgb;
 }"
 
-[sub_resource type="ShaderMaterial" id=24]
+[sub_resource type="ShaderMaterial" id=23]
 
 render_priority = 0
-shader = SubResource( 23 )
+shader = SubResource( 22 )
 shader_param/amount = 2.0
 _sections_unfolded = [ "shader_param" ]
 
-[sub_resource type="DynamicFont" id=21]
+[sub_resource type="DynamicFont" id=24]
 
 size = 80
 use_mipmaps = false
@@ -232,7 +232,7 @@ use_filter = false
 font_data = SubResource( 20 )
 _sections_unfolded = [ "Extra Spacing", "Font", "Resource", "Settings" ]
 
-[node name="HUD" type="Control"]
+[node name="HUD" type="Control" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -327,7 +327,6 @@ playback/speed = 1.0
 
 [node name="Panel" type="Panel" parent="." index="1"]
 
-editor/display_folded = true
 self_modulate = Color( 0.333333, 0.333333, 0.333333, 1 )
 anchor_left = 0.0
 anchor_top = 0.0
@@ -630,7 +629,7 @@ _sections_unfolded = [ "Material", "Transform", "Visibility" ]
 [node name="AnimatedSprite" parent="Panel/Items/Button1/ClearGem1" index="0"]
 
 material = SubResource( 5 )
-frame = 1
+frame = 17
 _sections_unfolded = [ "Material" ]
 
 [node name="Button2" parent="Panel/Items" index="1" instance=ExtResource( 8 )]
@@ -653,7 +652,7 @@ _sections_unfolded = [ "Transform" ]
 [node name="AnimatedSprite" parent="Panel/Items/Button2/ClearGem2" index="0"]
 
 material = SubResource( 7 )
-frame = 8
+frame = 24
 _sections_unfolded = [ "Material" ]
 
 [node name="Button3" parent="Panel/Items" index="2" instance=ExtResource( 8 )]
@@ -675,7 +674,7 @@ _sections_unfolded = [ "Transform" ]
 [node name="AnimatedSprite" parent="Panel/Items/Button3/ClearGem3" index="0"]
 
 material = SubResource( 9 )
-frame = 36
+frame = 52
 _sections_unfolded = [ "Material" ]
 
 [node name="Button4" parent="Panel/Items" index="3" instance=ExtResource( 8 )]
@@ -697,7 +696,7 @@ _sections_unfolded = [ "Transform" ]
 [node name="AnimatedSprite" parent="Panel/Items/Button4/ClearGem4" index="0"]
 
 material = SubResource( 11 )
-frame = 36
+frame = 52
 _sections_unfolded = [ "Material" ]
 
 [node name="Button5" parent="Panel/Items" index="4" instance=ExtResource( 8 )]
@@ -719,7 +718,7 @@ _sections_unfolded = [ "Transform" ]
 [node name="AnimatedSprite" parent="Panel/Items/Button5/ClearGem5" index="0"]
 
 material = SubResource( 13 )
-frame = 20
+frame = 6
 _sections_unfolded = [ "Material" ]
 
 [node name="Button6" parent="Panel/Items" index="5" instance=ExtResource( 8 )]
@@ -742,7 +741,7 @@ _sections_unfolded = [ "Material", "Transform" ]
 [node name="AnimatedSprite" parent="Panel/Items/Button6/ClearGem6" index="0"]
 
 material = SubResource( 17 )
-frame = 29
+frame = 15
 _sections_unfolded = [ "Material" ]
 
 [node name="Button7" parent="Panel/Items" index="6" instance=ExtResource( 8 )]
@@ -874,6 +873,7 @@ playback/speed = 1.0
 
 [node name="Popup" type="Panel" parent="." index="3"]
 
+editor/display_folded = true
 visible = false
 self_modulate = Color( 1, 1, 1, 0.784314 )
 anchor_left = 0.0
@@ -907,7 +907,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = SubResource( 22 )
+custom_fonts/font = SubResource( 21 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 1
 custom_constants/shadow_offset_y = 1
@@ -921,7 +921,7 @@ _sections_unfolded = [ "Rect", "custom_fonts" ]
 [node name="BlurShader" type="TextureRect" parent="." index="4"]
 
 visible = false
-material = SubResource( 24 )
+material = SubResource( 23 )
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -955,7 +955,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = SubResource( 21 )
+custom_fonts/font = SubResource( 24 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 1
 custom_constants/shadow_offset_y = 1
@@ -985,6 +985,8 @@ playback/repeat = false
 playback/speed = 1.0
 
 [connection signal="tween_completed" from="NextWave/NextWaveTween" to="." method="_on_NextWaveTween_tween_completed"]
+
+[connection signal="mouse_entered" from="Panel" to="." method="_on_Panel_mouse_entered"]
 
 [connection signal="area_entered" from="Panel/PanelArea" to="." method="_on_PanelArea_area_entered"]
 

@@ -14,7 +14,8 @@ var gold = 10000
 var gathered = 0
 var gathered_label = null
 var tween_label = null
-var wave_delay = 15
+#var wave_delay = 15
+var wave_delay = 1.5
 
 func _ready():
 	gold_label.set_text('Gold: %d' % (gold - gathered))
@@ -63,6 +64,11 @@ func _on_GoldTween_tween_completed(object, key):
 func _on_PanelArea_area_entered(area):
 	if area.get_parent().is_in_group('cursor') and main.cursor != null:
 		main.cursor.gem.scale = camera.zoom
+
+func _on_Panel_mouse_entered():
+	var towers = main.get_node('Towers').get_children()
+	for tower in towers:
+		tower._on_AreaCollider_mouse_exited()
 
 func _on_PanelArea_area_exited(area):
 	if main.cursor != null:

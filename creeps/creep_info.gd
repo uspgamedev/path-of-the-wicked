@@ -33,24 +33,14 @@ const INFO = {
 	'Demon'            : [3000, 30,  '', ''],
 }
 
-func parse_creep_name(creep_name):
-	if creep_name.begins_with('@'):
-		return creep_name.split('@')[1]
-	else:
-		return creep_name
-
 func get_creep_hp(creep_name):
-	creep_name = parse_creep_name(creep_name)
-	return INFO[creep_name][HP]
+	return INFO[creep_name.split('-')[0]][HP]
 
 func get_creep_vel(creep_name):
-	creep_name = parse_creep_name(creep_name)
-	return INFO[creep_name][VEL]
+	return INFO[creep_name.split('-')[0]][VEL]
 
 func get_creep_weakness(creep_name):
-	creep_name = parse_creep_name(creep_name)
-	return INFO[creep_name][WEAKNESS]
+	return INFO[creep_name.split('-')[0]][WEAKNESS]
 
 func get_creep_strength(creep_name):
-	creep_name = parse_creep_name(creep_name)
-	return INFO[creep_name][STRENGTH]
+	return INFO[creep_name.split('-')[0]][STRENGTH]

@@ -1,12 +1,11 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://terrain/map/map.gd" type="Script" id=1]
-[ext_resource path="res://terrain/tiles/tiles.png" type="Texture" id=2]
+[ext_resource path="res://terrain/tiles/tiles.png" type="Texture" id=1]
 
 [sub_resource type="TileSet" id=1]
 
 0/name = "Grass"
-0/texture = ExtResource( 2 )
+0/texture = ExtResource( 1 )
 0/tex_offset = Vector2( 0, 0 )
 0/modulate = Color( 1, 1, 1, 1 )
 0/region = Rect2( 0, 0, 222, 256 )
@@ -15,7 +14,7 @@
 0/navigation_offset = Vector2( 111, 128 )
 0/shapes = [  ]
 1/name = "DL-DR"
-1/texture = ExtResource( 2 )
+1/texture = ExtResource( 1 )
 1/tex_offset = Vector2( 0, 0 )
 1/modulate = Color( 1, 1, 1, 1 )
 1/region = Rect2( 222, 0, 222, 256 )
@@ -24,7 +23,7 @@
 1/navigation_offset = Vector2( 111, 128 )
 1/shapes = [  ]
 2/name = "DL-DR-L"
-2/texture = ExtResource( 2 )
+2/texture = ExtResource( 1 )
 2/tex_offset = Vector2( 0, 0 )
 2/modulate = Color( 1, 1, 1, 1 )
 2/region = Rect2( 444, 0, 222, 256 )
@@ -33,7 +32,7 @@
 2/navigation_offset = Vector2( 111, 128 )
 2/shapes = [  ]
 3/name = "DL-DR-R"
-3/texture = ExtResource( 2 )
+3/texture = ExtResource( 1 )
 3/tex_offset = Vector2( 0, 0 )
 3/modulate = Color( 1, 1, 1, 1 )
 3/region = Rect2( 666, 0, 222, 256 )
@@ -42,7 +41,7 @@
 3/navigation_offset = Vector2( 111, 128 )
 3/shapes = [  ]
 4/name = "DL-DR-UL"
-4/texture = ExtResource( 2 )
+4/texture = ExtResource( 1 )
 4/tex_offset = Vector2( 0, 0 )
 4/modulate = Color( 1, 1, 1, 1 )
 4/region = Rect2( 888, 0, 222, 256 )
@@ -51,7 +50,7 @@
 4/navigation_offset = Vector2( 111, 128 )
 4/shapes = [  ]
 5/name = "DL-DR-UR"
-5/texture = ExtResource( 2 )
+5/texture = ExtResource( 1 )
 5/tex_offset = Vector2( 0, 0 )
 5/modulate = Color( 1, 1, 1, 1 )
 5/region = Rect2( 1110, 0, 222, 256 )
@@ -60,7 +59,7 @@
 5/navigation_offset = Vector2( 111, 128 )
 5/shapes = [  ]
 6/name = "DL-L"
-6/texture = ExtResource( 2 )
+6/texture = ExtResource( 1 )
 6/tex_offset = Vector2( 0, 0 )
 6/modulate = Color( 1, 1, 1, 1 )
 6/region = Rect2( 1332, 0, 222, 256 )
@@ -69,7 +68,7 @@
 6/navigation_offset = Vector2( 111, 128 )
 6/shapes = [  ]
 7/name = "DL-L-R"
-7/texture = ExtResource( 2 )
+7/texture = ExtResource( 1 )
 7/tex_offset = Vector2( 0, 0 )
 7/modulate = Color( 1, 1, 1, 1 )
 7/region = Rect2( 1554, 0, 222, 256 )
@@ -78,7 +77,7 @@
 7/navigation_offset = Vector2( 111, 128 )
 7/shapes = [  ]
 8/name = "DL-L-UL"
-8/texture = ExtResource( 2 )
+8/texture = ExtResource( 1 )
 8/tex_offset = Vector2( 0, 0 )
 8/modulate = Color( 1, 1, 1, 1 )
 8/region = Rect2( 1776, 0, 222, 256 )
@@ -87,7 +86,7 @@
 8/navigation_offset = Vector2( 111, 128 )
 8/shapes = [  ]
 9/name = "DL-L-UR"
-9/texture = ExtResource( 2 )
+9/texture = ExtResource( 1 )
 9/tex_offset = Vector2( 0, 0 )
 9/modulate = Color( 1, 1, 1, 1 )
 9/region = Rect2( 0, 256, 222, 256 )
@@ -96,7 +95,7 @@
 9/navigation_offset = Vector2( 111, 128 )
 9/shapes = [  ]
 10/name = "DL-R"
-10/texture = ExtResource( 2 )
+10/texture = ExtResource( 1 )
 10/tex_offset = Vector2( 0, 0 )
 10/modulate = Color( 1, 1, 1, 1 )
 10/region = Rect2( 222, 256, 222, 256 )
@@ -105,7 +104,7 @@
 10/navigation_offset = Vector2( 111, 128 )
 10/shapes = [  ]
 11/name = "DL-R-UL"
-11/texture = ExtResource( 2 )
+11/texture = ExtResource( 1 )
 11/tex_offset = Vector2( 0, 0 )
 11/modulate = Color( 1, 1, 1, 1 )
 11/region = Rect2( 444, 256, 222, 256 )
@@ -114,7 +113,7 @@
 11/navigation_offset = Vector2( 111, 128 )
 11/shapes = [  ]
 12/name = "DL-R-UR"
-12/texture = ExtResource( 2 )
+12/texture = ExtResource( 1 )
 12/tex_offset = Vector2( 0, 0 )
 12/modulate = Color( 1, 1, 1, 1 )
 12/region = Rect2( 666, 256, 222, 256 )
@@ -123,7 +122,7 @@
 12/navigation_offset = Vector2( 111, 128 )
 12/shapes = [  ]
 13/name = "DL-UL"
-13/texture = ExtResource( 2 )
+13/texture = ExtResource( 1 )
 13/tex_offset = Vector2( 0, 0 )
 13/modulate = Color( 1, 1, 1, 1 )
 13/region = Rect2( 888, 256, 222, 256 )
@@ -132,7 +131,7 @@
 13/navigation_offset = Vector2( 111, 128 )
 13/shapes = [  ]
 14/name = "DL-UL-UR"
-14/texture = ExtResource( 2 )
+14/texture = ExtResource( 1 )
 14/tex_offset = Vector2( 0, 0 )
 14/modulate = Color( 1, 1, 1, 1 )
 14/region = Rect2( 1110, 256, 222, 256 )
@@ -141,7 +140,7 @@
 14/navigation_offset = Vector2( 111, 128 )
 14/shapes = [  ]
 15/name = "DL-UR"
-15/texture = ExtResource( 2 )
+15/texture = ExtResource( 1 )
 15/tex_offset = Vector2( 0, 0 )
 15/modulate = Color( 1, 1, 1, 1 )
 15/region = Rect2( 1332, 256, 222, 256 )
@@ -150,7 +149,7 @@
 15/navigation_offset = Vector2( 111, 128 )
 15/shapes = [  ]
 16/name = "DR-L"
-16/texture = ExtResource( 2 )
+16/texture = ExtResource( 1 )
 16/tex_offset = Vector2( 0, 0 )
 16/modulate = Color( 1, 1, 1, 1 )
 16/region = Rect2( 1554, 256, 222, 256 )
@@ -159,7 +158,7 @@
 16/navigation_offset = Vector2( 111, 128 )
 16/shapes = [  ]
 17/name = "DR-L-R"
-17/texture = ExtResource( 2 )
+17/texture = ExtResource( 1 )
 17/tex_offset = Vector2( 0, 0 )
 17/modulate = Color( 1, 1, 1, 1 )
 17/region = Rect2( 1776, 256, 222, 256 )
@@ -168,7 +167,7 @@
 17/navigation_offset = Vector2( 111, 128 )
 17/shapes = [  ]
 18/name = "DR-L-UL"
-18/texture = ExtResource( 2 )
+18/texture = ExtResource( 1 )
 18/tex_offset = Vector2( 0, 0 )
 18/modulate = Color( 1, 1, 1, 1 )
 18/region = Rect2( 0, 512, 222, 256 )
@@ -177,7 +176,7 @@
 18/navigation_offset = Vector2( 111, 128 )
 18/shapes = [  ]
 19/name = "DR-L-UR"
-19/texture = ExtResource( 2 )
+19/texture = ExtResource( 1 )
 19/tex_offset = Vector2( 0, 0 )
 19/modulate = Color( 1, 1, 1, 1 )
 19/region = Rect2( 222, 512, 222, 256 )
@@ -186,7 +185,7 @@
 19/navigation_offset = Vector2( 111, 128 )
 19/shapes = [  ]
 20/name = "DR-R"
-20/texture = ExtResource( 2 )
+20/texture = ExtResource( 1 )
 20/tex_offset = Vector2( 0, 0 )
 20/modulate = Color( 1, 1, 1, 1 )
 20/region = Rect2( 444, 512, 222, 256 )
@@ -195,7 +194,7 @@
 20/navigation_offset = Vector2( 111, 128 )
 20/shapes = [  ]
 21/name = "DR-R-UL"
-21/texture = ExtResource( 2 )
+21/texture = ExtResource( 1 )
 21/tex_offset = Vector2( 0, 0 )
 21/modulate = Color( 1, 1, 1, 1 )
 21/region = Rect2( 666, 512, 222, 256 )
@@ -204,7 +203,7 @@
 21/navigation_offset = Vector2( 111, 128 )
 21/shapes = [  ]
 22/name = "DR-R-UR"
-22/texture = ExtResource( 2 )
+22/texture = ExtResource( 1 )
 22/tex_offset = Vector2( 0, 0 )
 22/modulate = Color( 1, 1, 1, 1 )
 22/region = Rect2( 888, 512, 222, 256 )
@@ -213,7 +212,7 @@
 22/navigation_offset = Vector2( 111, 128 )
 22/shapes = [  ]
 23/name = "DR-UL"
-23/texture = ExtResource( 2 )
+23/texture = ExtResource( 1 )
 23/tex_offset = Vector2( 0, 0 )
 23/modulate = Color( 1, 1, 1, 1 )
 23/region = Rect2( 1110, 512, 222, 256 )
@@ -222,7 +221,7 @@
 23/navigation_offset = Vector2( 111, 128 )
 23/shapes = [  ]
 24/name = "DR-UL-UR"
-24/texture = ExtResource( 2 )
+24/texture = ExtResource( 1 )
 24/tex_offset = Vector2( 0, 0 )
 24/modulate = Color( 1, 1, 1, 1 )
 24/region = Rect2( 1332, 512, 222, 256 )
@@ -231,7 +230,7 @@
 24/navigation_offset = Vector2( 111, 128 )
 24/shapes = [  ]
 25/name = "DR-UR"
-25/texture = ExtResource( 2 )
+25/texture = ExtResource( 1 )
 25/tex_offset = Vector2( 0, 0 )
 25/modulate = Color( 1, 1, 1, 1 )
 25/region = Rect2( 1554, 512, 222, 256 )
@@ -240,7 +239,7 @@
 25/navigation_offset = Vector2( 111, 128 )
 25/shapes = [  ]
 26/name = "L-R"
-26/texture = ExtResource( 2 )
+26/texture = ExtResource( 1 )
 26/tex_offset = Vector2( 0, 0 )
 26/modulate = Color( 1, 1, 1, 1 )
 26/region = Rect2( 1776, 512, 222, 256 )
@@ -249,7 +248,7 @@
 26/navigation_offset = Vector2( 111, 128 )
 26/shapes = [  ]
 27/name = "L-R-UL"
-27/texture = ExtResource( 2 )
+27/texture = ExtResource( 1 )
 27/tex_offset = Vector2( 0, 0 )
 27/modulate = Color( 1, 1, 1, 1 )
 27/region = Rect2( 0, 768, 222, 256 )
@@ -258,7 +257,7 @@
 27/navigation_offset = Vector2( 111, 128 )
 27/shapes = [  ]
 28/name = "L-R-UR"
-28/texture = ExtResource( 2 )
+28/texture = ExtResource( 1 )
 28/tex_offset = Vector2( 0, 0 )
 28/modulate = Color( 1, 1, 1, 1 )
 28/region = Rect2( 222, 768, 222, 256 )
@@ -267,7 +266,7 @@
 28/navigation_offset = Vector2( 111, 128 )
 28/shapes = [  ]
 29/name = "L-UL"
-29/texture = ExtResource( 2 )
+29/texture = ExtResource( 1 )
 29/tex_offset = Vector2( 0, 0 )
 29/modulate = Color( 1, 1, 1, 1 )
 29/region = Rect2( 444, 768, 222, 256 )
@@ -276,7 +275,7 @@
 29/navigation_offset = Vector2( 111, 128 )
 29/shapes = [  ]
 30/name = "L-UL-UR"
-30/texture = ExtResource( 2 )
+30/texture = ExtResource( 1 )
 30/tex_offset = Vector2( 0, 0 )
 30/modulate = Color( 1, 1, 1, 1 )
 30/region = Rect2( 666, 768, 222, 256 )
@@ -285,7 +284,7 @@
 30/navigation_offset = Vector2( 111, 128 )
 30/shapes = [  ]
 31/name = "L-UR"
-31/texture = ExtResource( 2 )
+31/texture = ExtResource( 1 )
 31/tex_offset = Vector2( 0, 0 )
 31/modulate = Color( 1, 1, 1, 1 )
 31/region = Rect2( 888, 768, 222, 256 )
@@ -294,7 +293,7 @@
 31/navigation_offset = Vector2( 111, 128 )
 31/shapes = [  ]
 32/name = "R-UL"
-32/texture = ExtResource( 2 )
+32/texture = ExtResource( 1 )
 32/tex_offset = Vector2( 0, 0 )
 32/modulate = Color( 1, 1, 1, 1 )
 32/region = Rect2( 1110, 768, 222, 256 )
@@ -303,7 +302,7 @@
 32/navigation_offset = Vector2( 111, 128 )
 32/shapes = [  ]
 33/name = "R-UL-UR"
-33/texture = ExtResource( 2 )
+33/texture = ExtResource( 1 )
 33/tex_offset = Vector2( 0, 0 )
 33/modulate = Color( 1, 1, 1, 1 )
 33/region = Rect2( 1332, 768, 222, 256 )
@@ -312,7 +311,7 @@
 33/navigation_offset = Vector2( 111, 128 )
 33/shapes = [  ]
 34/name = "R-UR"
-34/texture = ExtResource( 2 )
+34/texture = ExtResource( 1 )
 34/tex_offset = Vector2( 0, 0 )
 34/modulate = Color( 1, 1, 1, 1 )
 34/region = Rect2( 1554, 768, 222, 256 )
@@ -321,7 +320,7 @@
 34/navigation_offset = Vector2( 111, 128 )
 34/shapes = [  ]
 35/name = "UL-UR"
-35/texture = ExtResource( 2 )
+35/texture = ExtResource( 1 )
 35/tex_offset = Vector2( 0, 0 )
 35/modulate = Color( 1, 1, 1, 1 )
 35/region = Rect2( 1776, 768, 222, 256 )
@@ -330,13 +329,7 @@
 35/navigation_offset = Vector2( 111, 128 )
 35/shapes = [  ]
 
-[node name="Map" type="Node2D"]
-
-scale = Vector2( 0.5, 0.5 )
-script = ExtResource( 1 )
-_sections_unfolded = [ "Transform" ]
-
-[node name="TileMap" type="TileMap" parent="." index="0"]
+[node name="TileMap" type="TileMap" index="0"]
 
 position = Vector2( 0, 128 )
 mode = 0
@@ -355,10 +348,7 @@ collision_layer = 1
 collision_mask = 1
 occluder_light_mask = 1
 format = 1
-tile_data = PoolIntArray(  )
-
-[node name="TowerPlaceholders" type="Node2D" parent="." index="1"]
-
-_sections_unfolded = [ "Transform" ]
+tile_data = PoolIntArray( -1, 0, 0, -65536, 0, 0, -65535, 23, 0, -65534, 0, 0, -65533, 0, 0, -65532, 0, 0, -65531, 0, 0, -65530, 0, 0, -65529, 0, 0, -65528, 0, 0, -65527, 0, 0, -65526, 0, 0, -65525, 15, 0, -65524, 0, 0, -65523, 0, 0, -65522, 0, 0, 0, 0, 0, 1, 0, 0, 2, 32, 0, 3, 7, 0, 4, 17, 0, 5, 7, 0, 6, 16, 0, 7, 0, 0, 8, 0, 0, 9, 20, 0, 10, 26, 0, 11, 9, 0, 12, 0, 0, 13, 0, 0, 14, 0, 0, 131071, 0, 0, 65536, 0, 0, 65537, 3, 0, 65538, 28, 0, 65539, 7, 0, 65540, 30, 0, 65541, 0, 0, 65542, 4, 0, 65543, 20, 0, 65544, 26, 0, 65545, 29, 0, 65546, 12, 0, 65547, 26, 0, 65548, 26, 0, 65549, 6, 0, 65550, 0, 0, 131072, 0, 0, 131073, 25, 0, 131074, 4, 0, 131075, 22, 0, 131076, 26, 0, 131077, 26, 0, 131078, 19, 0, 131079, 11, 0, 131080, 27, 0, 131081, 7, 0, 131082, 28, 0, 131083, 2, 0, 131084, 0, 0, 131085, 15, 0, 131086, 0, 0, 262143, 0, 0, 196608, 0, 0, 196609, 14, 0, 196610, 21, 0, 196611, 18, 0, 196612, 1, 0, 196613, 0, 0, 196614, 14, 0, 196615, 0, 0, 196616, 5, 0, 196617, 0, 0, 196618, 34, 0, 196619, 18, 0, 196620, 34, 0, 196621, 6, 0, 196622, 0, 0, 262144, 0, 0, 262145, 5, 0, 262146, 0, 0, 262147, 23, 0, 262148, 14, 0, 262149, 32, 0, 262150, 19, 0, 262151, 0, 0, 262152, 15, 0, 262153, 23, 0, 262154, 0, 0, 262155, 0, 0, 262156, 4, 0, 262157, 15, 0, 262158, 0, 0, 393215, 0, 0, 327680, 22, 0, 327681, 29, 0, 327682, 0, 0, 327683, 35, 0, 327684, 20, 0, 327685, 16, 0, 327686, 11, 0, 327687, 28, 0, 327688, 16, 0, 327689, 32, 0, 327690, 26, 0, 327691, 9, 0, 327692, 24, 0, 327693, 0, 0, 327694, 0, 0, 393216, 0, 0, 393217, 13, 0, 393218, 10, 0, 393219, 26, 0, 393220, 7, 0, 393221, 18, 0, 393222, 24, 0, 393223, 0, 0, 393224, 0, 0, 393225, 4, 0, 393226, 0, 0, 393227, 12, 0, 393228, 26, 0, 393229, 8, 0, 393230, 0, 0, 524287, 0, 0, 458752, 25, 0, 458753, 12, 0, 458754, 26, 0, 458755, 19, 0, 458756, 0, 0, 458757, 11, 0, 458758, 27, 0, 458759, 7, 0, 458760, 19, 0, 458761, 32, 0, 458762, 19, 0, 458763, 0, 0, 458764, 5, 0, 458765, 0, 0, 458766, 0, 0, 524288, 0, 0, 524289, 24, 0, 524290, 0, 0, 524291, 0, 0, 524292, 4, 0, 524293, 22, 0, 524294, 16, 0, 524295, 25, 0, 524296, 0, 0, 524297, 13, 0, 524298, 0, 0, 524299, 32, 0, 524300, 9, 0, 524301, 23, 0, 524302, 0, 0, 655359, 26, 0, 589824, 26, 0, 589825, 29, 0, 589826, 0, 0, 589827, 34, 0, 589828, 27, 0, 589829, 27, 0, 589830, 29, 0, 589831, 32, 0, 589832, 28, 0, 589833, 26, 0, 589834, 26, 0, 589835, 31, 0, 589836, 0, 0, 589837, 0, 0, 589838, 0, 0, 655360, 0, 0, 655361, 0, 0, 655362, 0, 0, 655363, 0, 0, 655364, 0, 0, 655365, 0, 0, 655366, 0, 0, 655367, 0, 0, 655368, 0, 0, 655369, 0, 0, 655370, 0, 0, 655371, 0, 0, 655372, 0, 0, 655373, 0, 0, 655374, 0, 0 )
+_sections_unfolded = [ "Cell", "Transform" ]
 
 

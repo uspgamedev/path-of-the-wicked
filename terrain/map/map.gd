@@ -1,23 +1,23 @@
 extends Node2D
 
-const GRASS = 0
-const NONE = -1
-const DL = [1, 2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14, 15]
-const DR = [1, 2,  3,  4,  5, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25]
-const L  = [2, 6,  7,  8,  9, 16, 17, 18, 19, 26, 27, 28, 29, 30, 31]
-const R  = [3, 7, 10, 11, 12, 17, 20, 21, 22, 26, 27, 28, 32, 33, 34]
-const UL = [4, 8, 11, 13, 14, 18, 21, 23, 24, 27, 29, 30, 32, 33, 35]
-const UR = [5, 9, 12, 14, 15, 19, 22, 24, 25, 28, 30, 31, 33, 34, 35]
-
 const CREEP_SPAWNER = preload('res://terrain/creep_spawner/creep_spawner.tscn')
 const TOWER_PH = preload('res://tower/tower_placeholder.tscn')
 const TOWER = preload('res://tower/tower.tscn')
+const TS_DB = preload('res://terrain/tiles/tileset_db.gd')
+
+var LEFT =       Vector2(1, 0).rotated(-PI)
+var DOWN_LEFT =  Vector2(1, 0).rotated(-2*PI/3)
+var DOWN_RIGHT = Vector2(1, 0).rotated(-PI/3)
+var RIGHT =      Vector2(1, 0).rotated(0)
+var UP_RIGHT =   Vector2(1, 0).rotated(PI/3)
+var UP_LEFT =    Vector2(1, 0).rotated(2*PI/3)
 
 onready var hud = get_node('../Camera2D/HUD')
 onready var spawner_manager = get_node('../SpawnerManager')
 onready var towers = get_node('../Towers')
 onready var tilemap = get_node('TileMap')
 onready var tower_phs = get_node('TowerPlaceholders')
+onready var ts_db = TS_DB.new()
 onready var a_star = AStar.new()
 
 var adj_cells_dict = {}
@@ -25,13 +25,15 @@ var idx_dict = {}
 var grass_coord = []
 var offset
 var base
+var in_tile_dir
 
 func _ready():
 	offset = Vector2(tilemap.cell_size.x / 2, \
-	         tilemap.cell_size.y * 5/8 + tilemap.cell_quadrant_size / 2 + tilemap.position.y)
+		tilemap.cell_size.y * 5/8 + tilemap.cell_quadrant_size / 2 + tilemap.position.y)
+	generate_procedural_map()
 	for cell in tilemap.get_used_cells():
 		var pos = tilemap.map_to_world(cell) + offset
-		if tilemap.get_cellv(cell) != GRASS:
+		if tilemap.get_cellv(cell) != ts_db.GRASS:
 			adj_cells_dict[pos] = get_adj_cells(cell)
 			_add_point(pos)
 		else:
@@ -40,6 +42,116 @@ func _ready():
 		for value in adj_cells_dict[key]:
 			a_star.connect_points(idx_dict[key], idx_dict[value], false)
 	create_tower_placeholders()
+
+func generate_procedural_map():
+	for i in range(-1, 15):
+		for j in range(-1, 11):
+			tilemap.set_cellv(Vector2(i, j), ts_db.GRASS)
+	tilemap.set_cellv(Vector2(0, -1), ts_db.DR_UL)
+	in_tile_dir = UP_LEFT
+	var cell = Vector2(1, 0)
+	randomize()
+#	var bias = randf() - 0.5
+	var bias = 0
+	while in_tile_dir != null:
+#		yield(get_tree(), 'physics_frame')
+		cell = generate_tile(bias, cell)
+#		bias /= 1.0 + abs(bias)/3
+
+func generate_tile(bias, cell):
+	var base_pos = tilemap.map_to_world(Vector2(13, 9))
+	var length = (base_pos - tilemap.map_to_world(cell)).length() / (4 * OS.window_size.length())
+	var angle = (base_pos - tilemap.map_to_world(cell)).angle_to(Vector2(1, 0))
+	var rand = gaussian(bias, length)
+	var target_vector = Vector2(1, 0).rotated(angle).rotated(rand)
+	var out_tile_dir = get_next_tile_direction(target_vector)
+	if tilemap.get_cellv(cell) == ts_db.GRASS:
+		tilemap.set_cellv(cell, ts_db.get_tile_id(self, in_tile_dir, out_tile_dir))
+		cell = update_cell(cell, out_tile_dir)
+	else:
+		return cell
+	if cell == Vector2(13, 9):
+		in_tile_dir = null
+	else:
+		update_in_tile_dir(out_tile_dir)
+	return cell
+
+func update_in_tile_dir(out_tile_dir):
+	if out_tile_dir == LEFT:
+		in_tile_dir = RIGHT
+	elif out_tile_dir == DOWN_LEFT:
+		in_tile_dir = UP_RIGHT
+	elif out_tile_dir == DOWN_RIGHT:
+		in_tile_dir = UP_LEFT
+	elif out_tile_dir == RIGHT:
+		in_tile_dir = LEFT
+	elif out_tile_dir == UP_RIGHT:
+		in_tile_dir = DOWN_LEFT
+	elif out_tile_dir == UP_LEFT:
+		in_tile_dir = DOWN_RIGHT
+
+func update_cell(cell, out_tile_dir):
+	if out_tile_dir == LEFT:
+		return Vector2(cell.x - 1, cell.y)
+	if out_tile_dir == DOWN_LEFT:
+		return Vector2(cell.x - int(abs(cell.y) + 1) % 2, cell.y + 1)
+	if out_tile_dir == DOWN_RIGHT:
+		return Vector2(cell.x + int(abs(cell.y)) % 2, cell.y + 1)
+	if out_tile_dir == RIGHT:
+		return Vector2(cell.x + 1, cell.y)
+	if out_tile_dir == UP_RIGHT:
+		return Vector2(cell.x + int(abs(cell.y)) % 2, cell.y - 1)
+	if out_tile_dir == UP_LEFT:
+		return Vector2(cell.x - int(abs(cell.y) + 1) % 2, cell.y - 1)
+
+func get_angle_vector(target_vector):
+	var angles = []
+	if in_tile_dir != LEFT:
+		angles.append(target_vector.angle_to(LEFT))
+	if in_tile_dir != DOWN_LEFT:
+		angles.append(target_vector.angle_to(DOWN_LEFT))
+	if in_tile_dir != DOWN_RIGHT:
+		angles.append(target_vector.angle_to(DOWN_RIGHT))
+	if in_tile_dir != RIGHT:
+		angles.append(target_vector.angle_to(RIGHT))
+	if in_tile_dir != UP_RIGHT:
+		angles.append(target_vector.angle_to(UP_RIGHT))
+	if in_tile_dir != UP_LEFT:
+		angles.append(target_vector.angle_to(UP_LEFT))
+	return angles
+
+func get_next_tile_direction(target_vector):
+	var angles = get_angle_vector(target_vector)
+	var min_angle = INF
+	for angle in angles:
+		if abs(angle) < min_angle:
+			min_angle = abs(angle)
+	if min_angle == abs(target_vector.angle_to(LEFT)):
+		return LEFT
+	if min_angle == abs(target_vector.angle_to(DOWN_LEFT)):
+		return DOWN_LEFT
+	if min_angle == abs(target_vector.angle_to(DOWN_RIGHT)):
+		return DOWN_RIGHT
+	if min_angle == abs(target_vector.angle_to(RIGHT)):
+		return RIGHT
+	if min_angle == abs(target_vector.angle_to(UP_RIGHT)):
+		return UP_RIGHT
+	if min_angle == abs(target_vector.angle_to(UP_LEFT)):
+		return UP_LEFT
+
+func gaussian(mean, deviation):
+	var x1
+	var x2
+	var w
+	while true:
+		randomize()
+		x1 = rand_range(0, 2) - 1
+		x2 = rand_range(0, 2) - 1
+		w = x1*x1 + x2*x2
+		if 0 < w and w < 1:
+			break
+	w = sqrt(-2 * log(w)/w)
+	return mean + deviation * x1 * w
 
 func get_adj_cells(cell):
 	var adj_cells = PoolVector2Array([])
@@ -50,12 +162,12 @@ func get_adj_cells(cell):
 	var r  = Vector2(cell.x + 1, cell.y)
 	var ul = Vector2(cell.x - even, cell.y - 1)
 	var ur = Vector2(cell.x - even + 1, cell.y - 1)
-	adj_cells = add_adj_cell(cell, DL, dl, adj_cells)
-	adj_cells = add_adj_cell(cell, DR, dr, adj_cells)
-	adj_cells = add_adj_cell(cell,  L,  l, adj_cells)
-	adj_cells = add_adj_cell(cell,  R,  r, adj_cells)
-	adj_cells = add_adj_cell(cell, UL, ul, adj_cells)
-	adj_cells = add_adj_cell(cell, UR, ur, adj_cells)
+	adj_cells = add_adj_cell(cell, ts_db.DL, dl, adj_cells)
+	adj_cells = add_adj_cell(cell, ts_db.DR, dr, adj_cells)
+	adj_cells = add_adj_cell(cell,  ts_db.L,  l, adj_cells)
+	adj_cells = add_adj_cell(cell,  ts_db.R,  r, adj_cells)
+	adj_cells = add_adj_cell(cell, ts_db.UL, ul, adj_cells)
+	adj_cells = add_adj_cell(cell, ts_db.UR, ur, adj_cells)
 	return adj_cells
 
 func _add_point(_pos):
@@ -67,8 +179,8 @@ func add_adj_cell(cur_cell, ARRAY, next_cell, adj_cells):
 	var next_cell_tile = tilemap.get_cellv(next_cell)
 	var pos = tilemap.map_to_world(next_cell) + offset
 	if tilemap.get_cellv(cur_cell) in ARRAY:
-		if next_cell_tile != GRASS:
-			if next_cell_tile != NONE:
+		if next_cell_tile != ts_db.GRASS:
+			if next_cell_tile != ts_db.NONE:
 				adj_cells.append(pos)
 			else:
 				var creep_spawner = CREEP_SPAWNER.instance()

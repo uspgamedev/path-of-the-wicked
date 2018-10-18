@@ -1,6 +1,7 @@
 extends Control
 
 onready var main = get_node('/root/Main')
+onready var wave_manager = get_node('/root/Main/WaveManager')
 onready var camera = get_parent()
 onready var panel = get_node('Panel')
 onready var gold_label = get_node('Gold')
@@ -14,8 +15,6 @@ var gold = 10000000
 var gathered = 0
 var gathered_label = null
 var tween_label = null
-#var wave_delay = 15
-var wave_delay = 1.5
 
 func _ready():
 	gold_label.set_text('Gold: %d' % (gold - gathered))
@@ -81,7 +80,7 @@ func start_countdown():
 	next_wave.text = 'Next Wave'
 	next_wave.visible = true
 	next_wave.get_node('TextureProgress').visible = true
-	nw_tween.interpolate_property(bar, 'value', 0, 100, wave_delay, \
+	nw_tween.interpolate_property(bar, 'value', 0, 100, wave_manager.wave_delay, \
 	                              Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	nw_tween.start()
 
@@ -93,7 +92,6 @@ func _on_NotificationsTimer_timeout():
 	start_countdown()
 
 func _on_NextWaveTween_tween_completed(object, key):
-	var wave_manager = get_node('/root/Main/WaveManager')
 	next_wave.get_node('TextureProgress').visible = false
 	next_wave.text = str('Wave ', wave_manager.cur_wave)
 	wave_manager.start_wave()

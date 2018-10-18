@@ -6,6 +6,8 @@ onready var spawner_manager = get_node('../SpawnerManager')
 var cur_wave = 1
 var cur_points = 0
 var wave_points = 1000
+#var wave_delay = 15
+var wave_delay = 1.5
 
 func start_wave():
 	spawner_manager.start_wave()

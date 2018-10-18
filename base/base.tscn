@@ -3,7 +3,7 @@
 [ext_resource path="res://base/base.gd" type="Script" id=1]
 [ext_resource path="res://base/base.png" type="Texture" id=2]
 
-[node name="Base" type="Node2D"]
+[node name="Base" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 
@@ -20,11 +20,12 @@ linear_damp = 0.1
 angular_damp = 1.0
 audio_bus_override = false
 audio_bus_name = "Master"
+_sections_unfolded = [ "Transform" ]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D" index="0"]
 
 build_mode = 0
-polygon = PoolVector2Array( -31, -12, -12, -31, 12, -31, 31, -12, 31, 12, 12, 31, -12, 31, -31, 12 )
+polygon = PoolVector2Array( -124, -48, -48, -124, 48, -124, 124, -48, 124, 48, 48, 124, -48, 124, -124, 48 )
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
 

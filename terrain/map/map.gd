@@ -26,22 +26,14 @@ var grass_coord = []
 var offset
 var base
 var in_tile_dir
+var bias
 
 func _ready():
 	offset = Vector2(tilemap.cell_size.x / 2, \
 		tilemap.cell_size.y * 5/8 + tilemap.cell_quadrant_size / 2 + tilemap.position.y)
+	randomize()
+	bias = 3*randf() - 2
 	generate_procedural_map()
-	for cell in tilemap.get_used_cells():
-		var pos = tilemap.map_to_world(cell) + offset
-		if tilemap.get_cellv(cell) != ts_db.GRASS:
-			adj_cells_dict[pos] = get_adj_cells(cell)
-			_add_point(pos)
-		else:
-			grass_coord.append(pos)
-	for key in adj_cells_dict.keys():
-		for value in adj_cells_dict[key]:
-			a_star.connect_points(idx_dict[key], idx_dict[value], false)
-	create_tower_placeholders()
 
 func generate_procedural_map():
 	for i in range(-1, 15):
@@ -50,28 +42,30 @@ func generate_procedural_map():
 	tilemap.set_cellv(Vector2(0, -1), ts_db.DR_UL)
 	in_tile_dir = UP_LEFT
 	var cell = Vector2(1, 0)
-	randomize()
-#	var bias = randf() - 0.5
-	var bias = 0
 	while in_tile_dir != null:
-#		yield(get_tree(), 'physics_frame')
-		cell = generate_tile(bias, cell)
-#		bias /= 1.0 + abs(bias)/3
+		cell = generate_tile(cell)
 
-func generate_tile(bias, cell):
+func generate_tile(cell):
 	var base_pos = tilemap.map_to_world(Vector2(13, 9))
 	var length = (base_pos - tilemap.map_to_world(cell)).length() / (4 * OS.window_size.length())
 	var angle = (base_pos - tilemap.map_to_world(cell)).angle_to(Vector2(1, 0))
 	var rand = gaussian(bias, length)
 	var target_vector = Vector2(1, 0).rotated(angle).rotated(rand)
 	var out_tile_dir = get_next_tile_direction(target_vector)
+	if cell.y < 0 or cell.y > 8 or cell.x < 1 or cell.x > 12:
+		out_tile_dir = get_next_tile_direction(Vector2(1, 0).rotated(angle))
+		bias *= -1.0/2.0
 	if tilemap.get_cellv(cell) == ts_db.GRASS:
 		tilemap.set_cellv(cell, ts_db.get_tile_id(self, in_tile_dir, out_tile_dir))
 		cell = update_cell(cell, out_tile_dir)
 	else:
+		in_tile_dir = null
+		bias = 0
+		generate_procedural_map()
 		return cell
 	if cell == Vector2(13, 9):
 		in_tile_dir = null
+		generate_AStar_graph()
 	else:
 		update_in_tile_dir(out_tile_dir)
 	return cell
@@ -152,6 +146,19 @@ func gaussian(mean, deviation):
 			break
 	w = sqrt(-2 * log(w)/w)
 	return mean + deviation * x1 * w
+
+func generate_AStar_graph():
+	for cell in tilemap.get_used_cells():
+		var pos = tilemap.map_to_world(cell) + offset
+		if tilemap.get_cellv(cell) != ts_db.GRASS:
+			adj_cells_dict[pos] = get_adj_cells(cell)
+			_add_point(pos)
+		else:
+			grass_coord.append(pos)
+	for key in adj_cells_dict.keys():
+		for value in adj_cells_dict[key]:
+			a_star.connect_points(idx_dict[key], idx_dict[value], false)
+	create_tower_placeholders()
 
 func get_adj_cells(cell):
 	var adj_cells = PoolVector2Array([])

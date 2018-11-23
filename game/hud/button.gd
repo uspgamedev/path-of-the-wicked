@@ -36,7 +36,7 @@ func button_down():
 func _on_Button_button_down():
 	if hud.gold >= item.price:
 		if item.is_in_group('tower'):
-			main.get_node('Map').show_tower_phs()
+			main.get_node('Map').show_dummy_towers()
 			button_down()
 		else:
 			var slot = inventory.get_empty_slot()

@@ -1,7 +1,7 @@
 extends Node2D
 
 const CREEP_SPAWNER = preload('res://terrain/creep_spawner/creep_spawner.tscn')
-const TOWER_PH = preload('res://tower/tower_placeholder.tscn')
+const DUMMY_TOWER = preload('res://tower/dummy_tower.tscn')
 const TOWER = preload('res://tower/tower.tscn')
 const TS_DB = preload('res://terrain/tiles/tileset_db.gd')
 
@@ -16,7 +16,7 @@ onready var hud = get_node('../Camera2D/HUD')
 onready var spawner_manager = get_node('../SpawnerManager')
 onready var towers = get_node('../Towers')
 onready var tilemap = get_node('TileMap')
-onready var tower_phs = get_node('TowerPlaceholders')
+onready var dummy_towers = get_node('DummyTowers')
 onready var ts_db = TS_DB.new()
 onready var a_star = AStar.new()
 
@@ -34,6 +34,7 @@ func _ready():
 	randomize()
 	bias = 3*randf() - 2
 	generate_procedural_map()
+#	generate_AStar_graph()
 
 func generate_procedural_map():
 	for i in range(-1, 15):
@@ -43,6 +44,7 @@ func generate_procedural_map():
 	in_tile_dir = UP_LEFT
 	var cell = Vector2(1, 0)
 	while in_tile_dir != null:
+#		yield(get_tree(), 'physics_frame')
 		cell = generate_tile(cell)
 
 func generate_tile(cell):
@@ -60,11 +62,15 @@ func generate_tile(cell):
 		cell = update_cell(cell, out_tile_dir)
 	else:
 		in_tile_dir = null
+		yield(get_tree(), 'physics_frame')
 		bias = 0
 		generate_procedural_map()
 		return cell
 	if cell == Vector2(13, 9):
 		in_tile_dir = null
+#		yield(get_tree(), 'physics_frame')
+#		bias = 3*randf() - 2
+#		generate_procedural_map()
 		generate_AStar_graph()
 	else:
 		update_in_tile_dir(out_tile_dir)
@@ -158,7 +164,7 @@ func generate_AStar_graph():
 	for key in adj_cells_dict.keys():
 		for value in adj_cells_dict[key]:
 			a_star.connect_points(idx_dict[key], idx_dict[value], false)
-	create_tower_placeholders()
+	create_dummy_towers()
 
 func get_adj_cells(cell):
 	var adj_cells = PoolVector2Array([])
@@ -201,24 +207,24 @@ func add_adj_cell(cur_cell, ARRAY, next_cell, adj_cells):
 			_add_point(pos)
 	return adj_cells
 
-func create_tower_placeholders():
+func create_dummy_towers():
 	for pos in grass_coord:
-		var tower_ph = TOWER_PH.instance()
-		tower_ph.position = pos
-		tower_ph.visible = false
-		tower_phs.add_child(tower_ph)
+		var dummy_tower = DUMMY_TOWER.instance()
+		dummy_tower.position = pos
+		dummy_tower.visible = false
+		dummy_towers.add_child(dummy_tower)
 
 func _input(event):
-	if event.is_action_pressed('ui_buy_tower'):
-		show_tower_phs()
+	if event.is_action_pressed('ui_buy_tower') and hud.gold >= 1000:
+		show_dummy_towers()
 
-func show_tower_phs():
-	for tower_ph in tower_phs.get_children():
-		tower_ph.visible = true
+func show_dummy_towers():
+	for dummy_tower in dummy_towers.get_children():
+		dummy_tower.visible = true
 
-func hide_tower_phs():
-	for tower_ph in tower_phs.get_children():
-		tower_ph.visible = false
+func hide_dummy_towers():
+	for dummy_tower in dummy_towers.get_children():
+		dummy_tower.visible = false
 
 func place_tower(pos):
 	var tower = TOWER.instance()
@@ -227,4 +233,4 @@ func place_tower(pos):
 	hud.update_gold(-tower.price)
 	tower.draw_circle = true
 	tower.update()
-	hide_tower_phs()
+	hide_dummy_towers()

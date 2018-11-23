@@ -10,6 +10,7 @@ onready var nearby_area_shape = nearby_area.get_node('CollisionShape2D')
 onready var main = get_node('/root/Main')
 onready var hud = main.get_node('Camera2D/HUD')
 onready var hud_area = hud.get_node('Panel/PanelArea')
+onready var inventory = main.get_node('Camera2D/HUD/Panel/Inventory')
 
 var gem = null
 var radius = 200
@@ -56,14 +57,13 @@ func _on_AreaCollider_input_event(viewport, event, shape_idx):
 			main.cursor = cursor
 			self.gem = null
 		elif event.is_action_pressed('ui_slot'):
-			self.remove_child(gem)
-			for slot in main.get_node('Camera2D/HUD/Panel/Inventory').get_children():
-				if slot.gem == null:
-					slot.gem = self.gem
-					slot.add_child(gem)
-					gem.position = slot.offset
-					break
-			self.gem = null
+			var slot = inventory.get_empty_slot()
+			if slot != null:
+				self.remove_child(gem)
+				slot.gem = self.gem
+				slot.add_child(gem)
+				gem.position = slot.offset
+				self.gem = null
 			_on_AreaCollider_mouse_entered()
 
 func start_cooldown():

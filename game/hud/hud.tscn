@@ -47,9 +47,7 @@ render_mode blend_mix;
 uniform vec4 modulate:hint_color;
 
 void fragment(){
-	
 	COLOR = vec4(modulate.rgb, texture(TEXTURE, UV).a * modulate.a);
-	
 }"
 
 [sub_resource type="ShaderMaterial" id=5]
@@ -209,12 +207,10 @@ _sections_unfolded = [ "Font", "Settings" ]
 [sub_resource type="Shader" id=22]
 
 code = "shader_type canvas_item;
-
-uniform float amount : hint_range(0,5);
+uniform float amount : hint_range(0, 5);
 
 void fragment() {
-
-	COLOR.rgb = textureLod(SCREEN_TEXTURE,SCREEN_UV,amount).rgb;
+	COLOR.rgb = textureLod(SCREEN_TEXTURE, SCREEN_UV, amount).rgb;
 }"
 
 [sub_resource type="ShaderMaterial" id=23]
@@ -597,7 +593,6 @@ _sections_unfolded = [ "Rect", "Visibility" ]
 
 [node name="Items" type="Control" parent="Panel" index="3"]
 
-editor/display_folded = true
 visible = false
 anchor_left = 0.0
 anchor_top = 0.0
@@ -629,7 +624,7 @@ _sections_unfolded = [ "Material", "Transform", "Visibility" ]
 [node name="AnimatedSprite" parent="Panel/Items/Button1/ClearGem1" index="0"]
 
 material = SubResource( 5 )
-frame = 18
+frame = 21
 _sections_unfolded = [ "Material" ]
 
 [node name="Button2" parent="Panel/Items" index="1" instance=ExtResource( 8 )]
@@ -652,7 +647,7 @@ _sections_unfolded = [ "Transform" ]
 [node name="AnimatedSprite" parent="Panel/Items/Button2/ClearGem2" index="0"]
 
 material = SubResource( 7 )
-frame = 25
+frame = 28
 _sections_unfolded = [ "Material" ]
 
 [node name="Button3" parent="Panel/Items" index="2" instance=ExtResource( 8 )]
@@ -674,7 +669,7 @@ _sections_unfolded = [ "Transform" ]
 [node name="AnimatedSprite" parent="Panel/Items/Button3/ClearGem3" index="0"]
 
 material = SubResource( 9 )
-frame = 53
+frame = 56
 _sections_unfolded = [ "Material" ]
 
 [node name="Button4" parent="Panel/Items" index="3" instance=ExtResource( 8 )]
@@ -696,7 +691,7 @@ _sections_unfolded = [ "Transform" ]
 [node name="AnimatedSprite" parent="Panel/Items/Button4/ClearGem4" index="0"]
 
 material = SubResource( 11 )
-frame = 53
+frame = 56
 _sections_unfolded = [ "Material" ]
 
 [node name="Button5" parent="Panel/Items" index="4" instance=ExtResource( 8 )]
@@ -718,7 +713,7 @@ _sections_unfolded = [ "Transform" ]
 [node name="AnimatedSprite" parent="Panel/Items/Button5/ClearGem5" index="0"]
 
 material = SubResource( 13 )
-frame = 7
+frame = 10
 _sections_unfolded = [ "Material" ]
 
 [node name="Button6" parent="Panel/Items" index="5" instance=ExtResource( 8 )]
@@ -741,7 +736,7 @@ _sections_unfolded = [ "Material", "Transform" ]
 [node name="AnimatedSprite" parent="Panel/Items/Button6/ClearGem6" index="0"]
 
 material = SubResource( 17 )
-frame = 16
+frame = 19
 _sections_unfolded = [ "Material" ]
 
 [node name="Button7" parent="Panel/Items" index="6" instance=ExtResource( 8 )]
@@ -873,7 +868,6 @@ playback/speed = 1.0
 
 [node name="Popup" type="Panel" parent="." index="3"]
 
-editor/display_folded = true
 visible = false
 self_modulate = Color( 1, 1, 1, 0.784314 )
 anchor_left = 0.0

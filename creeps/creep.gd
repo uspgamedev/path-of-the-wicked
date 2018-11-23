@@ -2,7 +2,7 @@ extends Node2D
 
 const CREEP_INFO = preload('res://creeps/creep_info.gd')
 
-onready var hp_bar = get_node('TextureProgress')
+onready var hp_bar = get_node('Z-Index/TextureProgress')
 onready var tween = get_node('Tween')
 onready var map = get_node('../../Map')
 onready var sprite = get_node('Sprite')
@@ -21,6 +21,7 @@ var spawner
 var projectiles = {}
 var towers = []
 var offset
+var under_fx = [false, false, false]
 var dying = false
 
 func _ready():
@@ -31,9 +32,10 @@ func _ready():
 	weakness = creep_info.get_creep_weakness(self.name)
 	strength = creep_info.get_creep_strength(self.name)
 	hp_bar.max_value = hp
+	hp_bar.get_parent().z_index = 1
 	if anim.has_animation('move'):
 		anim.play('move')
-	move()
+	move(null, null)
 
 func die():
 	dying = true
@@ -47,27 +49,24 @@ func die():
 				proj.creep = proj.tower.nearby_creeps[0]
 				proj.creep.projectiles[proj.name] = proj
 			else:
-				var node = Node2D.new()
-				var node_area = self.get_node('Area2D').duplicate(DUPLICATE_USE_INSTANCING)
-				node.position = proj.creep.position
-				node.add_child(node_area)
-				node.add_to_group(str(proj.name))
-				get_parent().add_child(node)
-				proj.creep = node
+				create_dummy_creep(proj)
 	self.get_node('Area2D').monitoring = false
-	if anim.has_animation('death') and not anim.current_animation == 'death':
-		var timer = Timer.new()
-		timer.wait_time = anim.current_animation_length
-		timer.connect('timeout', self, '_queue_free')
-		self.add_child(timer)
-		timer.start()
+	if anim.has_animation('death'):
 		anim.play('death')
-		self.anim.playback_speed = 1
-	else:
-		_queue_free()
-
-func _queue_free():
+		anim.playback_speed = 1
+		yield(get_tree().create_timer( \
+				anim.current_animation_length - 1.0/30), 'timeout')
 	self.queue_free()
+
+func create_dummy_creep(proj):
+	var node = Node2D.new()
+	var node_area = self.get_node('Area2D').duplicate( \
+			DUPLICATE_USE_INSTANCING)
+	node.position = proj.creep.position
+	node.add_child(node_area)
+	node.add_to_group(proj.name)
+	get_parent().add_child(node)
+	proj.creep = node
 
 func take_damage(dmg, gem_color = ''):
 	if gem_color == weakness:
@@ -83,8 +82,7 @@ func take_damage(dmg, gem_color = ''):
 	if hp <= 0 and not dying:
 		die()
 
-func move():
-	randomize()
+func move(object, key):
 	var target = spawner.get_next_point(self.position - offset) + offset
 	tween.interpolate_property(self, 'position', self.position, \
 	      target, float(100)/vel, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
@@ -95,5 +93,29 @@ func rotate_sprite(target):
 	var vector = self.position - target
 	sprite.rotation = vector.angle() - PI/2
 
-func _on_Tween_tween_completed(object, key):
-	move()
+func poison(dmg):
+	for i in range(0, 10):
+		yield(get_tree().create_timer(.1), 'timeout')
+		self.take_damage(int(dmg/10))
+	under_fx[0] = false
+
+func shock():
+	yield(get_tree().create_timer(1), 'timeout')
+	under_fx[1] = false
+	self.tween.playback_speed = 1
+	self.anim.playback_speed = 1
+
+func slow_down():
+	yield(get_tree().create_timer(2), 'timeout')
+	under_fx[2] = false
+	self.tween.playback_speed = 1
+	self.anim.playback_speed = 1
+
+func splash(splash_area, dmg):
+	yield(get_tree(), 'physics_frame')
+	yield(get_tree(), 'physics_frame')
+	for creep_area in splash_area.get_overlapping_areas():
+		var _creep = creep_area.get_parent()
+		if _creep != self and _creep.is_in_group('creep'):
+			_creep.take_damage(int(dmg/2))
+	splash_area.queue_free()

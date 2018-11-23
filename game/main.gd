@@ -8,7 +8,6 @@ var cursor = null
 
 func _ready():
 	get_tree().paused = false
-	OS.window_resizable = true
 
 func _input(event):
 	if event.is_action_pressed('ui_cancel'):

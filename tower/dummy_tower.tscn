@@ -1,6 +1,6 @@
 [gd_scene load_steps=18 format=2]
 
-[ext_resource path="res://tower/tower_placeholder.gd" type="Script" id=1]
+[ext_resource path="res://tower/dummy_tower.gd" type="Script" id=1]
 [ext_resource path="res://tower/sprites/alien10001.png" type="Texture" id=2]
 [ext_resource path="res://tower/sprites/alien10002.png" type="Texture" id=3]
 [ext_resource path="res://tower/sprites/alien10003.png" type="Texture" id=4]
@@ -26,7 +26,7 @@ animations = [ {
 "speed": 20.0
 } ]
 
-[node name="TowerPlaceholder" type="Node2D" index="0"]
+[node name="DummyTower" type="Node2D" index="0"]
 
 scale = Vector2( 2, 2 )
 script = ExtResource( 1 )
@@ -37,7 +37,7 @@ _sections_unfolded = [ "Transform", "Z Index" ]
 modulate = Color( 0.4, 0.4, 0.4, 0.67451 )
 frames = SubResource( 1 )
 animation = "default"
-frame = 1
+frame = 3
 playing = true
 _sections_unfolded = [ "Visibility" ]
 

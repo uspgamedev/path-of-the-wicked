@@ -68,9 +68,9 @@ texture = ExtResource( 2 )
 vframes = 8
 hframes = 8
 frame = 5
-_sections_unfolded = [ "Animation" ]
+_sections_unfolded = [ "Animation", "Transform" ]
 
-[node name="AnimationPlayer" parent="." index="1"]
+[node name="AnimationPlayer" parent="." index="2"]
 
 anims/death = SubResource( 1 )
 anims/move = SubResource( 2 )

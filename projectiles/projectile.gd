@@ -10,6 +10,7 @@ var creep
 var gem_color
 
 func _ready():
+	self.z_index = 1
 	vector = creep.position - self.position * 2
 	vector = vector.normalized()
 
@@ -23,10 +24,12 @@ func _on_Area2D_area_entered(area):
 	if _creep != null:
 		if _creep.is_in_group('creep'):
 			var fx = fx_script.new()
+			_creep.projectiles.erase(self.name)
 			_creep.take_damage(dmg, gem_color)
 			fx.apply_fx(_creep, dmg)
-			_creep.projectiles.erase(self.name)
+			for dummy_creep in get_tree().get_nodes_in_group(self.name):
+				dummy_creep.queue_free()
 			self.queue_free()
-		elif _creep.is_in_group(str(self.name)):
+		elif _creep.is_in_group(self.name):
 			_creep.queue_free()
 			self.queue_free()

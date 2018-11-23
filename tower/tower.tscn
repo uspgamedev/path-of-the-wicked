@@ -33,7 +33,7 @@ animations = [ {
 custom_solver_bias = 0.0
 radius = 200.0
 
-[node name="Tower" type="Node2D" index="0" groups=[
+[node name="Tower" type="Node2D" groups=[
 "tower",
 ]]
 
@@ -44,7 +44,7 @@ script = ExtResource( 1 )
 modulate = Color( 0.402344, 0.402344, 0.402344, 1 )
 frames = SubResource( 1 )
 animation = "default"
-frame = 2
+frame = 7
 playing = true
 _sections_unfolded = [ "Visibility" ]
 

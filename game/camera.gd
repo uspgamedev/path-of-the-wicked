@@ -43,25 +43,26 @@ func _input(event):
 
 func _physics_process(delta):
 	if holding_cam and self.zoom == Vector2(1, 1):
-		change_camera_pos()
+		change_camera_offset()
 	if not free_camera:
 		self.offset = Vector2(min(self.offset.x, MAX_WINDOW_SIZE.x - OS.window_size.x), \
 		                      min(self.offset.y, MAX_WINDOW_SIZE.y - OS.window_size.y))
 		_window_size = Vector2(min(OS.window_size.x, MAX_WINDOW_SIZE.x), \
-		                           min(OS.window_size.y, MAX_WINDOW_SIZE.y))
+		                       min(OS.window_size.y, MAX_WINDOW_SIZE.y))
 		if OS.window_size != _window_size:
 			OS.window_resizable = false
 			OS.window_size = _window_size
 			self.offset.x = 0
 
-func change_camera_pos():
+func change_camera_offset():
 	var cur_pos = get_viewport().get_mouse_position()
 	var cur_offset = init_pos - cur_pos
 	if not free_camera:
-		if cur_offset.x < 0 or cur_offset.x + OS.window_size.x> MAX_WINDOW_SIZE.x:
+		var diff = MAX_WINDOW_SIZE - OS.window_size
+		if cur_offset.x < 0 or cur_offset.x > diff.x:
 			init_pos = Vector2(cur_pos.x + self.offset.x, init_pos.y)
-		if cur_offset.y < 0 or cur_offset.y + OS.window_size.y > MAX_WINDOW_SIZE.y:
+		if cur_offset.y < 0 or cur_offset.y > diff.y:
 			init_pos = Vector2(init_pos.x, cur_pos.y + self.offset.y)
-		cur_offset = Vector2(min(max(0, cur_offset.x), MAX_WINDOW_SIZE.x - OS.window_size.x), \
-		                     min(max(0, cur_offset.y), MAX_WINDOW_SIZE.y - OS.window_size.y))
-	self.offset = Vector2(cur_offset)
+		cur_offset.x = min(max(0, cur_offset.x), diff.x)
+		cur_offset.y = min(max(0, cur_offset.y), diff.y)
+	self.offset = cur_offset

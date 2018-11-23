@@ -26,9 +26,6 @@ func _ready():
 	price = gem_info.get_gem_price(type)
 	timer.wait_time = gem_info.get_gem_shot_cooldown()
 
-func _on_Timer_timeout():
-	shoot()
-
 func shoot():
 	tower = get_parent()
 	if tower.is_in_group('tower') and tower.nearby_creeps.size() > 0:

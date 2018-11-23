@@ -12,6 +12,7 @@ onready var popup = get_node('Popup')
 onready var info = popup.get_node('Info')
 
 var gold = 10000
+#var gold = 1000000
 var gathered = 0
 var gathered_label = null
 var tween_label = null
@@ -31,7 +32,7 @@ func _physics_process(delta):
 func update_gold(amount):
 	gold += amount
 	gathered += amount
-	if gold <= 0:
+	if gold < 0:
 		main.game_over()
 	if gathered_label == null:
 		gathered_label = gold_label.duplicate(DUPLICATE_USE_INSTANCING)
@@ -45,10 +46,10 @@ func _on_GoldTimer_timeout():
 	tween_label = gathered_label.duplicate(DUPLICATE_USE_INSTANCING)
 	self.add_child_below_node(gold_label, tween_label)
 	gold_tween.interpolate_property(tween_label, 'margin_top', \
-	            48, 16, .5, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+			48, 16, .5, Tween.TRANS_LINEAR, Tween.EASE_IN)
 	gold_tween.interpolate_property(tween_label, 'self_modulate', \
-	            Color(1, 1, 1, 1), Color(1, 1, 1, 0), .5, \
-	                  Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+			Color(1, 1, 1, 1), Color(1, 1, 1, 0), .5, \
+			Tween.TRANS_LINEAR, Tween.EASE_IN)
 	gold_tween.start()
 	gold_timer.stop()
 	gathered_label.queue_free()
@@ -100,20 +101,27 @@ func set_popup_text(_text):
 	info.rect_size = Vector2(info.rect_size.x, info.get_line_height() * info.get_line_count())
 	popup.rect_size = info.rect_size + Vector2(info.margin_left * 2, info.margin_top * 2)
 
+func show_popup(pos):
+	if camera.holding_cam:
+		return
+	popup.rect_position.x = max(pos.x - popup.rect_size.x, \
+			panel.rect_size.x - OS.window_size.x)
+	popup.rect_position.y = max(0, min(pos.y, \
+			OS.window_size.y - popup.rect_size.y))
+	if is_mouse_inside_rect():
+		return
+	popup.visible = true
+
 func is_mouse_inside_rect():
 	var mouse_pos = get_viewport().get_mouse_position()
-	var rect_pos = popup.rect_position + Vector2(OS.window_size.x - panel.rect_size.x, 0)
-	if mouse_pos.x >= rect_pos.x and mouse_pos.x <= (rect_pos + popup.rect_size).x:
-		if mouse_pos.y >= rect_pos.y and mouse_pos.y <= (rect_pos + popup.rect_size).y:
-			return true
+	var rect_pos = popup.rect_position + \
+			Vector2(OS.window_size.x - panel.rect_size.x, 0)
+	if mouse_pos.x >= rect_pos.x and \
+			mouse_pos.x <= (rect_pos + popup.rect_size).x and \
+			mouse_pos.y >= rect_pos.y and \
+			mouse_pos.y <= (rect_pos + popup.rect_size).y:
+		return true
 	return false
-
-func show_popup(pos):
-	if camera.holding_cam: return
-	popup.rect_position.x = max(pos.x - popup.rect_size.x, panel.rect_size.x - OS.window_size.x)
-	popup.rect_position.y = max(0, min(pos.y, OS.window_size.y - popup.rect_size.y))
-	if is_mouse_inside_rect(): return
-	popup.visible = true
 
 func hide_popup():
 	popup.visible = false

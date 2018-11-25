@@ -6,6 +6,12 @@
 [ ] Update game name
 [ ] Add credits
 
+
+###########################################################
+
+[ ] Fix popup not showing on shop buttons
+[ ] Check if critical hit works with weakness and strength
+
 ###########################################################
 
 [X] Add creep spawn

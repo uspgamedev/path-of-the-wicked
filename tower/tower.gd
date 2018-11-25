@@ -16,7 +16,6 @@ var gem = null
 var radius = 200
 var nearby_creeps = []
 var draw_circle = false
-var price = 1000
 
 func _ready():
 	if self.is_in_group('shop'):

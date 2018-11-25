@@ -16,6 +16,7 @@ var gold = 10000
 var gathered = 0
 var gathered_label = null
 var tween_label = null
+var tower_price = 1000
 
 func _ready():
 	gold_label.set_text('Gold: %d' % (gold - gathered))

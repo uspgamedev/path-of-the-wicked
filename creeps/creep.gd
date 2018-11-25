@@ -28,7 +28,7 @@ func _ready():
 	max_hp = creep_info.get_creep_hp(self.name)
 	hp = max_hp
 	vel = creep_info.get_creep_vel(self.name)
-	value = int(hp * vel / 100)
+	value = int(hp * vel / 30)
 	weakness = creep_info.get_creep_weakness(self.name)
 	strength = creep_info.get_creep_strength(self.name)
 	hp_bar.max_value = hp
@@ -106,7 +106,7 @@ func shock():
 	self.anim.playback_speed = 1
 
 func slow_down():
-	yield(get_tree().create_timer(2), 'timeout')
+	yield(get_tree().create_timer(3), 'timeout')
 	under_fx[2] = false
 	self.tween.playback_speed = 1
 	self.anim.playback_speed = 1

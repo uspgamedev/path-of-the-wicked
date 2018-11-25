@@ -20,7 +20,7 @@ func _on_Button_mouse_entered():
 		                   item.dmg, '\n\nPrice: ', item.price))
 	else:
 		hud.set_popup_text(str(item.name, '\n\nRange: ', \
-		                   item.radius, '\n\nPrice: ', item.price))
+		                   item.radius, '\n\nPrice: ', hud.tower_price))
 	hud.show_popup(self.rect_position)
 
 func _on_Button_mouse_exited():
@@ -34,13 +34,12 @@ func button_down():
 	get_viewport().warp_mouse(get_viewport().get_mouse_position())
 
 func _on_Button_button_down():
-	if hud.gold >= item.price:
-		if item.is_in_group('tower'):
-			main.get_node('Map').show_dummy_towers()
+	if item.is_in_group('tower') and hud.gold >= hud.tower_price:
+		main.get_node('Map').show_dummy_towers()
+		button_down()
+	elif hud.gold >= item.price:
+		var slot = inventory.get_empty_slot()
+		if slot:
 			button_down()
-		else:
-			var slot = inventory.get_empty_slot()
-			if slot:
-				button_down()
-				hud.update_gold(-item.price)
-				inventory.add_gem_on_slot(slot, item.type)
+			hud.update_gold(-item.price)
+			inventory.add_gem_on_slot(slot, item.type)

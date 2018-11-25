@@ -20,6 +20,7 @@ onready var dummy_towers = get_node('DummyTowers')
 onready var ts_db = TS_DB.new()
 onready var a_star = AStar.new()
 
+var is_dummy_towers_visible = false
 var adj_cells_dict = {}
 var idx_dict = {}
 var grass_coord = []
@@ -33,8 +34,8 @@ func _ready():
 		tilemap.cell_size.y * 5/8 + tilemap.cell_quadrant_size / 2 + tilemap.position.y)
 	randomize()
 	bias = 3*randf() - 2
-	generate_procedural_map()
-#	generate_AStar_graph()
+#	generate_procedural_map()
+	generate_AStar_graph()
 
 func generate_procedural_map():
 	for i in range(-1, 15):
@@ -215,14 +216,16 @@ func create_dummy_towers():
 		dummy_towers.add_child(dummy_tower)
 
 func _input(event):
-	if event.is_action_pressed('ui_buy_tower') and hud.gold >= 1000:
+	if event.is_action_pressed('ui_buy_tower') and hud.gold >= hud.tower_price:
 		show_dummy_towers()
 
 func show_dummy_towers():
+	is_dummy_towers_visible = true
 	for dummy_tower in dummy_towers.get_children():
 		dummy_tower.visible = true
 
 func hide_dummy_towers():
+	is_dummy_towers_visible = false
 	for dummy_tower in dummy_towers.get_children():
 		dummy_tower.visible = false
 
@@ -230,7 +233,8 @@ func place_tower(pos):
 	var tower = TOWER.instance()
 	tower.position = pos
 	towers.add_child(tower)
-	hud.update_gold(-tower.price)
+	hud.update_gold(-hud.tower_price)
+	hud.tower_price += 200
 	tower.draw_circle = true
 	tower.update()
 	hide_dummy_towers()

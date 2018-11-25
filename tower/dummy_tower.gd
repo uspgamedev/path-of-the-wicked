@@ -4,6 +4,7 @@ const CIRCLE = preload('res://tower/circle_drawing.gd')
 const OPAQUE = '#666666'
 const TRANSPARENT = '#ac666666'
 
+onready var hud = get_node('/root/Main/Camera2D/HUD')
 onready var map = get_node('/root/Main/Map')
 onready var sprite = get_node('AnimatedSprite')
 
@@ -26,6 +27,6 @@ func _on_AreaCollider_mouse_exited():
 	update()
 
 func _on_AreaCollider_input_event(viewport, event, shape_idx):
-	if event.is_action_pressed('ui_select') and self.visible:
+	if event.is_action_pressed('ui_select') and self.visible and hud.gold >= hud.tower_price:
 		map.place_tower(self.position/2)
 		self.queue_free()

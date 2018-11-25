@@ -5,6 +5,7 @@ const GEM_INFO = preload('res://gems/gem_info.gd')
 
 onready var hud = get_node('../../')
 onready var main = get_node('/root/Main')
+onready var map = get_node('/root/Main/Map')
 
 func get_empty_slot():
 	for slot in self.get_children():
@@ -28,7 +29,7 @@ func add_gem_on_slot_by_input(gem_type):
 		add_gem_on_slot(slot, gem_type)
 
 func _input(event):
-	if main.cursor == null:
+	if main.cursor == null and not map.is_dummy_towers_visible:
 		if event.is_action_pressed('ui_buy_gem_type1'):
 			add_gem_on_slot_by_input('1')
 		elif event.is_action_pressed('ui_buy_gem_type2'):

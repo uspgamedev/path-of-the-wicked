@@ -38,7 +38,7 @@ func _ready():
 	generate_AStar_graph()
 
 func generate_procedural_map():
-	for i in range(-1, 15):
+	for i in range(-1, 16):
 		for j in range(-1, 11):
 			tilemap.set_cellv(Vector2(i, j), ts_db.GRASS)
 	tilemap.set_cellv(Vector2(0, -1), ts_db.DR_UL)

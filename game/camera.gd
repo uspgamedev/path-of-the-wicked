@@ -28,7 +28,8 @@ func _input(event):
 	elif event.is_action_released('ui_camera'):
 		holding_cam = false
 	elif event.is_action_pressed('ui_zoom_in'):
-		OS.window_size = _window_size
+		if OS.window_size.x <= MAX_WINDOW_SIZE.x:
+			OS.window_size = _window_size
 		OS.window_resizable = true
 		if self.zoom != Vector2(1, 1):
 			self.zoom = Vector2(1, 1)
@@ -51,7 +52,8 @@ func _physics_process(delta):
 		                       min(OS.window_size.y, MAX_WINDOW_SIZE.y))
 		if OS.window_size != _window_size:
 			OS.window_resizable = false
-			OS.window_size = _window_size
+			if self.zoom == Vector2(2, 2):
+				OS.window_size = _window_size
 			self.offset.x = 0
 
 func change_camera_offset():

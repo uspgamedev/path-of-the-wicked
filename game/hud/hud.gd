@@ -79,7 +79,7 @@ func start_countdown():
 	var nw_tween = get_node('NextWave/NextWaveTween')
 	var bar = get_node('NextWave/TextureProgress')
 	next_wave.text = 'Next Wave'
-	next_wave.visible = true
+#	next_wave.visible = true
 	next_wave.get_node('TextureProgress').visible = true
 	nw_tween.interpolate_property(bar, 'value', 0, 100, wave_manager.wave_delay, \
 	                              Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)

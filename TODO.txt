@@ -1,11 +1,12 @@
 [ ] Add procedural map generation
+    [ ] Fix map generating closed paths (paths colliding with itselves)
+    [ ] Fix path colliding exactly with the end of another
 [ ] Refine AI on creeps
 [ ] Balance gems and tower price
 [ ] Add menu
 [ ] Add music and sfx
 [ ] Update game name
 [ ] Add credits
-
 
 ###########################################################
 

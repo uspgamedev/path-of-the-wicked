@@ -26,72 +26,83 @@ var idx_dict = {}
 var grass_coord = []
 var offset
 var base
-var in_tile_dir
-var bias
+var base_tile
 
 func _ready():
 	offset = Vector2(tilemap.cell_size.x / 2, \
 		tilemap.cell_size.y * 5/8 + tilemap.cell_quadrant_size / 2 + tilemap.position.y)
-	randomize()
-	bias = 3*randf() - 2
-#	generate_procedural_map()
-	generate_AStar_graph()
+	base_tile = tilemap.map_to_world(Vector2(13, 9))
+	generate_procedural_map()
+#	generate_AStar_graph()
 
 func generate_procedural_map():
 	for i in range(-1, 16):
 		for j in range(-1, 11):
 			tilemap.set_cellv(Vector2(i, j), ts_db.GRASS)
-	tilemap.set_cellv(Vector2(0, -1), ts_db.DR_UL)
-	in_tile_dir = UP_LEFT
-	var cell = Vector2(1, 0)
-	while in_tile_dir != null:
-#		yield(get_tree(), 'physics_frame')
-		cell = generate_tile(cell)
+	tilemap.set_cellv(Vector2(2, -1), ts_db.DR_UL)
+	tilemap.set_cellv(Vector2(-1, 7), ts_db.L_R)
+	randomize()
+	var bias1 = -1#-randf()
+	var bias2 = 1#randf()
+	var in_tile_dir1 = UP_LEFT
+	var in_tile_dir2 = LEFT
+	var cell1 = Vector2(3, 0)
+	var cell2 = Vector2(0, 7)
+	var info
+	while cell1 != null or cell2 != null:
+		yield(get_tree(), 'physics_frame')
+		info = generate_tile(cell1, bias1, in_tile_dir1)
+		cell1 = info[0]
+		in_tile_dir1 = info[1]
+		yield(get_tree(), 'physics_frame')
+		info = generate_tile(cell2, bias2, in_tile_dir2)
+		cell2 = info[0]
+		in_tile_dir2 = info[1]
+#	generate_AStar_graph()
+	generate_procedural_map()
 
-func generate_tile(cell):
-	var base_pos = tilemap.map_to_world(Vector2(13, 9))
-	var length = (base_pos - tilemap.map_to_world(cell)).length() / (4 * OS.window_size.length())
-	var angle = (base_pos - tilemap.map_to_world(cell)).angle_to(Vector2(1, 0))
+func generate_tile(cell, bias, in_tile_dir):
+	if cell == null:
+		return [null, null, null]
+	var length = (base_tile - tilemap.map_to_world(cell)).length() / 3000
+	if length < 0.1:
+		length = 0
+#	print(length)
+	var angle = (base_tile - tilemap.map_to_world(cell)).angle_to(Vector2(1, 0))
 	var rand = gaussian(bias, length)
 	var target_vector = Vector2(1, 0).rotated(angle).rotated(rand)
-	var out_tile_dir = get_next_tile_direction(target_vector)
+	var out_tile_dir = get_next_tile_direction(in_tile_dir, target_vector)
 	if cell.y < 0 or cell.y > 8 or cell.x < 1 or cell.x > 12:
-		out_tile_dir = get_next_tile_direction(Vector2(1, 0).rotated(angle))
+		out_tile_dir = get_next_tile_direction(in_tile_dir, Vector2(1, 0).rotated(angle))
 		bias *= -1.0/2.0
 	if tilemap.get_cellv(cell) == ts_db.GRASS:
 		tilemap.set_cellv(cell, ts_db.get_tile_id(self, in_tile_dir, out_tile_dir))
-		cell = update_cell(cell, out_tile_dir)
 	else:
-		in_tile_dir = null
-		yield(get_tree(), 'physics_frame')
-		bias = 0
-		generate_procedural_map()
-		return cell
+		if tilemap.get_cellv(cell) in ts_db.BRANCHED_TILE:
+			return generate_tile(cell, -bias, in_tile_dir)
+		tilemap.set_cellv(cell, ts_db.branch(self, tilemap.get_cellv(cell), in_tile_dir))
+		return [null, null, null]
+	cell = get_cell(cell, out_tile_dir)
 	if cell == Vector2(13, 9):
-		in_tile_dir = null
-#		yield(get_tree(), 'physics_frame')
-#		bias = 3*randf() - 2
-#		generate_procedural_map()
-		generate_AStar_graph()
+		return [null, null, null]
 	else:
-		update_in_tile_dir(out_tile_dir)
-	return cell
+		return [cell, get_in_tile_dir(out_tile_dir), bias]
 
-func update_in_tile_dir(out_tile_dir):
+func get_in_tile_dir(out_tile_dir):
 	if out_tile_dir == LEFT:
-		in_tile_dir = RIGHT
+		return RIGHT
 	elif out_tile_dir == DOWN_LEFT:
-		in_tile_dir = UP_RIGHT
+		return UP_RIGHT
 	elif out_tile_dir == DOWN_RIGHT:
-		in_tile_dir = UP_LEFT
+		return UP_LEFT
 	elif out_tile_dir == RIGHT:
-		in_tile_dir = LEFT
+		return LEFT
 	elif out_tile_dir == UP_RIGHT:
-		in_tile_dir = DOWN_LEFT
+		return DOWN_LEFT
 	elif out_tile_dir == UP_LEFT:
-		in_tile_dir = DOWN_RIGHT
+		return DOWN_RIGHT
 
-func update_cell(cell, out_tile_dir):
+func get_cell(cell, out_tile_dir):
 	if out_tile_dir == LEFT:
 		return Vector2(cell.x - 1, cell.y)
 	if out_tile_dir == DOWN_LEFT:
@@ -105,7 +116,7 @@ func update_cell(cell, out_tile_dir):
 	if out_tile_dir == UP_LEFT:
 		return Vector2(cell.x - int(abs(cell.y) + 1) % 2, cell.y - 1)
 
-func get_angle_vector(target_vector):
+func get_angle_vector(in_tile_dir, target_vector):
 	var angles = []
 	if in_tile_dir != LEFT:
 		angles.append(target_vector.angle_to(LEFT))
@@ -121,8 +132,8 @@ func get_angle_vector(target_vector):
 		angles.append(target_vector.angle_to(UP_LEFT))
 	return angles
 
-func get_next_tile_direction(target_vector):
-	var angles = get_angle_vector(target_vector)
+func get_next_tile_direction(in_tile_dir, target_vector):
+	var angles = get_angle_vector(in_tile_dir, target_vector)
 	var min_angle = INF
 	for angle in angles:
 		if abs(angle) < min_angle:
@@ -144,6 +155,8 @@ func gaussian(mean, deviation):
 	var x1
 	var x2
 	var w
+	if deviation == 0:
+		return mean
 	while true:
 		randomize()
 		x1 = rand_range(0, 2) - 1

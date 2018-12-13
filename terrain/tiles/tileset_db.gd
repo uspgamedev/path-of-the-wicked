@@ -107,12 +107,6 @@ func get_random_dir(map, cell_pos, cell):
 	else:
 		return null
 
-func get_matching_cell(cell, in_tile_dir):
-	cell.append(in_tile_dir)
-	cell.sort()
-	cell = str(cell[0], '_', cell[1], '_', cell[2])
-	return get(cell)
-
 func get_dir_strings(cell):
 	match cell:
 		DL_DR: cell = ['DL', 'DR']
@@ -131,17 +125,6 @@ func get_dir_strings(cell):
 		R_UR:  cell = ['R', 'UR']
 		UL_UR: cell = ['UL', 'UR']
 	return cell
-
-func branch(map, cell, in_tile_dir):
-	cell = get_dir_strings(cell)
-	match in_tile_dir:
-		map.LEFT:       in_tile_dir = 'L'
-		map.DOWN_LEFT:  in_tile_dir = 'DL'
-		map.DOWN_RIGHT: in_tile_dir = 'DR'
-		map.RIGHT:      in_tile_dir = 'R'
-		map.UP_RIGHT:   in_tile_dir = 'UR'
-		map.UP_LEFT:    in_tile_dir = 'UL'
-	return get_matching_cell(cell, in_tile_dir)
 
 func get_tile_id(map, in_tile_dir, out_tile_dir):
 	var dir = [in_tile_dir, out_tile_dir]

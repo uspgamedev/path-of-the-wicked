@@ -29,8 +29,9 @@ var grass_coord = []
 var offset
 var base
 var base_tile
-var reset_path = []
-var reset_id = []
+var path_pos = []
+var path_id = []
+var initial_path = false
 
 func _ready():
 	offset = Vector2(tilemap.cell_size.x / 2, \
@@ -39,35 +40,12 @@ func _ready():
 	generate_procedural_map()
 #	generate_AStar_graph()
 
-var n = 0
-
 func generate_procedural_map():
 	for i in range(-1, 16):
 		for j in range(-1, 11):
 			tilemap.set_cellv(Vector2(i, j), ts_db.GRASS)
-	var info
-	tilemap.set_cellv(Vector2(0, -1), ts_db.DR_UL)
-	var cell = Vector2(1, 0)
-	var in_tile_dir = UP_LEFT
-	var bias = 1
-	while cell != null:
-		yield(get_tree(), 'physics_frame')
-		info = generate_tile(cell, bias, in_tile_dir)
-		cell = info[0]
-		in_tile_dir = info[1]
-	reset_path.clear()
-	reset_id.clear()
-	tilemap.set_cellv(Vector2(-1, 7), ts_db.L_R)
-	cell = Vector2(0, 7)
-	in_tile_dir = LEFT
-	bias = 0.2
-	while cell != null:
-		yield(get_tree(), 'physics_frame')
-		info = generate_tile(cell, bias, in_tile_dir)
-		cell = info[0]
-		in_tile_dir = info[1]
-	reset_path.clear()
-	reset_id.clear()
+	generate_initial_path(Vector2(0, -1), ts_db.DR_UL, Vector2(1, 0), UP_LEFT, 1)
+	generate_initial_path(Vector2(-1, 7), ts_db.L_R, Vector2(0, 7), LEFT, 0.2)
 	for used_cell in tilemap.get_used_cells():
 		if tilemap.get_cellv(used_cell) != ts_db.GRASS and not tilemap.get_cellv(used_cell) in ts_db.BRANCHED_TILE:
 			if used_cell.y >= 0 and used_cell.y <= 9 and used_cell.x >= 0 and used_cell.x <= 13:
@@ -79,13 +57,27 @@ func generate_procedural_map():
 #	generate_AStar_graph()
 	generate_procedural_map()
 
+func generate_initial_path(creep_spawner, cell_id, cell, in_tile_dir, bias):
+	var info
+	var reset = [cell, in_tile_dir]
+	tilemap.set_cellv(creep_spawner, cell_id)
+	initial_path = true
+	while cell != null:
+		info = generate_tile(cell, bias, in_tile_dir)
+		cell = info[0]
+		in_tile_dir = info[1]
+	path_pos.clear()
+	path_id.clear()
+	if initial_path == true:
+		generate_initial_path(creep_spawner, cell_id, reset[0], reset[1], bias)
+
 func generate_middle_path(cell):
 	var out_tile_dir = ts_db.get_random_dir(self, cell, tilemap.get_cellv(cell))
 	if out_tile_dir == null:
 		return
-	reset_path.append(cell)
-	reset_id.append(tilemap.get_cellv(cell))
-	tilemap.set_cellv(cell, ts_db.branch(self, tilemap.get_cellv(cell), out_tile_dir))
+	path_pos.append(cell)
+	path_id.append(tilemap.get_cellv(cell))
+	tilemap.set_cellv(cell, branch(tilemap.get_cellv(cell), out_tile_dir))
 	cell = get_cell(cell, out_tile_dir)
 	var info
 	var in_tile_dir = get_in_tile_dir(out_tile_dir)
@@ -94,8 +86,8 @@ func generate_middle_path(cell):
 		info = generate_tile(cell, bias, in_tile_dir)
 		cell = info[0]
 		in_tile_dir = info[1]
-	reset_path.clear()
-	reset_id.clear()
+	path_pos.clear()
+	path_id.clear()
 
 func generate_tile(cell, bias, in_tile_dir):
 	var length = (base_tile - tilemap.map_to_world(cell)).length() / 3000
@@ -108,26 +100,45 @@ func generate_tile(cell, bias, in_tile_dir):
 	if cell.y <= 0 or cell.y >= 9 or cell.x <= 0 or cell.x >= 13:
 		out_tile_dir = get_next_tile_direction(cell, in_tile_dir, Vector2(1, 0).rotated(angle))
 	if tilemap.get_cellv(cell) == ts_db.GRASS:
-		reset_path.append(cell)
-		reset_id.append(ts_db.GRASS)
+		path_pos.append(cell)
+		path_id.append(ts_db.GRASS)
 		tilemap.set_cellv(cell, ts_db.get_tile_id(self, in_tile_dir, out_tile_dir))
 	else:
-		if tilemap.get_cellv(cell) in ts_db.BRANCHED_TILE:
+		if tilemap.get_cellv(cell) in ts_db.BRANCHED_TILE or (initial_path and cell in path_pos):
 			reset_path()
-			return [null, null, null]
-		reset_path.append(cell)
-		reset_id.append(tilemap.get_cellv(cell))
-		tilemap.set_cellv(cell, ts_db.branch(self, tilemap.get_cellv(cell), in_tile_dir))
-		return [null, null, null]
+		else:
+			path_pos.append(cell)
+			path_id.append(tilemap.get_cellv(cell))
+			tilemap.set_cellv(cell, branch(tilemap.get_cellv(cell), in_tile_dir))
+			initial_path = false
+		return [null, null]
 	cell = get_cell(cell, out_tile_dir)
 	if cell == Vector2(13, 9):
-		return [null, null, null]
+		initial_path = false
+		return [null, null]
 	else:
 		return [cell, get_in_tile_dir(out_tile_dir), bias]
 
 func reset_path():
-	for i in range(reset_path.size()):
-		tilemap.set_cellv(reset_path[i], reset_id[i])
+	for i in range(path_pos.size()):
+		tilemap.set_cellv(path_pos[i], path_id[i])
+
+func branch(cell, in_tile_dir):
+	cell = ts_db.get_dir_strings(cell)
+	match in_tile_dir:
+		LEFT:       in_tile_dir = 'L'
+		DOWN_LEFT:  in_tile_dir = 'DL'
+		DOWN_RIGHT: in_tile_dir = 'DR'
+		RIGHT:      in_tile_dir = 'R'
+		UP_RIGHT:   in_tile_dir = 'UR'
+		UP_LEFT:    in_tile_dir = 'UL'
+	return get_matching_cell(cell, in_tile_dir)
+
+func get_matching_cell(cell, in_tile_dir):
+	cell.append(in_tile_dir)
+	cell.sort()
+	cell = str(cell[0], '_', cell[1], '_', cell[2])
+	return ts_db.get(cell)
 
 func get_in_tile_dir(out_tile_dir):
 	match out_tile_dir:

@@ -1,5 +1,4 @@
 [ ] Add procedural map generation
-    [ ] Fix map generating initial closed paths (paths colliding with itselves)
     [ ] Fix too many paths
     [ ] Fix middle paths too short
 [ ] Refine AI on creeps
@@ -13,42 +12,4 @@
 
 [ ] Fix popup not showing on shop buttons
 [ ] Check if critical hit works with weakness and strength
-
-###########################################################
-
-[X] Add creep spawn
-[X] Add creep movement
-[X] Add creep health bar
-[X] Add random offset on creep spawn
-[X] Add gem shots at creeps
-[X] Add player interaction with gems
-[X] Add cooldown on transfered gems
-[X] Add slot transference to gems
-[X] Add tower transference to gems
-[X] Add hotkey to transfer gem from tower to slot
-[X] Add gem swap
-[X] Change gem size when zoomed out
-[X] Add projectile color based on gem
-[X] Fix bug that towers behind hud interacts with gems
-[X] Fix bug that gems doesn't swap
-[X] Fix bug that prevents gems from shooting
-[X] Fix bug that swaps a gem that returns to its source
-[X] Add gold
-[X] Add juiciness to gold counter
-[X] Add simple AI to creeps
-[X] Add wounded animation on creeps
-[X] Add shop system
-[X] Fix gem placement on towers behind hud
-[X] Fix gem placement near origin through hud
-[X] Fix gem not shooting when a creep is near
-[X] Add tower placement
-[X] Add wave system
-[X] Add popup panel
-[X] Add gem effects
-[X] Add creep weaknesses and strengths to gems
-[X] Balance creep attributes
-[X] Add wave number indicator
-[X] Add game over scene
-[X] Fix tower placing after game over
-[X] Add death animation on creeps
 

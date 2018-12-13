@@ -1,6 +1,7 @@
 [ ] Add procedural map generation
-    [ ] Fix map generating closed paths (paths colliding with itselves)
-    [ ] Fix path colliding exactly with the end of another
+    [ ] Fix map generating initial closed paths (paths colliding with itselves)
+    [ ] Fix too many paths
+    [ ] Fix middle paths too short
 [ ] Refine AI on creeps
 [ ] Balance gems and tower price
 [ ] Add menu

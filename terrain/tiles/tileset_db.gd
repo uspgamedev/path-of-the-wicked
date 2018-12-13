@@ -71,13 +71,49 @@ const BRANCHED_TILE = [
 	R_UL_UR
 ]
 
+func get_dir_vector(map, dir):
+	match dir:
+		'L':  dir = map.LEFT
+		'R':  dir = map.RIGHT
+		'DR': dir = map.DOWN_RIGHT
+		'DL': dir = map.DOWN_LEFT
+		'UL': dir = map.UP_LEFT
+		'UR': dir = map.UP_RIGHT
+	return dir
+
+func get_random_dir(map, cell_pos, cell):
+	var dir = ['L', 'R', 'DL', 'DR', 'UR', 'UL']
+	if cell_pos.x <= 0:
+		dir.erase('L')
+		dir.erase('UL')
+		dir.erase('DL')
+	if cell_pos.x >= 13:
+		dir.erase('R')
+		dir.erase('UR')
+		dir.erase('DR')
+	if cell_pos.y <= 0:
+		dir.erase('UL')
+		dir.erase('UR')
+	if cell_pos.y >= 9:
+		dir.erase('DL')
+		dir.erase('DR')
+	cell = get_dir_strings(cell)
+	dir.erase(cell[0])
+	dir.erase(cell[1])
+	if dir.size() > 0:
+		var out_tile_dir = dir[randi() % dir.size()]
+		out_tile_dir = get_dir_vector(map, out_tile_dir)
+		return out_tile_dir
+	else:
+		return null
+
 func get_matching_cell(cell, in_tile_dir):
 	cell.append(in_tile_dir)
 	cell.sort()
 	cell = str(cell[0], '_', cell[1], '_', cell[2])
 	return get(cell)
 
-func branch(map, cell, in_tile_dir):
+func get_dir_strings(cell):
 	match cell:
 		DL_DR: cell = ['DL', 'DR']
 		DL_L:  cell = ['DL', 'L']
@@ -94,6 +130,10 @@ func branch(map, cell, in_tile_dir):
 		R_UL:  cell = ['R', 'UL']
 		R_UR:  cell = ['R', 'UR']
 		UL_UR: cell = ['UL', 'UR']
+	return cell
+
+func branch(map, cell, in_tile_dir):
+	cell = get_dir_strings(cell)
 	match in_tile_dir:
 		map.LEFT:       in_tile_dir = 'L'
 		map.DOWN_LEFT:  in_tile_dir = 'DL'

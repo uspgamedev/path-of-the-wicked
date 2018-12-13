@@ -1,6 +1,4 @@
 [ ] Add procedural map generation
-    [ ] Fix too many paths
-    [ ] Fix middle paths too short
 [ ] Refine AI on creeps
 [ ] Balance gems and tower price
 [ ] Add menu

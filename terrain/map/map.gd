@@ -12,8 +12,6 @@ var RIGHT =      Vector2(1, 0).rotated(0)
 var UP_RIGHT =   Vector2(1, 0).rotated(PI/3)
 var UP_LEFT =    Vector2(1, 0).rotated(2*PI/3)
 
-var DIR = [LEFT, DOWN_LEFT, DOWN_RIGHT, RIGHT, UP_RIGHT, UP_LEFT]
-
 onready var hud = get_node('../Camera2D/HUD')
 onready var spawner_manager = get_node('../SpawnerManager')
 onready var towers = get_node('../Towers')
@@ -22,6 +20,8 @@ onready var dummy_towers = get_node('DummyTowers')
 onready var ts_db = TS_DB.new()
 onready var a_star = AStar.new()
 
+var map_complexity = 0.4
+var min_path_size = 4
 var is_dummy_towers_visible = false
 var adj_cells_dict = {}
 var idx_dict = {}
@@ -29,17 +29,15 @@ var grass_coord = []
 var offset
 var base
 var base_tile
+var initial_path = false
 var path_pos = []
 var path_id = []
-var invalid_cells = []
-var initial_path = false
 var valid_cells = []
-
-signal end_path
+var invalid_cells = []
 
 func _ready():
-	offset = Vector2(tilemap.cell_size.x / 2, \
-		tilemap.cell_size.y * 5/8 + tilemap.cell_quadrant_size / 2 + tilemap.position.y)
+	offset = Vector2(tilemap.cell_size.x / 2, tilemap.cell_size.y * 5/8 + \
+			tilemap.cell_quadrant_size / 2 + tilemap.position.y)
 	base_tile = tilemap.map_to_world(Vector2(13, 9))
 	generate_procedural_map()
 #	generate_AStar_graph()
@@ -48,28 +46,28 @@ func generate_procedural_map():
 	for i in range(-1, 16):
 		for j in range(-1, 11):
 			tilemap.set_cellv(Vector2(i, j), ts_db.GRASS)
-	generate_initial_path(Vector2(0, -1), ts_db.DR_UL, Vector2(1, 0), UP_LEFT, 1)
+	generate_initial_path(Vector2(0, -1), ts_db.DR_UL, Vector2(1, 0), UP_LEFT, 0.7)
 	generate_initial_path(Vector2(-1, 7), ts_db.L_R, Vector2(0, 7), LEFT, 0.3)
 	for used_cell in tilemap.get_used_cells():
 		if tilemap.get_cellv(used_cell) != ts_db.GRASS and not tilemap.get_cellv(used_cell) in ts_db.BRANCHED_TILE:
 				if used_cell.y >= 0 and used_cell.y <= 9 and used_cell.x >= 0 and used_cell.x <= 13:
 					valid_cells.append(used_cell)
 	while valid_cells.size() > 0:
-		yield(get_tree(), 'physics_frame')
 		var path_cells = []
 		for cell in tilemap.get_used_cells():
 			if tilemap.get_cellv(cell) != ts_db.GRASS:
 				path_cells.append(cell)
-		if (float(path_cells.size()) / tilemap.get_used_cells().size()) > 0.4:
+		if (float(path_cells.size()) / tilemap.get_used_cells().size()) > map_complexity:
 			break
 		var rand_idx = randi() % valid_cells.size()
 		for cell in valid_cells:
 			if tilemap.get_cellv(valid_cells[rand_idx]) in ts_db.BRANCHED_TILE:
 				valid_cells.erase(cell)
 		generate_middle_path(valid_cells[rand_idx])
-		yield(self, 'end_path')
 #	generate_AStar_graph()
 	valid_cells.clear()
+	yield(get_tree(), 'physics_frame')
+	yield(get_tree().create_timer(1.0), 'timeout')
 	generate_procedural_map()
 
 func generate_initial_path(creep_spawner, cell_id, cell, in_tile_dir, bias):
@@ -90,9 +88,6 @@ func generate_middle_path(cell):
 	var out_tile_dir = ts_db.get_random_dir(self, cell, tilemap.get_cellv(cell))
 	if out_tile_dir == null:
 		valid_cells.erase(cell)
-		yield(get_tree(), 'physics_frame')
-		emit_signal('end_path')
-		yield(get_tree(), 'physics_frame')
 		return
 	path_pos.append(cell)
 	path_id.append(tilemap.get_cellv(cell))
@@ -106,8 +101,7 @@ func generate_middle_path(cell):
 		info = generate_tile(cell, bias, in_tile_dir)
 		cell = info[0]
 		in_tile_dir = info[1]
-		yield(get_tree(), 'physics_frame')
-	if path_pos.size() > 4:
+	if path_pos.size() > min_path_size:
 		for cell in invalid_cells:
 			valid_cells.erase(cell)
 		invalid_cells.clear()
@@ -119,7 +113,6 @@ func generate_middle_path(cell):
 		reset_path()
 	path_pos.clear()
 	path_id.clear()
-	emit_signal('end_path')
 
 func generate_tile(cell, bias, in_tile_dir):
 	var length = (base_tile - tilemap.map_to_world(cell)).length() / 3000
@@ -150,7 +143,7 @@ func generate_tile(cell, bias, in_tile_dir):
 		initial_path = false
 		return [null, null]
 	else:
-		return [cell, get_in_tile_dir(out_tile_dir), bias]
+		return [cell, get_in_tile_dir(out_tile_dir)]
 
 func reset_path():
 	for i in range(path_pos.size()):
@@ -302,10 +295,11 @@ func add_adj_cell(cur_cell, ARRAY, next_cell, adj_cells):
 
 func create_dummy_towers():
 	for pos in grass_coord:
-		var dummy_tower = DUMMY_TOWER.instance()
-		dummy_tower.position = pos
-		dummy_tower.visible = false
-		dummy_towers.add_child(dummy_tower)
+		if pos != base and pos.x > 0 and pos.x < 3200:
+			var dummy_tower = DUMMY_TOWER.instance()
+			dummy_tower.position = pos
+			dummy_tower.visible = false
+			dummy_towers.add_child(dummy_tower)
 
 func _input(event):
 	if event.is_action_pressed('ui_buy_tower') and hud.gold >= hud.tower_price:

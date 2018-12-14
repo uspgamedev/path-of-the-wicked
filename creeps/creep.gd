@@ -24,6 +24,7 @@ var offset
 var under_fx = [false, false, false]
 var dying = false
 var path = null
+var global_path
 
 func _ready():
 	max_hp = creep_info.get_creep_hp(self.name)

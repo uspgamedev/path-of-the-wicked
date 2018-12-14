@@ -23,6 +23,7 @@ var towers = []
 var offset
 var under_fx = [false, false, false]
 var dying = false
+var path = null
 
 func _ready():
 	max_hp = creep_info.get_creep_hp(self.name)
@@ -83,7 +84,7 @@ func take_damage(dmg, gem_color = ''):
 		die()
 
 func move(object, key):
-	var target = spawner.get_next_point(self.position - offset) + offset
+	var target = spawner.get_next_point(self.position - offset, self) + offset
 	tween.interpolate_property(self, 'position', self.position, \
 	      target, float(100)/vel, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	tween.start()

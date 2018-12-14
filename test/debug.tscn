@@ -1,6 +1,6 @@
 [gd_scene format=2]
 
-[node name="Debug" type="Area2D"]
+[node name="Debug" type="Area2D" index="0"]
 
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )

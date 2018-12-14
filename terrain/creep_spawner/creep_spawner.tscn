@@ -2,7 +2,7 @@
 
 [ext_resource path="res://terrain/creep_spawner/creep_spawner.gd" type="Script" id=1]
 
-[node name="CreepSpawner" type="Node2D"]
+[node name="CreepSpawner" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 

@@ -59,16 +59,17 @@ func generate_procedural_map():
 				path_cells.append(cell)
 		if (float(path_cells.size()) / tilemap.get_used_cells().size()) > map_complexity:
 			break
+		randomize()
 		var rand_idx = randi() % valid_cells.size()
 		for cell in valid_cells:
 			if tilemap.get_cellv(valid_cells[rand_idx]) in ts_db.BRANCHED_TILE:
 				valid_cells.erase(cell)
 		generate_middle_path(valid_cells[rand_idx])
-#	generate_AStar_graph()
 	valid_cells.clear()
-	yield(get_tree(), 'physics_frame')
-	yield(get_tree().create_timer(1.0), 'timeout')
-	generate_procedural_map()
+	generate_AStar_graph()
+#	yield(get_tree(), 'physics_frame')
+#	yield(get_tree().create_timer(1.0), 'timeout')
+#	generate_procedural_map()
 
 func generate_initial_path(creep_spawner, cell_id, cell, in_tile_dir, bias):
 	var info
@@ -96,6 +97,7 @@ func generate_middle_path(cell):
 	cell = get_cell(cell, out_tile_dir)
 	var info
 	var in_tile_dir = get_in_tile_dir(out_tile_dir)
+	randomize()
 	var bias = (0.2 + 1.8*randf()) * (-1 + 2 *(randi() % 2))
 	while cell != null:
 		info = generate_tile(cell, bias, in_tile_dir)
@@ -239,6 +241,19 @@ func gaussian(mean, deviation):
 	w = sqrt(-2 * log(w)/w)
 	return mean + deviation * x1 * w
 
+func update_AStar_weights(tower, gem_dmg):
+	var cell_pos
+	gem_dmg *= 10
+	for cell in tilemap.get_used_cells():
+		if tilemap.get_cellv(cell) != ts_db.GRASS:
+			cell_pos = tilemap.map_to_world(cell) + offset
+			if cell_pos.distance_to(2 * tower.position) < 2 * tower.radius:
+				var weight = a_star.get_point_weight_scale(idx_dict[cell_pos])
+				a_star.set_point_weight_scale(idx_dict[cell_pos], weight + gem_dmg)
+	for spawner in spawner_manager.get_children():
+		if spawner.is_in_group('creep_spawner'):
+			spawner.path = spawner.update_path(spawner.path, spawner.position, base)
+
 func generate_AStar_graph():
 	for cell in tilemap.get_used_cells():
 		var pos = tilemap.map_to_world(cell) + offset
@@ -284,6 +299,7 @@ func add_adj_cell(cur_cell, ARRAY, next_cell, adj_cells):
 			else:
 				var creep_spawner = CREEP_SPAWNER.instance()
 				creep_spawner.position = pos
+				creep_spawner.add_to_group('creep_spawner')
 				spawner_manager.add_child(creep_spawner)
 				adj_cells_dict[pos] = PoolVector2Array([tilemap.map_to_world(cur_cell) + offset])
 				_add_point(pos)

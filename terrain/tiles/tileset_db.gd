@@ -101,6 +101,7 @@ func get_random_dir(map, cell_pos, cell):
 	dir.erase(cell[0])
 	dir.erase(cell[1])
 	if dir.size() > 0:
+		randomize()
 		var out_tile_dir = dir[randi() % dir.size()]
 		out_tile_dir = get_dir_vector(map, out_tile_dir)
 		return out_tile_dir

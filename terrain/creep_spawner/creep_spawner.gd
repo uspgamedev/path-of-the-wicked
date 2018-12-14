@@ -2,14 +2,32 @@ extends Node2D
 
 onready var map = get_node('/root/Main/Map')
 
-var path = PoolVector2Array([])
+var path
 
 func _ready():
-	var point_path = map.a_star.get_point_path(map.idx_dict[self.position], map.idx_dict[map.base])
+	path = update_path(path, self.position, map.base)
+	get_node('Timer').wait_time = .2
+
+func update_path(path, init_pos, end_pos):
+	path = PoolVector2Array([])
+	var point_path = map.a_star.get_point_path(map.idx_dict[init_pos], map.idx_dict[end_pos])
 	for i in range(point_path.size()):
 		path.append(Vector2(point_path[i].x, point_path[i].y))
+	return path
 
-func get_next_point(position):
-	for i in range(path.size()):
-		if position == path[i]:
-			return path[i + 1]
+func get_next_point(pos, creep):
+	if pos in path:
+		creep.path = null
+		for i in range(path.size()):
+			if pos == path[i]:
+				return path[i + 1]
+	if creep.path == null:
+		var closest_point
+		var dist = INF
+		for point in path:
+			if pos.distance_to(point) < dist:
+				closest_point = point
+		creep.path = update_path(creep.path, pos, closest_point)
+	for i in range(creep.path.size()):
+		if pos == creep.path[i]:
+			return creep.path[i + 1]

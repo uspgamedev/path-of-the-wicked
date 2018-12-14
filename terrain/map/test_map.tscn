@@ -329,7 +329,7 @@
 35/navigation_offset = Vector2( 111, 128 )
 35/shapes = [  ]
 
-[node name="TileMap" type="TileMap" index="0"]
+[node name="TileMap" type="TileMap"]
 
 position = Vector2( 0, 128 )
 mode = 0

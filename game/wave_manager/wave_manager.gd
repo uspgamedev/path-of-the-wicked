@@ -3,13 +3,13 @@ extends Node2D
 onready var hud = get_node('../Camera2D/HUD')
 onready var spawner_manager = get_node('../SpawnerManager')
 
-var cur_wave = 1
-#var cur_wave = 100
+#var cur_wave = 1
+var cur_wave = 100
 var cur_points = 0
-var wave_points = 500
-#var wave_points = 10000000
+#var wave_points = 500
+var wave_points = 10000000
 #var wave_delay = 10
-var wave_delay = 1500
+var wave_delay = .1500
 
 func start_wave():
 	spawner_manager.start_wave()

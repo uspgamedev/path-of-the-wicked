@@ -37,7 +37,7 @@ func get_creep_hp(creep_name):
 	return INFO[creep_name.split('-')[0]][HP]
 
 func get_creep_vel(creep_name):
-	return INFO[creep_name.split('-')[0]][VEL]
+	return 10 * INFO[creep_name.split('-')[0]][VEL]
 
 func get_creep_weakness(creep_name):
 	return INFO[creep_name.split('-')[0]][WEAKNESS]

@@ -107,7 +107,7 @@ editor/display_folded = true
 
 [node name="AnimatedSprite" parent="Camera2D/HUD/Panel/Items/Button7/Tower" index="0"]
 
-frame = 4
+frame = 14
 
 
 [editable path="Camera2D/HUD"]

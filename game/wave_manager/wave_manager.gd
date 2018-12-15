@@ -18,5 +18,4 @@ func end_wave():
 	cur_points = 0
 	cur_wave += 1
 	wave_points += cur_wave * 500
-#	wave_delay += 1
 	hud.start_countdown()

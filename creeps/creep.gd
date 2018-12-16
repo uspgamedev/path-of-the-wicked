@@ -81,7 +81,7 @@ func take_damage(dmg, gem_color = ''):
 	if gem_color == weakness:
 		dmg *= 2
 	elif gem_color == strength:
-		dmg /= 2
+		dmg = float(dmg)/2
 	hp -= dmg
 	hp_bar.value += dmg
 	if not hp_bar.visible:
@@ -105,7 +105,7 @@ func rotate_sprite(target):
 func poison(dmg):
 	for i in range(0, 10):
 		yield(get_tree().create_timer(.1), 'timeout')
-		self.take_damage(int(dmg/10))
+		self.take_damage(float(dmg)/10, 'Green Gem')
 	under_fx[0] = false
 
 func shock():
@@ -126,5 +126,5 @@ func splash(splash_area, dmg):
 	for creep_area in splash_area.get_overlapping_areas():
 		var _creep = creep_area.get_parent()
 		if _creep != self and _creep.is_in_group('creep'):
-			_creep.take_damage(int(dmg/2))
+			_creep.take_damage(float(dmg)/2, 'Red Gem')
 	splash_area.queue_free()

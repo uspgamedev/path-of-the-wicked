@@ -228,7 +228,7 @@ use_filter = false
 font_data = SubResource( 20 )
 _sections_unfolded = [ "Extra Spacing", "Font", "Resource", "Settings" ]
 
-[node name="HUD" type="Control"]
+[node name="HUD" type="Control" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -625,7 +625,7 @@ _sections_unfolded = [ "Material", "Transform", "Visibility" ]
 [node name="AnimatedSprite" parent="Panel/Items/Button1/ClearGem1" index="0"]
 
 material = SubResource( 5 )
-frame = 54
+frame = 38
 _sections_unfolded = [ "Material" ]
 
 [node name="Button2" parent="Panel/Items" index="1" instance=ExtResource( 8 )]
@@ -648,7 +648,7 @@ _sections_unfolded = [ "Transform" ]
 [node name="AnimatedSprite" parent="Panel/Items/Button2/ClearGem2" index="0"]
 
 material = SubResource( 7 )
-frame = 1
+frame = 45
 _sections_unfolded = [ "Material" ]
 
 [node name="Button3" parent="Panel/Items" index="2" instance=ExtResource( 8 )]
@@ -670,7 +670,7 @@ _sections_unfolded = [ "Transform" ]
 [node name="AnimatedSprite" parent="Panel/Items/Button3/ClearGem3" index="0"]
 
 material = SubResource( 9 )
-frame = 29
+frame = 13
 _sections_unfolded = [ "Material" ]
 
 [node name="Button4" parent="Panel/Items" index="3" instance=ExtResource( 8 )]
@@ -692,7 +692,7 @@ _sections_unfolded = [ "Transform" ]
 [node name="AnimatedSprite" parent="Panel/Items/Button4/ClearGem4" index="0"]
 
 material = SubResource( 11 )
-frame = 29
+frame = 13
 _sections_unfolded = [ "Material" ]
 
 [node name="Button5" parent="Panel/Items" index="4" instance=ExtResource( 8 )]
@@ -714,7 +714,7 @@ _sections_unfolded = [ "Transform" ]
 [node name="AnimatedSprite" parent="Panel/Items/Button5/ClearGem5" index="0"]
 
 material = SubResource( 13 )
-frame = 13
+frame = 27
 _sections_unfolded = [ "Material" ]
 
 [node name="Button6" parent="Panel/Items" index="5" instance=ExtResource( 8 )]
@@ -737,7 +737,7 @@ _sections_unfolded = [ "Material", "Transform" ]
 [node name="AnimatedSprite" parent="Panel/Items/Button6/ClearGem6" index="0"]
 
 material = SubResource( 17 )
-frame = 22
+frame = 6
 _sections_unfolded = [ "Material" ]
 
 [node name="Button7" parent="Panel/Items" index="6" instance=ExtResource( 8 )]

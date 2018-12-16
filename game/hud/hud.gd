@@ -106,7 +106,7 @@ func set_popup_text(_text):
 func show_popup(pos):
 	if camera.holding_cam:
 		return
-	popup.rect_position.x = max(pos.x - popup.rect_size.x, \
+	popup.rect_position.x = max(pos.x - popup.rect_size.x - 1, \
 			panel.rect_size.x - OS.window_size.x)
 	popup.rect_position.y = max(0, min(pos.y, \
 			OS.window_size.y - popup.rect_size.y))

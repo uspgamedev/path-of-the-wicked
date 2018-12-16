@@ -52,7 +52,7 @@ func update_weight(cell_id, gem_dmg, gem_color):
 		if creep_info.get_creep_weakness(key) == gem_color:
 			gem_dmg *= 2
 		elif creep_info.get_creep_strength(key) == gem_color:
-			gem_dmg /= 2
+			gem_dmg = float(gem_dmg) / 2
 		graphs[key][A_STAR].set_point_weight_scale(cell_id, weight + gem_dmg)
 
 func get_spawn_AStar(creep_name):

@@ -105,6 +105,10 @@ margin_bottom = 64.0
 
 editor/display_folded = true
 
+[node name="AnimatedSprite" parent="Camera2D/HUD/Panel/Items/Button7/Tower" index="0"]
+
+frame = 6
+
 
 [editable path="Camera2D/HUD"]
 [editable path="Camera2D/HUD/Panel/Items/Button7/Tower"]

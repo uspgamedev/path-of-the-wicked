@@ -1,6 +1,6 @@
+[ ] Check if critical hit works with weakness and strength
 [ ] Balance gems and tower price
 [ ] Fix popup not showing on shop buttons
-[ ] Check if critical hit works with weakness and strength
 [ ] Add fast forward
 [ ] Add menu
 [ ] Add music and sfx

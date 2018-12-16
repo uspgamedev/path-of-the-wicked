@@ -6,7 +6,7 @@ onready var creeps = get_node('../Creeps')
 onready var wave_manager = get_node('../WaveManager')
 onready var creep_db = CREEP_DB.new()
 
-const IDX_RANGE = 5
+const IDX_RANGE = 25
 
 var unique_id = 1
 var min_idx = 0

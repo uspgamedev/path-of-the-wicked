@@ -61,9 +61,3 @@ func get_spawn_AStar(creep_name):
 func get_spawn_path(map, creep_name, pos):
 	var idx = map.spawner_pos.find(pos)
 	return graphs[creep_name.split('-')[0]][idx+1]
-
-func set_graph_path(map, creep_name, a_star, path, pos):
-	var idx = map.spawner_pos.find(pos)
-	var value = graphs[creep_name.split('-')[0]]
-	value[idx+1] = path
-	graphs[creep_name.split('-')[0]] = value

@@ -6,11 +6,11 @@ onready var creeps = get_node('../Creeps')
 onready var wave_manager = get_node('../WaveManager')
 onready var creep_db = CREEP_DB.new()
 
-const IDX_RANGE = 25
+const IDX_RANGE = 5
 
 var unique_id = 1
 var min_idx = 0
-var max_idx = 5
+var max_idx = 3
 
 func _ready():
 	for spawner in self.get_children():
@@ -34,7 +34,8 @@ func spawn_creep(spawner):
 		wave_manager.end_wave()
 
 func start_wave():
-	max_idx = min(wave_manager.cur_wave + 4, creep_db.CREEPS.size())
+	max_idx = min(wave_manager.cur_wave + 2, creep_db.CREEPS.size())
 	min_idx = max(0, max_idx - IDX_RANGE)
+	print('wave ', wave_manager.cur_wave, ' ', min_idx, ' ', max_idx)
 	for spawner in self.get_children():
 		spawner.get_node('Timer').start()

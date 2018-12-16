@@ -3,7 +3,7 @@ extends Node2D
 onready var map = get_node('/root/Main/Map')
 
 func _ready():
-	get_node('Timer').wait_time = .2
+	get_node('Timer').wait_time = 2
 
 func get_next_point(pos, creep):
 	if pos in creep.spawn_path:

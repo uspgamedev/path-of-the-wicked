@@ -11,8 +11,7 @@ onready var notif = get_node('Notifications')
 onready var popup = get_node('Popup')
 onready var info = popup.get_node('Info')
 
-#var gold = 10000
-var gold = 1000000
+var gold = 10000
 var gathered = 0
 var gathered_label = null
 var tween_label = null
@@ -31,7 +30,7 @@ func _physics_process(delta):
 	next_wave.rect_position.x = panel.rect_size.x + 20 - OS.window_size.x
 
 func update_gold(amount):
-	amount = abs(amount)
+#	amount = abs(amount)
 	gold += amount
 	gathered += amount
 	if gold < 0:

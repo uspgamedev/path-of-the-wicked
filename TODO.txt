@@ -1,4 +1,6 @@
-[ ] Balance gems and tower price
+[ ] Balance game
+[ ] Add win condition
+    [ ] Add win scene
 [ ] Add fast forward
 [ ] Add menu
 [ ] Add music and sfx

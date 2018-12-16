@@ -37,12 +37,16 @@ func swap_gems():
 
 func move_gem(node = source, _gem = gem):
 	node.add_child(_gem)
-	node.gem = _gem
 	if node.is_in_group('slot'):
+		node.gem = _gem
 		_gem.position = node.offset
 	elif node.is_in_group('tower'):
+		if node.gem != null:
+			node.map.update_AStar_weights(node, -node.gem.dmg, node.gem.real_name)
+		node.gem = _gem
 		node.start_cooldown()
 		_gem.position = Vector2(0, 0)
 	elif node.is_in_group('discard'):
+		node.gem = _gem
 		_gem.queue_free()
 		node.gem = null

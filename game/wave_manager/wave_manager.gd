@@ -4,7 +4,7 @@ onready var hud = get_node('../Camera2D/HUD')
 onready var spawner_manager = get_node('../SpawnerManager')
 
 #var cur_wave = 1
-var cur_wave = 100
+var cur_wave = 25
 var cur_points = 0
 #var wave_points = 500
 var wave_points = 10000000

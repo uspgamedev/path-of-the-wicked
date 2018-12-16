@@ -4,6 +4,7 @@ const CREEP_SPAWNER = preload('res://terrain/creep_spawner/creep_spawner.tscn')
 const DUMMY_TOWER = preload('res://tower/dummy_tower.tscn')
 const TOWER = preload('res://tower/tower.tscn')
 const TS_DB = preload('res://terrain/tiles/tileset_db.gd')
+const A_STAR = preload('res://terrain/map/a_star_db.gd')
 
 var LEFT =       Vector2(1, 0).rotated(-PI)
 var DOWN_LEFT =  Vector2(1, 0).rotated(-2*PI/3)
@@ -18,7 +19,7 @@ onready var towers = get_node('../Towers')
 onready var tilemap = get_node('TileMap')
 onready var dummy_towers = get_node('DummyTowers')
 onready var ts_db = TS_DB.new()
-onready var a_star = AStar.new()
+onready var a_star = A_STAR.new()
 
 var map_complexity = 0.4
 var min_path_size = 4
@@ -26,6 +27,7 @@ var is_dummy_towers_visible = false
 var adj_cells_dict = {}
 var idx_dict = {}
 var grass_coord = []
+var spawner_pos = []
 var offset
 var base
 var base_tile
@@ -39,8 +41,10 @@ func _ready():
 	offset = Vector2(tilemap.cell_size.x / 2, tilemap.cell_size.y * 5/8 + \
 			tilemap.cell_quadrant_size / 2 + tilemap.position.y)
 	base_tile = tilemap.map_to_world(Vector2(13, 9))
+	a_star.init(self)
 	generate_procedural_map()
 #	generate_AStar_graph()
+	a_star.ready(self)
 
 func generate_procedural_map():
 	for i in range(-1, 16):
@@ -241,18 +245,25 @@ func gaussian(mean, deviation):
 	w = sqrt(-2 * log(w)/w)
 	return mean + deviation * x1 * w
 
-func update_AStar_weights(tower, gem_dmg):
+func update_AStar_weights(tower, gem_dmg, gem_color):
+	var adj_cells = []
 	var cell_pos
 	gem_dmg *= 10
 	for cell in tilemap.get_used_cells():
 		if tilemap.get_cellv(cell) != ts_db.GRASS:
 			cell_pos = tilemap.map_to_world(cell) + offset
 			if cell_pos.distance_to(2 * tower.position) < 2 * tower.radius:
-				var weight = a_star.get_point_weight_scale(idx_dict[cell_pos])
-				a_star.set_point_weight_scale(idx_dict[cell_pos], weight + gem_dmg)
-	for spawner in spawner_manager.get_children():
-		if spawner.is_in_group('creep_spawner'):
-			spawner.path = spawner.update_path(spawner.path, spawner.position, base)
+				adj_cells.append(cell_pos)
+	for cell_pos in adj_cells:
+		a_star.update_weight(idx_dict[cell_pos], gem_dmg, gem_color)
+	a_star.update_graph_paths(self)
+
+func update_path(_a_star, path, init_pos, end_pos):
+	path = PoolVector2Array([])
+	var point_path = _a_star.get_point_path(idx_dict[init_pos], idx_dict[end_pos])
+	for i in range(point_path.size()):
+		path.append(Vector2(point_path[i].x, point_path[i].y))
+	return path
 
 func generate_AStar_graph():
 	for cell in tilemap.get_used_cells():
@@ -264,7 +275,7 @@ func generate_AStar_graph():
 			grass_coord.append(pos)
 	for key in adj_cells_dict.keys():
 		for value in adj_cells_dict[key]:
-			a_star.connect_points(idx_dict[key], idx_dict[value], false)
+			a_star._connect_points(idx_dict[key], idx_dict[value])
 	create_dummy_towers()
 
 func get_adj_cells(cell):
@@ -285,8 +296,8 @@ func get_adj_cells(cell):
 	return adj_cells
 
 func _add_point(_pos):
-	var idx = a_star.get_available_point_id()
-	a_star.add_point(idx, Vector3(_pos.x, _pos.y, 0))
+	var idx = a_star._get_available_point_id()
+	a_star._add_point(idx, Vector3(_pos.x, _pos.y, 0))
 	idx_dict[_pos] = idx
 
 func add_adj_cell(cur_cell, ARRAY, next_cell, adj_cells):
@@ -299,7 +310,7 @@ func add_adj_cell(cur_cell, ARRAY, next_cell, adj_cells):
 			else:
 				var creep_spawner = CREEP_SPAWNER.instance()
 				creep_spawner.position = pos
-				creep_spawner.add_to_group('creep_spawner')
+				spawner_pos.append(pos)
 				spawner_manager.add_child(creep_spawner)
 				adj_cells_dict[pos] = PoolVector2Array([tilemap.map_to_world(cur_cell) + offset])
 				_add_point(pos)

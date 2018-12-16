@@ -11,7 +11,7 @@ var tower
 var real_name
 var fx_str
 var fx_script
-var color
+var hex_color
 var type
 var dmg
 var price
@@ -20,7 +20,7 @@ func _ready():
 	real_name = gem_info.get_gem_real_name(self.name)
 	fx_str = gem_info.get_gem_fx_str(self.name)
 	fx_script = gem_info.get_gem_fx_script(self.name)
-	color = gem_info.get_gem_color(self.name)
+	hex_color = gem_info.get_gem_color(self.name)
 	type = self.name[-1]
 	dmg = gem_info.get_gem_dmg(type)
 	price = gem_info.get_gem_price(type)
@@ -34,7 +34,7 @@ func shoot():
 		projectiles.unique_id += 1
 		proj.position = tower.position
 		proj.creep = tower.nearby_creeps[0]
-		proj.modulate = self.color
+		proj.modulate = self.hex_color
 		proj.gem_color = self.real_name
 		proj.dmg = self.dmg
 		proj.fx_script = self.fx_script

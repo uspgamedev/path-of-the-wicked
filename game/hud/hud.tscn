@@ -243,7 +243,7 @@ size_flags_vertical = 1
 script = ExtResource( 1 )
 _sections_unfolded = [ "Rect", "Transform" ]
 
-[node name="NextWave" type="Label" parent="." index="0"]
+[node name="Wave" type="Label" parent="." index="0"]
 
 editor/display_folded = true
 visible = false
@@ -251,9 +251,8 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = -780.0
 margin_top = 16.0
-margin_right = -465.0
+margin_right = 200.0
 margin_bottom = 88.0
 grow_horizontal = 0
 rect_pivot_offset = Vector2( 0, 0 )
@@ -267,21 +266,22 @@ custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 1
 custom_constants/shadow_offset_y = 1
 custom_constants/shadow_as_outline = 1
-text = "Next Wave"
+text = "Wave 42"
+align = 1
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Rect" ]
 
-[node name="TextureProgress" type="TextureProgress" parent="NextWave" index="0"]
+[node name="TextureProgress" type="TextureProgress" parent="Wave" index="0"]
 
+visible = false
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 150.0
 margin_top = 4.0
-margin_right = 350.0
+margin_right = 200.0
 margin_bottom = 24.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -303,16 +303,16 @@ fill_mode = 1
 radial_fill_degrees = 360.0
 radial_center_offset = Vector2( 0, 0 )
 nine_patch_stretch = false
-_sections_unfolded = [ "Textures" ]
+_sections_unfolded = [ "Rect", "Textures" ]
 
-[node name="NextWaveTimer" type="Timer" parent="NextWave" index="1"]
+[node name="WaveTimer" type="Timer" parent="Wave" index="1"]
 
 process_mode = 1
 wait_time = 1.0
 one_shot = false
 autostart = false
 
-[node name="NextWaveTween" type="Tween" parent="NextWave" index="2"]
+[node name="WaveTween" type="Tween" parent="Wave" index="2"]
 
 repeat = false
 playback_process_mode = 1
@@ -323,6 +323,7 @@ playback/speed = 1.0
 
 [node name="Panel" type="Panel" parent="." index="1"]
 
+editor/display_folded = true
 self_modulate = Color( 0.333333, 0.333333, 0.333333, 1 )
 anchor_left = 0.0
 anchor_top = 0.0
@@ -625,7 +626,7 @@ _sections_unfolded = [ "Material", "Transform", "Visibility" ]
 [node name="AnimatedSprite" parent="Panel/Items/Button1/ClearGem1" index="0"]
 
 material = SubResource( 5 )
-frame = 33
+frame = 34
 _sections_unfolded = [ "Material" ]
 
 [node name="Button2" parent="Panel/Items" index="1" instance=ExtResource( 8 )]
@@ -648,7 +649,7 @@ _sections_unfolded = [ "Transform" ]
 [node name="AnimatedSprite" parent="Panel/Items/Button2/ClearGem2" index="0"]
 
 material = SubResource( 7 )
-frame = 40
+frame = 41
 _sections_unfolded = [ "Material" ]
 
 [node name="Button3" parent="Panel/Items" index="2" instance=ExtResource( 8 )]
@@ -670,7 +671,7 @@ _sections_unfolded = [ "Transform" ]
 [node name="AnimatedSprite" parent="Panel/Items/Button3/ClearGem3" index="0"]
 
 material = SubResource( 9 )
-frame = 8
+frame = 9
 _sections_unfolded = [ "Material" ]
 
 [node name="Button4" parent="Panel/Items" index="3" instance=ExtResource( 8 )]
@@ -692,7 +693,7 @@ _sections_unfolded = [ "Transform" ]
 [node name="AnimatedSprite" parent="Panel/Items/Button4/ClearGem4" index="0"]
 
 material = SubResource( 11 )
-frame = 8
+frame = 9
 _sections_unfolded = [ "Material" ]
 
 [node name="Button5" parent="Panel/Items" index="4" instance=ExtResource( 8 )]
@@ -714,7 +715,7 @@ _sections_unfolded = [ "Transform" ]
 [node name="AnimatedSprite" parent="Panel/Items/Button5/ClearGem5" index="0"]
 
 material = SubResource( 13 )
-frame = 22
+frame = 23
 _sections_unfolded = [ "Material" ]
 
 [node name="Button6" parent="Panel/Items" index="5" instance=ExtResource( 8 )]
@@ -737,7 +738,7 @@ _sections_unfolded = [ "Material", "Transform" ]
 [node name="AnimatedSprite" parent="Panel/Items/Button6/ClearGem6" index="0"]
 
 material = SubResource( 17 )
-frame = 1
+frame = 2
 _sections_unfolded = [ "Material" ]
 
 [node name="Button7" parent="Panel/Items" index="6" instance=ExtResource( 8 )]
@@ -979,7 +980,7 @@ playback/active = false
 playback/repeat = false
 playback/speed = 1.0
 
-[connection signal="tween_completed" from="NextWave/NextWaveTween" to="." method="_on_NextWaveTween_tween_completed"]
+[connection signal="tween_completed" from="Wave/WaveTween" to="." method="_on_WaveTween_tween_completed"]
 
 [connection signal="mouse_entered" from="Panel" to="." method="_on_Panel_mouse_entered"]
 

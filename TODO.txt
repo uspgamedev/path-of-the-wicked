@@ -1,8 +1,6 @@
 [ ] Balance game
-    [ ] Plot difficult progression
 [ ] Add win condition
     [ ] Add win scene
-[ ] Change HUD position elements
 [ ] Add fast forward
 [ ] Add menu
 [ ] Add credits

@@ -10,7 +10,7 @@
 [ext_resource path="res://game/camera.gd" type="Script" id=8]
 [ext_resource path="res://game/hud/hud.tscn" type="PackedScene" id=9]
 
-[node name="Main" type="Node2D" index="0"]
+[node name="Main" type="Node2D"]
 
 pause_mode = 2
 script = ExtResource( 1 )
@@ -107,7 +107,7 @@ editor/display_folded = true
 
 [node name="AnimatedSprite" parent="Camera2D/HUD/Panel/Items/Button7/Tower" index="0"]
 
-frame = 8
+frame = 12
 
 
 [editable path="Camera2D/HUD"]

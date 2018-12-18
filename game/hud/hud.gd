@@ -5,7 +5,7 @@ onready var wave_manager = get_node('/root/Main/WaveManager')
 onready var camera = get_parent()
 onready var panel = get_node('Panel')
 onready var gold_label = get_node('Gold')
-onready var next_wave = get_node('NextWave')
+onready var wave_label = get_node('Wave')
 onready var gold_timer = get_node('Gold/GoldTimer')
 onready var notif = get_node('Notifications')
 onready var popup = get_node('Popup')
@@ -27,7 +27,7 @@ func _physics_process(delta):
                          camera.zoom.x * panel.rect_size.x, 0)
 	notif.rect_size = OS.window_size - Vector2(panel.rect_size.x, 0)
 	notif.rect_position.x = -notif.rect_size.x
-	next_wave.rect_position.x = panel.rect_size.x + 20 - OS.window_size.x
+	wave_label.rect_position.x = -OS.window_size.x/2 - 20
 
 func update_gold(amount):
 	gold += amount
@@ -75,11 +75,11 @@ func _on_PanelArea_area_exited(area):
 		main.cursor.gem.scale = Vector2(1, 1)
 
 func start_countdown():
-	var nw_tween = get_node('NextWave/NextWaveTween')
-	var bar = get_node('NextWave/TextureProgress')
-	next_wave.text = 'Next Wave'
-	next_wave.visible = true
-	next_wave.get_node('TextureProgress').visible = true
+	var nw_tween = get_node('Wave/WaveTween')
+	var bar = get_node('Wave/TextureProgress')
+	wave_label.text = ''
+	wave_label.visible = true
+	wave_label.get_node('TextureProgress').visible = true
 	nw_tween.interpolate_property(bar, 'value', 0, 100, wave_manager.wave_delay, \
 	                              Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	nw_tween.start()
@@ -91,9 +91,9 @@ func _on_NotificationsTimer_timeout():
 	notif_tween.start()
 	start_countdown()
 
-func _on_NextWaveTween_tween_completed(object, key):
-	next_wave.get_node('TextureProgress').visible = false
-	next_wave.text = str('Wave ', wave_manager.cur_wave)
+func _on_WaveTween_tween_completed(object, key):
+	wave_label.get_node('TextureProgress').visible = false
+	wave_label.text = str('Wave ', wave_manager.cur_wave)
 	wave_manager.start_wave()
 
 func set_popup_text(_text):

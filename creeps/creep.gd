@@ -29,12 +29,12 @@ var spawn_path
 var path_hash
 
 func _ready():
-	max_hp = creep_info.get_creep_hp(self.name)
+	max_hp = map.a_star.creep_info.get_creep_hp(self.name)
 	hp = max_hp
-	vel = creep_info.get_creep_vel(self.name)
+	vel = map.a_star.creep_info.get_creep_vel(self.name)
 	value = int(hp * vel / 30)
-	weakness = creep_info.get_creep_weakness(self.name)
-	strength = creep_info.get_creep_strength(self.name)
+	weakness = map.a_star.creep_info.get_creep_weakness(self.name)
+	strength = map.a_star.creep_info.get_creep_strength(self.name)
 	hp_bar.max_value = hp
 	hp_bar.get_parent().z_index = 1
 	if anim.has_animation('move'):

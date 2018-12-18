@@ -238,6 +238,7 @@ func gaussian(mean, deviation):
 	while true:
 		randomize()
 		x1 = rand_range(0, 2) - 1
+		randomize()
 		x2 = rand_range(0, 2) - 1
 		w = x1*x1 + x2*x2
 		if 0 < w and w < 1:
@@ -329,8 +330,11 @@ func create_dummy_towers():
 			dummy_towers.add_child(dummy_tower)
 
 func _input(event):
-	if event.is_action_pressed('ui_buy_tower') and hud.gold >= hud.tower_price:
-		show_dummy_towers()
+	if event.is_action_pressed('ui_buy_tower'):
+		if hud.gold >= hud.tower_price and not is_dummy_towers_visible:
+			show_dummy_towers()
+		else:
+			hide_dummy_towers()
 
 func show_dummy_towers():
 	is_dummy_towers_visible = true

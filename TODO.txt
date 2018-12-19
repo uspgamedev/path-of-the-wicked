@@ -1,6 +1,8 @@
 [ ] Balance game
-[ ] Add win condition
+[ ] Add win condition (survive wave 30)
     [ ] Add win scene
+[ ] Change circle draw to sprite
+[ ] Add pause menu
 [ ] Add fast forward
 [ ] Add menu
 [ ] Add credits

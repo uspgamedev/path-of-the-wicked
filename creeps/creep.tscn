@@ -4,7 +4,7 @@
 [ext_resource path="res://creeps/health-bar-green.png" type="Texture" id=2]
 [ext_resource path="res://creeps/health-bar-red.png" type="Texture" id=3]
 
-[node name="Creep" type="Node2D" groups=[
+[node name="Creep" type="Node2D" index="0" groups=[
 "creep",
 ]]
 
@@ -19,13 +19,14 @@ gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
+monitoring = false
 audio_bus_override = false
 audio_bus_name = "Master"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D" index="0"]
 
 build_mode = 0
-polygon = PoolVector2Array( -16, -16, -16, 16, 16, 16, 16, -16 )
+polygon = PoolVector2Array(  )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2"]
 

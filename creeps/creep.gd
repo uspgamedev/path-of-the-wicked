@@ -27,6 +27,8 @@ var path = null
 var spawn_AStar
 var spawn_path
 var path_hash
+var polygon = PoolVector2Array([Vector2(-16, -16), Vector2(-16, 16), \
+		Vector2(16, 16), Vector2(16, -16)])
 
 func _ready():
 	max_hp = map.a_star.creep_info.get_creep_hp(self.name)
@@ -45,6 +47,11 @@ func _ready():
 		spawn_path = map.update_path(spawn_AStar, spawn_path, self.position - offset, map.base)
 	path_hash = hash(spawn_path)
 	move(null, null)
+
+func _physics_process(delta):
+	if self.position.x > 0 and self.position.y > 0:
+		self.get_node('Area2D/CollisionPolygon2D').polygon = polygon
+		set_physics_process(false)
 
 func die():
 	dying = true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://tower/tower.gd" type="Script" id=1]
 [ext_resource path="res://tower/sprites/alien10001.png" type="Texture" id=2]
@@ -16,8 +16,9 @@
 [ext_resource path="res://tower/sprites/alien10013.png" type="Texture" id=14]
 [ext_resource path="res://tower/sprites/alien10014.png" type="Texture" id=15]
 [ext_resource path="res://tower/sprites/alien10015.png" type="Texture" id=16]
-[ext_resource path="res://tower/gem_cooldown/cooldown_red.png" type="Texture" id=17]
-[ext_resource path="res://tower/gem_cooldown/cooldown_green.png" type="Texture" id=18]
+[ext_resource path="res://tower/circle/big_circle.png" type="Texture" id=17]
+[ext_resource path="res://tower/gem_cooldown/cooldown_red.png" type="Texture" id=18]
+[ext_resource path="res://tower/gem_cooldown/cooldown_green.png" type="Texture" id=19]
 
 [sub_resource type="SpriteFrames" id=1]
 
@@ -44,11 +45,16 @@ script = ExtResource( 1 )
 modulate = Color( 0.402344, 0.402344, 0.402344, 1 )
 frames = SubResource( 1 )
 animation = "default"
-frame = 7
+frame = 3
 playing = true
 _sections_unfolded = [ "Visibility" ]
 
-[node name="AreaCollider" type="Area2D" parent="." index="1"]
+[node name="Circle" type="Sprite" parent="." index="1"]
+
+visible = false
+texture = ExtResource( 17 )
+
+[node name="AreaCollider" type="Area2D" parent="." index="2"]
 
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
@@ -63,7 +69,7 @@ audio_bus_name = "Master"
 build_mode = 0
 polygon = PoolVector2Array( -32, -13, -13, -32, 13, -32, 32, -13, 32, 13, 13, 32, -13, 32, -32, 13 )
 
-[node name="NearbyArea" type="Area2D" parent="." index="2"]
+[node name="NearbyArea" type="Area2D" parent="." index="3"]
 
 visible = false
 input_pickable = true
@@ -78,7 +84,7 @@ audio_bus_name = "Master"
 
 shape = SubResource( 2 )
 
-[node name="TextureProgress" type="TextureProgress" parent="." index="3"]
+[node name="TextureProgress" type="TextureProgress" parent="." index="4"]
 
 visible = false
 anchor_left = 0.0
@@ -102,9 +108,9 @@ page = 0.0
 value = 0.0
 exp_edit = false
 rounded = false
-texture_under = ExtResource( 17 )
+texture_under = ExtResource( 18 )
 texture_over = null
-texture_progress = ExtResource( 18 )
+texture_progress = ExtResource( 19 )
 fill_mode = 4
 radial_fill_degrees = 360.0
 radial_center_offset = Vector2( 0, 0 )

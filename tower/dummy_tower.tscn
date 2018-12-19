@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://tower/dummy_tower.gd" type="Script" id=1]
 [ext_resource path="res://tower/sprites/alien10001.png" type="Texture" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://tower/sprites/alien10013.png" type="Texture" id=14]
 [ext_resource path="res://tower/sprites/alien10014.png" type="Texture" id=15]
 [ext_resource path="res://tower/sprites/alien10015.png" type="Texture" id=16]
+[ext_resource path="res://tower/circle/big_circle.png" type="Texture" id=17]
 
 [sub_resource type="SpriteFrames" id=1]
 
@@ -26,7 +27,9 @@ animations = [ {
 "speed": 20.0
 } ]
 
-[node name="DummyTower" type="Node2D" index="0"]
+[node name="DummyTower" type="Node2D" groups=[
+"dummy_tower",
+]]
 
 scale = Vector2( 2, 2 )
 script = ExtResource( 1 )
@@ -37,11 +40,16 @@ _sections_unfolded = [ "Transform", "Z Index" ]
 modulate = Color( 0.4, 0.4, 0.4, 0.67451 )
 frames = SubResource( 1 )
 animation = "default"
-frame = 3
+frame = 14
 playing = true
 _sections_unfolded = [ "Visibility" ]
 
-[node name="AreaCollider" type="Area2D" parent="." index="1"]
+[node name="Circle" type="Sprite" parent="." index="1"]
+
+visible = false
+texture = ExtResource( 17 )
+
+[node name="AreaCollider" type="Area2D" parent="." index="2"]
 
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )

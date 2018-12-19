@@ -352,6 +352,6 @@ func place_tower(pos):
 	towers.add_child(tower)
 	hud.update_gold(-hud.tower_price)
 	hud.tower_price += 200
-	tower.draw_circle = true
-	tower.update()
+	tower.update_circle_texture()
+	tower.circle.visible = true
 	hide_dummy_towers()

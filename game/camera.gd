@@ -36,12 +36,16 @@ func _input(event):
 			self.zoom = Vector2(1, 1)
 			get_node('HUD').rect_scale = Vector2(1, 1)
 			self.offset = get_viewport().get_mouse_position() + _offset
+			get_tree().call_group('tower', 'update_circle_texture')
+			get_tree().call_group('dummy_tower', 'update_circle_texture')
 	elif event.is_action_pressed('ui_zoom_out') and OS.window_size <= SMALL_WINDOW:
 		self.offset = _offset
 		self.zoom = Vector2(2, 2)
 		get_viewport().warp_mouse(get_viewport().get_mouse_position())
 		get_node('HUD').rect_scale = Vector2(2, 2)
 		OS.window_resizable = false
+		get_tree().call_group('tower', 'update_circle_texture')
+		get_tree().call_group('dummy_tower', 'update_circle_texture')
 
 func _physics_process(delta):
 	if holding_cam and self.zoom == Vector2(1, 1):

@@ -1,8 +1,10 @@
 extends Node2D
 
 const CURSOR = preload('res://game/cursor.tscn')
-const CIRCLE = preload('res://tower/circle_drawing.gd')
+const BIG_CIRCLE = preload('res://tower/circle/big_circle.png')
+const SMALL_CIRCLE = preload('res://tower/circle/small_circle.png')
 
+onready var circle = get_node('Circle')
 onready var cooldown = get_node('TextureProgress')
 onready var area_collider = get_node('AreaCollider')
 onready var nearby_area = get_node('NearbyArea')
@@ -16,17 +18,12 @@ onready var map = main.get_node('Map')
 var gem = null
 var radius = 200
 var nearby_creeps = []
-var draw_circle = false
 
 func _ready():
 	if self.is_in_group('shop'):
 		area_collider.disconnect('area_entered', self, '_on_AreaCollider_area_entered')
 		area_collider.disconnect('area_exited', self, '_on_AreaCollider_area_exited')
 	set_area_radius(radius)
-
-func _draw():
-	if not self.is_in_group('shop') and draw_circle:
-		CIRCLE.draw_circle(self, radius)
 
 func set_area_radius(new_radius):
 	nearby_area_shape.shape.radius = new_radius
@@ -104,20 +101,27 @@ func _on_AreaCollider_mouse_entered():
 	var offset = Vector2(-34, 34) / camera.zoom.x
 	var pos =  self.position / camera.zoom.x - camera.offset - Vector2(OS.window_size.x - \
 	           hud.panel.rect_size.x, 0) + offset
-	draw_circle = true
+	update_circle_texture()
+	circle.visible = true
 	if gem == null:
 		hud.set_popup_text(str('Tower\n\nRange: ', radius))
 	else:
 		hud.set_popup_text(str('Tower with \n', gem.real_name, '\n\nType: ', gem.type, \
 		             '\n\nEffect:\n', gem.fx_str, '\n\nDamage: ', gem.dmg, '\n\nRange: ', radius))
 	hud.show_popup(pos)
-	update()
+
+func update_circle_texture():
+	if main.get_node('Camera2D').zoom == Vector2(1, 1):
+		circle.scale = Vector2(1, 1)
+		circle.texture = BIG_CIRCLE
+	else:
+		circle.scale = Vector2(2, 2)
+		circle.texture = SMALL_CIRCLE
 
 func _on_AreaCollider_mouse_exited():
-	draw_circle = false
+	circle.visible = false
 	self.z_index = 0
 	hud.hide_popup()
-	update()
 
 func _on_TextureProgress_mouse_exited():
 	_on_AreaCollider_mouse_exited()

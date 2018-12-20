@@ -13,7 +13,7 @@ onready var sprite = get_node('AnimatedSprite')
 var radius = 200
 
 func _ready():
-	circle.z_index = 1
+	circle.z_index = 2
 
 func update_circle_texture():
 	if map.get_node('../Camera2D').zoom == Vector2(1, 1):
@@ -31,7 +31,6 @@ func _on_AreaCollider_mouse_entered():
 func _on_AreaCollider_mouse_exited():
 	sprite.modulate = TRANSPARENT
 	circle.visible = false
-	self.z_index = 0
 
 func _on_AreaCollider_input_event(viewport, event, shape_idx):
 	if event.is_action_pressed('ui_select') and self.visible and hud.gold >= hud.tower_price:

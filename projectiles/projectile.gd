@@ -10,7 +10,7 @@ var creep
 var gem_color
 
 func _ready():
-	self.z_index = 1
+	self.z_index = 2
 	vector = creep.position - self.position * 2
 	vector = vector.normalized()
 

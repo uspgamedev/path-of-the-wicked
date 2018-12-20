@@ -24,5 +24,7 @@ func end_wave():
 func creep_exited():
 	if cur_wave > 26 and get_tree():
 		yield(get_tree(), 'physics_frame')
-		if creeps.get_child_count() == 0:
-			main.player_won()
+		for creep in creeps.get_children():
+			if creep.is_in_group('creep'):
+				return
+		main.player_won()

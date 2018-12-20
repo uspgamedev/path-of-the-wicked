@@ -24,7 +24,7 @@ func _ready():
 		area_collider.disconnect('area_entered', self, '_on_AreaCollider_area_entered')
 		area_collider.disconnect('area_exited', self, '_on_AreaCollider_area_exited')
 	set_area_radius(radius)
-	circle.z_index = 1
+	circle.z_index = 2
 
 func set_area_radius(new_radius):
 	nearby_area_shape.shape.radius = new_radius
@@ -122,7 +122,6 @@ func update_circle_texture():
 
 func _on_AreaCollider_mouse_exited():
 	circle.visible = false
-	self.z_index = 0
 	hud.hide_popup()
 
 func _on_TextureProgress_mouse_exited():

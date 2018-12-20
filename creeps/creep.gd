@@ -72,7 +72,8 @@ func die():
 		anim.playback_speed = 1
 		yield(get_tree().create_timer( \
 				anim.current_animation_length - 1.0/30), 'timeout')
-	self.queue_free()
+	if not get_tree().paused:
+		self.queue_free()
 
 func create_dummy_creep(proj):
 	var node = Node2D.new()
@@ -135,3 +136,6 @@ func splash(splash_area, dmg):
 		if _creep != self and _creep.is_in_group('creep'):
 			_creep.take_damage(float(dmg)/2, 'Red Gem')
 	splash_area.queue_free()
+
+func _on_Creep_tree_exited():
+	map.get_node('../WaveManager').creep_exited()

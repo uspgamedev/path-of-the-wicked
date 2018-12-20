@@ -85,6 +85,8 @@ radial_center_offset = Vector2( 0, 0 )
 nine_patch_stretch = false
 _sections_unfolded = [ "Textures", "Visibility" ]
 
+[connection signal="tree_exited" from="." to="." method="_on_Creep_tree_exited"]
+
 [connection signal="tween_completed" from="Tween" to="." method="move"]
 
 

@@ -1,9 +1,6 @@
-[ ] Add win condition (survive wave 26)
-    [ ] Add win scene
 [ ] Fix gem not swapping to tower
 [ ] Add pause menu
-[ ] Add fast forward
-[ ] Add menu
+[ ] Add main menu
 [ ] Add credits
 [ ] Add music and sfx
 

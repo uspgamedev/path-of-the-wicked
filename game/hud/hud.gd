@@ -33,7 +33,7 @@ func update_gold(amount):
 	gold += amount
 	gathered += amount
 	if gold < 0:
-		main.game_over()
+		main.player_lost()
 	if gathered_label == null:
 		gathered_label = gold_label.duplicate(DUPLICATE_USE_INSTANCING)
 		gathered_label.margin_top = 48

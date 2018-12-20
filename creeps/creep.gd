@@ -34,7 +34,7 @@ func _ready():
 	max_hp = map.a_star.creep_info.get_creep_hp(self.name)
 	hp = max_hp
 	vel = map.a_star.creep_info.get_creep_vel(self.name)
-	value = int(hp * vel / 30)
+	value = int(hp * vel / 40)
 	weakness = map.a_star.creep_info.get_creep_weakness(self.name)
 	strength = map.a_star.creep_info.get_creep_strength(self.name)
 	hp_bar.max_value = hp

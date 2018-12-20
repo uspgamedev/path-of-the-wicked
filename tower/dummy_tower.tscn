@@ -27,7 +27,7 @@ animations = [ {
 "speed": 20.0
 } ]
 
-[node name="DummyTower" type="Node2D" groups=[
+[node name="DummyTower" type="Node2D" index="0" groups=[
 "dummy_tower",
 ]]
 
@@ -40,7 +40,7 @@ _sections_unfolded = [ "Transform", "Z Index" ]
 modulate = Color( 0.4, 0.4, 0.4, 0.67451 )
 frames = SubResource( 1 )
 animation = "default"
-frame = 14
+frame = 10
 playing = true
 _sections_unfolded = [ "Visibility" ]
 

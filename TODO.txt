@@ -1,6 +1,6 @@
-[ ] Balance game
-[ ] Add win condition (survive wave 30)
+[ ] Add win condition (survive wave 26)
     [ ] Add win scene
+[ ] Fix gem not swapping to tower
 [ ] Add pause menu
 [ ] Add fast forward
 [ ] Add menu

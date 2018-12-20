@@ -34,10 +34,14 @@ func button_down():
 	get_viewport().warp_mouse(get_viewport().get_mouse_position())
 
 func _on_Button_button_down():
-	if item.is_in_group('tower') and hud.gold >= hud.tower_price:
-		main.get_node('Map').show_dummy_towers()
+	if item.is_in_group('tower'):
+		var map = main.get_node('Map')
+		if not map.is_dummy_towers_visible:
+			map.show_dummy_towers()
+		else:
+			map.hide_dummy_towers()
 		button_down()
-	elif hud.gold >= item.price:
+	elif not item.is_in_group('tower') and hud.gold >= item.price:
 		var slot = inventory.get_empty_slot()
 		if slot:
 			button_down()

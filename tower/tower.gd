@@ -24,6 +24,7 @@ func _ready():
 		area_collider.disconnect('area_entered', self, '_on_AreaCollider_area_entered')
 		area_collider.disconnect('area_exited', self, '_on_AreaCollider_area_exited')
 	set_area_radius(radius)
+	circle.z_index = 1
 
 func set_area_radius(new_radius):
 	nearby_area_shape.shape.radius = new_radius

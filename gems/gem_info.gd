@@ -19,14 +19,14 @@ const PRICE = 1
 
 const TYPE_INFO = {
 	'1' : [10, 1000],
-	'2' : [20, 4000],
-	'3' : [30, 12000],
-	'4' : [40, 24000],
-	'5' : [50, 36000],
-	'6' : [60, 45000]
+	'2' : [20, 5000],
+	'3' : [30, 20000],
+	'4' : [40, 60000],
+	'5' : [50, 120000],
+	'6' : [60, 240000]
 }
 
-const SHOT_COOLDOWN = .4
+const SHOT_COOLDOWN = .5
 
 func get_gem_real_name(gem_name):
 	return COLOR_INFO[gem_name.substr(0, gem_name.length() -1)][REAL_NAME]

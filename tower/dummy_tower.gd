@@ -12,6 +12,9 @@ onready var sprite = get_node('AnimatedSprite')
 
 var radius = 200
 
+func _ready():
+	circle.z_index = 1
+
 func update_circle_texture():
 	if map.get_node('../Camera2D').zoom == Vector2(1, 1):
 		circle.scale = Vector2(1, 1)

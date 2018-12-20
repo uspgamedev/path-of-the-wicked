@@ -38,6 +38,7 @@ var valid_cells = []
 var invalid_cells = []
 
 func _ready():
+	rand_seed(OS.get_system_time_secs())
 	offset = Vector2(tilemap.cell_size.x / 2, tilemap.cell_size.y * 5/8 + \
 			tilemap.cell_quadrant_size / 2 + tilemap.position.y)
 	base_tile = tilemap.map_to_world(Vector2(13, 9))
@@ -238,7 +239,6 @@ func gaussian(mean, deviation):
 	while true:
 		randomize()
 		x1 = rand_range(0, 2) - 1
-		randomize()
 		x2 = rand_range(0, 2) - 1
 		w = x1*x1 + x2*x2
 		if 0 < w and w < 1:
@@ -331,7 +331,7 @@ func create_dummy_towers():
 
 func _input(event):
 	if event.is_action_pressed('ui_buy_tower'):
-		if hud.gold >= hud.tower_price and not is_dummy_towers_visible:
+		if not is_dummy_towers_visible:
 			show_dummy_towers()
 		else:
 			hide_dummy_towers()
@@ -351,7 +351,7 @@ func place_tower(pos):
 	tower.position = pos
 	towers.add_child(tower)
 	hud.update_gold(-hud.tower_price)
-	hud.tower_price += 200
+	hud.tower_price += 100
 	tower.update_circle_texture()
 	tower.circle.visible = true
 	hide_dummy_towers()

@@ -1,18 +1,26 @@
 extends Node2D
 
+const INHERIT = 0
 const STOP = 1
 
 onready var hud = get_node('Camera2D/HUD')
+onready var notif = hud.get_node('Notifications')
+onready var blur_shader = hud.get_node('BlurShader')
+onready var panel = hud.get_node('Panel')
 
 var cursor = null
 var player_won = false
+var can_pause = false
 
 func _ready():
 	get_tree().paused = false
 
 func _input(event):
-	if event.is_action_pressed('ui_cancel'):
-		get_tree().quit()
+	if event.is_action_pressed('ui_cancel') and can_pause:
+		if not get_tree().paused:
+			pause()
+		else:
+			resume()
 	if get_tree().paused and event.is_action_pressed('ui_accept'):
 		if not player_won:
 			get_tree().reload_current_scene()
@@ -20,17 +28,24 @@ func _input(event):
 			# change to credits scene
 			get_tree().reload_current_scene()
 
+func pause():
+	stop_game('Paused')
+
+func resume():
+	for child in self.get_children():
+		child.pause_mode = INHERIT
+	notif.modulate = Color(1, 1, 1, 0)
+	blur_shader.visible = false
+	get_tree().paused = false
+
 func player_lost():
-	game_over('You Lose!\n\nPress Space to play again')
+	stop_game('You Lose!\n\nPress Space to play again')
 
 func player_won():
 	player_won = true
-	game_over('You Win!\n\nPress Space')
+	stop_game('You Win!\n\nPress Space')
 
-func game_over(text):
-	var notif = hud.get_node('Notifications')
-	var blur_shader = hud.get_node('BlurShader')
-	var panel = hud.get_node('Panel')
+func stop_game(text):
 	for child in self.get_children():
 		child.pause_mode = STOP
 	notif.modulate = Color(1, 1, 1, 1)

@@ -7,7 +7,7 @@
 
 resource_name = "death"
 length = 0.8
-loop = true
+loop = false
 step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")

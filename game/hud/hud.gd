@@ -90,6 +90,8 @@ func _on_NotificationsTimer_timeout():
 	            Color(1, 1, 1, 1), Color(1, 1, 1, 0), .5, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	notif_tween.start()
 	start_countdown()
+	yield(notif_tween, 'tween_completed')
+	main.can_pause = true
 
 func _on_WaveTween_tween_completed(object, key):
 	wave_label.get_node('TextureProgress').visible = false

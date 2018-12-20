@@ -70,10 +70,8 @@ func die():
 	if anim.has_animation('death'):
 		anim.play('death')
 		anim.playback_speed = 1
-		yield(get_tree().create_timer( \
-				anim.current_animation_length - 1.0/30), 'timeout')
-	if not get_tree().paused:
-		self.queue_free()
+		yield(anim, 'animation_finished')
+	self.queue_free()
 
 func create_dummy_creep(proj):
 	var node = Node2D.new()

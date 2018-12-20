@@ -10,7 +10,6 @@ var graphs = {}
 
 func init(map):
 	creep_info = CREEP_INFO.new()
-	creep_info.init()
 	for creep_name in creep_info.INFO.keys():
 		var value = [AStar.new()]
 		graphs[creep_name] = value

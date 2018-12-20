@@ -2,7 +2,7 @@
 
 [ext_resource path="res://game/hud/inv_slot.gd" type="Script" id=1]
 
-[node name="Slot" type="PanelContainer" groups=[
+[node name="Slot" type="PanelContainer" index="0" groups=[
 "slot",
 ]]
 
@@ -20,7 +20,7 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 script = ExtResource( 1 )
-_sections_unfolded = [ "Visibility" ]
+_sections_unfolded = [ "Pause", "Visibility" ]
 
 [node name="Area2D" type="Area2D" parent="." index="0"]
 

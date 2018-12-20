@@ -39,13 +39,13 @@ radius = 200.0
 ]]
 
 script = ExtResource( 1 )
+_sections_unfolded = [ "Pause" ]
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="." index="0"]
 
 modulate = Color( 0.402344, 0.402344, 0.402344, 1 )
 frames = SubResource( 1 )
 animation = "default"
-frame = 14
 playing = true
 _sections_unfolded = [ "Visibility" ]
 

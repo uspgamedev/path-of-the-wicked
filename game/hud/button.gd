@@ -24,8 +24,9 @@ func _on_Button_mouse_entered():
 	hud.show_popup(self.rect_position)
 
 func _on_Button_mouse_exited():
-	self.self_modulate = Color(.7, .7, .7, 1)
-	hud.hide_popup()
+	if not get_tree().paused:
+		self.self_modulate = Color(.7, .7, .7, 1)
+		hud.hide_popup()
 
 func button_down():
 	shop_button._on_ShopButton_button_down()

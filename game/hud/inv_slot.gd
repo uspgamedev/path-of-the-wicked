@@ -18,9 +18,10 @@ func _on_Slot_mouse_entered():
 		hud.show_popup(self.rect_position)
 
 func _on_Slot_mouse_exited():
-	self.self_modulate = Color(.7, .7, .7, 1)
-	get_viewport().warp_mouse(get_viewport().get_mouse_position())
-	hud.hide_popup()
+	if not get_tree().paused:
+		self.self_modulate = Color(.7, .7, .7, 1)
+		get_viewport().warp_mouse(get_viewport().get_mouse_position())
+		hud.hide_popup()
 
 func _gui_input(event):
 	if event.is_action_pressed('ui_select') and gem != null:

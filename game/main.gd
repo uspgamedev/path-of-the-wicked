@@ -34,6 +34,8 @@ func pause():
 func resume():
 	for child in self.get_children():
 		child.pause_mode = INHERIT
+	get_tree().call_group('slot', '_on_Slot_mouse_exited')
+	get_tree().call_group('button', '_on_Button_mouse_exited')
 	notif.modulate = Color(1, 1, 1, 0)
 	blur_shader.visible = false
 	get_tree().paused = false

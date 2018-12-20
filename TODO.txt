@@ -1,4 +1,3 @@
-[ ] Fix gem not swapping to tower
 [ ] Add pause menu
 [ ] Add main menu
 [ ] Add credits

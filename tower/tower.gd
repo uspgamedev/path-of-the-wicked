@@ -88,6 +88,7 @@ func set_target(area, value):
 
 func _on_AreaCollider_area_entered(area):
 	if area.get_parent().is_in_group('cursor'):
+		yield(get_tree(), 'physics_frame')
 		set_target(area, self)
 		_on_AreaCollider_mouse_entered()
 

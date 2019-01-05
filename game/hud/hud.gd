@@ -11,7 +11,7 @@ onready var notif = get_node('Notifications')
 onready var popup = get_node('Popup')
 onready var info = popup.get_node('Info')
 
-var gold = 6000
+var gold = 600000
 var gathered = 0
 var gathered_label = null
 var tween_label = null
@@ -20,6 +20,10 @@ var tower_price = 300
 func _ready():
 	gold_label.set_text('Gold: %d' % (gold - gathered))
 	notif.get('custom_fonts/font').set_size(80)
+
+func _input(event):
+	if event.is_action_pressed('ui_sepia'):
+		$Sepia.visible = not $Sepia.visible
 
 func _physics_process(delta):
 	panel.rect_size = Vector2(panel.rect_size.x, OS.window_size.y)
@@ -30,6 +34,7 @@ func _physics_process(delta):
 	wave_label.rect_position.x = -OS.window_size.x/2 - 20
 
 func update_gold(amount):
+	amount = abs(amount)
 	gold += amount
 	gathered += amount
 	if gold < 0:

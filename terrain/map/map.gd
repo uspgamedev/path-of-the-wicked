@@ -257,6 +257,8 @@ func update_AStar_weights(tower, gem_dmg, gem_color):
 				adj_cells.append(cell_pos)
 	for cell_pos in adj_cells:
 		a_star.update_weight(idx_dict[cell_pos], gem_dmg, gem_color)
+		weights[idx_dict[cell_pos]-1] += gem_dmg
+	update_node_colors()
 	a_star.update_graph_paths(self)
 
 func update_path(_a_star, path, init_pos, end_pos):
@@ -266,17 +268,67 @@ func update_path(_a_star, path, init_pos, end_pos):
 		path.append(Vector2(point_path[i].x, point_path[i].y))
 	return path
 
+var weights = []
+var nodes = []
+
+func update_node_colors():
+	var _min = INF
+	var _max = 0
+	for value in weights:
+		if value != null:
+			if value < _min:
+				_min = value
+			if value > _max:
+				_max = value
+	_min = float(_min)
+	_max = float(_max)
+	for i in range(0, nodes.size()):
+		if weights[i] != null:
+			if _max != _min:
+				var ratio = 2 * (weights[i] - _min) / (_max - _min)
+				var r = max(0, (ratio - 1))
+				var b = max(0, (1 - ratio))
+				var g = 1 - b - r
+				nodes[i].modulate = Color(r, g, b)
+			else:
+				nodes[i].modulate = Color(0, 0, 1)
+
+func add_circle(pos, flag = true):
+	if flag:
+		var circle = Sprite.new()
+		circle.z_index = 7
+		circle.texture = load('res://circle.png')
+		circle.modulate = Color(0, 0, 1)
+		circle.position = pos
+		circle.scale = Vector2(.4, .4)
+		self.add_child(circle)
+		nodes.append(circle)
+		weights.append(1)
+	else:
+		nodes.append(null)
+		weights.append(null)
+
+func add_line(key, value):
+	var line = Line2D.new()
+	line.z_index = 6
+	line.width = 20
+	line.default_color = Color(0, 0, 0)
+	line.points = PoolVector2Array([key, value])
+	self.add_child(line)
+
 func generate_AStar_graph():
 	for cell in tilemap.get_used_cells():
 		var pos = tilemap.map_to_world(cell) + offset
 		if tilemap.get_cellv(cell) != ts_db.GRASS:
 			adj_cells_dict[pos] = get_adj_cells(cell)
 			_add_point(pos)
+			add_circle(pos)
 		else:
 			grass_coord.append(pos)
 	for key in adj_cells_dict.keys():
 		for value in adj_cells_dict[key]:
 			a_star._connect_points(idx_dict[key], idx_dict[value])
+			add_line(key, value)
 	create_dummy_towers()
 
 func get_adj_cells(cell):
@@ -315,10 +367,12 @@ func add_adj_cell(cur_cell, ARRAY, next_cell, adj_cells):
 				spawner_manager.add_child(creep_spawner)
 				adj_cells_dict[pos] = PoolVector2Array([tilemap.map_to_world(cur_cell) + offset])
 				_add_point(pos)
+				add_circle(pos, false)
 		else:
 			base = pos
 			adj_cells.append(pos)
 			_add_point(pos)
+			add_circle(pos, false)
 	return adj_cells
 
 func create_dummy_towers():

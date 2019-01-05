@@ -93,7 +93,7 @@ _sections_unfolded = [ "Z Index" ]
 __meta__ = {
 "_edit_lock_": true
 }
-free_camera = false
+free_camera = true
 zoomed = false
 
 [node name="HUD" parent="Camera2D" index="0" instance=ExtResource( 9 )]
@@ -107,7 +107,7 @@ editor/display_folded = true
 
 [node name="AnimatedSprite" parent="Camera2D/HUD/Panel/Items/Button7/Tower" index="0"]
 
-frame = 3
+frame = 5
 
 
 [editable path="Camera2D/HUD"]

@@ -26,7 +26,6 @@ var dying = false
 var path = null
 var spawn_AStar
 var spawn_path
-var path_hash
 var polygon = PoolVector2Array([Vector2(-16, -16), Vector2(-16, 16), \
 		Vector2(16, 16), Vector2(16, -16)])
 
@@ -43,7 +42,6 @@ func _ready():
 		anim.play('move')
 	spawn_AStar = map.a_star.get_spawn_AStar(self.name)
 	spawn_path = map.a_star.get_spawn_path(map, self.name, self.position - offset)
-	path_hash = hash(spawn_path)
 	move(null, null)
 
 func _physics_process(delta):

@@ -1,5 +1,6 @@
-[ ] Add pause menu
 [ ] Add main menu
+[ ] Add difficulty menu
 [ ] Add credits
+[ ] Add pause menu
 [ ] Add music and sfx
 

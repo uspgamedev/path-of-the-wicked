@@ -43,8 +43,6 @@ func _ready():
 		anim.play('move')
 	spawn_AStar = map.a_star.get_spawn_AStar(self.name)
 	spawn_path = map.a_star.get_spawn_path(map, self.name, self.position - offset)
-	if spawn_path.size() == 0:
-		spawn_path = map.update_path(spawn_AStar, spawn_path, self.position - offset, map.base)
 	path_hash = hash(spawn_path)
 	move(null, null)
 

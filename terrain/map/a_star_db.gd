@@ -46,6 +46,7 @@ func update_creeps_spawn_path(map):
 	var creeps = map.get_node('../Creeps')
 	for creep in creeps.get_children():
 		if creep.is_in_group('creep'):
+			creep.path = null
 			creep.spawn_path = get_spawn_path(map, creep.name, creep.spawner.position)
 
 func update_weight(cell_id, gem_dmg, gem_color):

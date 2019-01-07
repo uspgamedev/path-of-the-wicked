@@ -53,7 +53,7 @@ func _on_AreaCollider_input_event(viewport, event, shape_idx):
 			self.remove_child(gem)
 			main.add_child(cursor)
 			main.cursor = cursor
-			map.update_AStar_weights(self, -gem.dmg, gem.real_name)
+			map.update_graph_weights(self, -gem.dmg, gem.real_name)
 			self.gem = null
 		elif event.is_action_pressed('ui_slot'):
 			var slot = inventory.get_empty_slot()
@@ -62,7 +62,7 @@ func _on_AreaCollider_input_event(viewport, event, shape_idx):
 				slot.gem = self.gem
 				slot.add_child(gem)
 				gem.position = slot.offset
-				map.update_AStar_weights(self, -gem.dmg, gem.real_name)
+				map.update_graph_weights(self, -gem.dmg, gem.real_name)
 				self.gem = null
 			_on_AreaCollider_mouse_entered()
 
@@ -75,7 +75,7 @@ func start_cooldown():
 	if (self.position / hud.camera.zoom.x - hud.camera.offset - \
 	                    get_viewport().get_mouse_position()).length() > 32:
 		_on_AreaCollider_mouse_exited()
-	map.update_AStar_weights(self, gem.dmg, gem.real_name)
+	map.update_graph_weights(self, gem.dmg, gem.real_name)
 
 func _on_Tween_tween_completed(object, key):
 	cooldown.visible = false

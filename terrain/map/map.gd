@@ -246,7 +246,7 @@ func gaussian(mean, deviation):
 	w = sqrt(-2 * log(w)/w)
 	return mean + deviation * x1 * w
 
-func update_AStar_weights(tower, gem_dmg, gem_color):
+func update_graph_weights(tower, gem_dmg, gem_color):
 	var adj_cells = []
 	var cell_pos
 	gem_dmg *= 10

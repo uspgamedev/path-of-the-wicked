@@ -24,7 +24,7 @@ var offset
 var under_fx = [false, false, false]
 var dying = false
 var path = null
-var spawn_AStar
+var spawn_graph
 var spawn_path
 var polygon = PoolVector2Array([Vector2(-16, -16), Vector2(-16, 16), \
 		Vector2(16, 16), Vector2(16, -16)])
@@ -40,7 +40,7 @@ func _ready():
 	hp_bar.get_parent().z_index = 1
 	if anim.has_animation('move'):
 		anim.play('move')
-	spawn_AStar = map.a_star.get_spawn_AStar(self.name)
+	spawn_graph = map.a_star.get_spawn_graph(self.name)
 	spawn_path = map.a_star.get_spawn_path(map, self.name, self.position - offset)
 	move(null, null)
 

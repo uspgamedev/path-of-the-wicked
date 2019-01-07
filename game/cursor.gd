@@ -42,7 +42,7 @@ func move_gem(node = source, _gem = gem):
 		_gem.position = node.offset
 	elif node.is_in_group('tower'):
 		if node.gem != null:
-			node.map.update_AStar_weights(node, -node.gem.dmg, node.gem.real_name)
+			node.map.update_graph_weights(node, -node.gem.dmg, node.gem.real_name)
 		node.gem = _gem
 		node.start_cooldown()
 		_gem.position = Vector2(0, 0)

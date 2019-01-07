@@ -33,13 +33,16 @@ func _connect_points(id, to_id):
 	for graph in graphs.values():
 		graph[A_STAR].connect_points(id, to_id, false)
 
-func update_graph_paths(map):
+func reset_spawn_paths(map):
 	for key in graphs.keys():
 		var graph = graphs[key]
 		var value = [graph[A_STAR]]
 		for i in map.spawner_pos.size():
-			value.append(map.update_path(graph[A_STAR], graph[i+1], map.spawner_pos[i], map.base))
+			value.append(PoolVector2Array([]))
 		graphs[key] = value
+	update_creeps_spawn_path(map)
+
+func update_creeps_spawn_path(map):
 	var creeps = map.get_node('../Creeps')
 	for creep in creeps.get_children():
 		if creep.is_in_group('creep'):
@@ -61,3 +64,11 @@ func get_spawn_AStar(creep_name):
 func get_spawn_path(map, creep_name, pos):
 	var idx = map.spawner_pos.find(pos)
 	return graphs[creep_name.split('-')[0]][idx+1]
+
+func set_spawn_path(map, creep):
+	var idx = map.spawner_pos.find(creep.spawner.position)
+	var creep_name = creep.name.split('-')[0]
+	var value = graphs[creep_name]
+	value[idx+1] = creep.spawn_path
+	graphs[creep_name] = value
+	update_creeps_spawn_path(map)

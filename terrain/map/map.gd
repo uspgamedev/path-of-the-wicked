@@ -257,7 +257,7 @@ func update_AStar_weights(tower, gem_dmg, gem_color):
 				adj_cells.append(cell_pos)
 	for cell_pos in adj_cells:
 		a_star.update_weight(idx_dict[cell_pos], gem_dmg, gem_color)
-	a_star.update_graph_paths(self)
+	a_star.reset_spawn_paths(self)
 
 func update_path(_a_star, path, init_pos, end_pos):
 	path = PoolVector2Array([])

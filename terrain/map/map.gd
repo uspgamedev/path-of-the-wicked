@@ -247,23 +247,20 @@ func gaussian(mean, deviation):
 	return mean + deviation * x1 * w
 
 func update_graph_weights(tower, gem_dmg, gem_color):
-	var adj_cells = []
-	var cell_pos
 	gem_dmg *= 10
 	for cell in tilemap.get_used_cells():
 		if tilemap.get_cellv(cell) != ts_db.GRASS:
-			cell_pos = tilemap.map_to_world(cell) + offset
-			if cell_pos.distance_to(2 * tower.position) < 2 * tower.radius:
-				adj_cells.append(cell_pos)
-	for cell_pos in adj_cells:
-		a_star.update_weight(idx_dict[cell_pos], gem_dmg, gem_color)
-		weights[idx_dict[cell_pos]-1] += gem_dmg
+			var cell_pos = tilemap.map_to_world(cell) + offset
+			if cell_pos.distance_to(tower.position / self.scale.x) < \
+					tower.radius / self.scale.x:
+				a_star.update_weight(idx_dict[cell_pos], gem_dmg, gem_color)
+				weights[idx_dict[cell_pos]-1] += gem_dmg
 	update_node_colors()
 	a_star.reset_spawn_paths(self)
 
-func update_path(_a_star, path, init_pos, end_pos):
+func update_path(_a_star, path, init_pos):
 	path = PoolVector2Array([])
-	var point_path = _a_star.get_point_path(idx_dict[init_pos], idx_dict[end_pos])
+	var point_path = _a_star.get_point_path(idx_dict[init_pos], idx_dict[base])
 	for i in range(point_path.size()):
 		path.append(Vector2(point_path[i].x, point_path[i].y))
 	return path

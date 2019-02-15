@@ -10,7 +10,7 @@ config_version=3
 
 [application]
 
-config/name="mac0499"
+config/name="Path of The Wicked"
 run/main_scene="res://game/main.tscn"
 config/icon="res://icon.png"
 

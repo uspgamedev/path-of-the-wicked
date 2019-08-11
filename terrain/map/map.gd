@@ -51,8 +51,8 @@ func generate_procedural_map():
 	for i in range(-1, 16):
 		for j in range(-1, 11):
 			tilemap.set_cellv(Vector2(i, j), ts_db.GRASS)
-	generate_initial_path(Vector2(0, -1), ts_db.DR_UL, Vector2(1, 0), UP_LEFT, 0.7)
-	generate_initial_path(Vector2(-1, 7), ts_db.L_R, Vector2(0, 7), LEFT, 0.3)
+	yield(generate_initial_path(Vector2(0, -1), ts_db.DR_UL, Vector2(1, 0), UP_LEFT, 0.7), "completed")
+	yield(generate_initial_path(Vector2(-1, 7), ts_db.L_R, Vector2(0, 7), LEFT, 0.3), "completed")
 	for used_cell in tilemap.get_used_cells():
 		if tilemap.get_cellv(used_cell) != ts_db.GRASS and not tilemap.get_cellv(used_cell) in ts_db.BRANCHED_TILE:
 				if used_cell.y >= 0 and used_cell.y <= 9 and used_cell.x >= 0 and used_cell.x <= 13:
@@ -69,12 +69,11 @@ func generate_procedural_map():
 		for cell in valid_cells:
 			if tilemap.get_cellv(valid_cells[rand_idx]) in ts_db.BRANCHED_TILE:
 				valid_cells.erase(cell)
-		generate_middle_path(valid_cells[rand_idx])
+		yield(generate_middle_path(valid_cells[rand_idx]), "completed")
 	valid_cells.clear()
-	generate_AStar_graph()
-#	yield(get_tree(), 'physics_frame')
-#	yield(get_tree().create_timer(1.0), 'timeout')
-#	generate_procedural_map()
+#	generate_AStar_graph()
+	yield(get_tree().create_timer(.5), 'timeout')
+	generate_procedural_map()
 
 func generate_initial_path(creep_spawner, cell_id, cell, in_tile_dir, bias):
 	var info
@@ -82,18 +81,20 @@ func generate_initial_path(creep_spawner, cell_id, cell, in_tile_dir, bias):
 	tilemap.set_cellv(creep_spawner, cell_id)
 	initial_path = true
 	while cell != null:
+		yield(get_tree(), 'physics_frame')
 		info = generate_tile(cell, bias, in_tile_dir)
 		cell = info[0]
 		in_tile_dir = info[1]
 	path_pos.clear()
 	path_id.clear()
 	if initial_path == true:
-		generate_initial_path(creep_spawner, cell_id, reset[0], reset[1], bias)
+		yield(generate_initial_path(creep_spawner, cell_id, reset[0], reset[1], bias), "completed")
 
 func generate_middle_path(cell):
 	var out_tile_dir = ts_db.get_random_dir(self, cell, tilemap.get_cellv(cell))
 	if out_tile_dir == null:
 		valid_cells.erase(cell)
+		yield(get_tree(), 'physics_frame')
 		return
 	path_pos.append(cell)
 	path_id.append(tilemap.get_cellv(cell))
@@ -105,6 +106,7 @@ func generate_middle_path(cell):
 	randomize()
 	var bias = (0.2 + 1.8*randf()) * (-1 + 2 *(randi() % 2))
 	while cell != null:
+		yield(get_tree(), 'physics_frame')
 		info = generate_tile(cell, bias, in_tile_dir)
 		cell = info[0]
 		in_tile_dir = info[1]

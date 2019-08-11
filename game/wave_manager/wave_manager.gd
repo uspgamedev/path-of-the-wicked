@@ -8,7 +8,7 @@ onready var creeps = get_node('../Creeps')
 var cur_wave = 1
 var cur_points = 0
 var wave_points = 500
-var wave_delay = 10
+var wave_delay = 10e7
 
 func start_wave():
 	spawner_manager.start_wave()

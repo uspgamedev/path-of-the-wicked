@@ -11,7 +11,7 @@ onready var notif = get_node('Notifications')
 onready var popup = get_node('Popup')
 onready var info = popup.get_node('Info')
 
-var gold = 6000
+var gold = 6000000
 var gathered = 0
 var gathered_label = null
 var tween_label = null
@@ -30,7 +30,7 @@ func _physics_process(delta):
 	wave_label.rect_position.x = -OS.window_size.x/2 - 20
 
 func update_gold(amount):
-	gold += amount
+	gold += abs(amount)
 	gathered += amount
 	if gold < 0:
 		main.player_lost()

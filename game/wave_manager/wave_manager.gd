@@ -5,10 +5,10 @@ onready var hud = get_node('../Camera2D/HUD')
 onready var spawner_manager = get_node('../SpawnerManager')
 onready var creeps = get_node('../Creeps')
 
-var cur_wave = 1
+var cur_wave = 20
 var cur_points = 0
-var wave_points = 500
-var wave_delay = 10
+var wave_points = 190500
+var wave_delay = 5
 
 func start_wave():
 	spawner_manager.start_wave()

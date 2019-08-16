@@ -258,9 +258,13 @@ func update_graph_weights(tower, gem_dmg, gem_color):
 	update_node_colors()
 	a_star.reset_spawn_paths(self)
 
+var a_star_counter = 0
+
 func update_path(_a_star, path, init_pos):
 	path = PoolVector2Array([])
 	var point_path = _a_star.get_point_path(idx_dict[init_pos], idx_dict[base])
+	a_star_counter += 1
+	hud.get_node("AStarCounter").text = str("A Star counter: ", a_star_counter)
 	for i in range(point_path.size()):
 		path.append(Vector2(point_path[i].x, point_path[i].y))
 	return path
